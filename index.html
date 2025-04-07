@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propix LK - Graphic Design Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        #p5-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <canvas id="three-canvas"></canvas>
+    <canvas id="p5-canvas"></canvas>
+
+    <header class="sticky top-0 z-50 bg-transparent backdrop-blur-md p-4 shadow-md border-b border-gray-800">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Propix LK</div>
+            <ul class="flex space-x-8">
+                <li><a href="#services" class="hover:text-blue-300 transition-colors duration-300 text-lg font-medium opacity-80 hover:opacity-100">Services</a></li>
+                <li><a href="#portfolio" class="hover:text-blue-300 transition-colors duration-300 text-lg font-medium opacity-80 hover:opacity-100">Portfolio</a></li>
+                <li><a href="#about" class="hover:text-blue-300 transition-colors duration-300 text-lg font-medium opacity-80 hover:opacity-100">About</a></li>
+                <li><a href="#contact" class="hover:text-blue-300 transition-colors duration-300 text-lg font-medium opacity-80 hover:opacity-100">Contact</a></li>
+            </ul>
+            <button class="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 hover:text-blue-300 font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                           shadow-md hover:shadow-lg border border-blue-500/30">Get a Quote</button>
+        </nav>
+    </header>
+
+    <section class="container mx-auto py-40 text-center flex flex-col items-center">
+        <h1 class="text-7xl font-extrabold mb-10 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400
+                       drop-shadow-lg max-w-3xl">
+            Unleash Your Brand's Potential
+        </h1>
+        <p class="text-xl text-gray-300 mb-16 max-w-3xl">
+            We are a creative design studio dedicated to crafting visual experiences that captivate, inspire, and drive results.
+        </p>
+        <div class="flex space-x-6">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                           shadow-md hover:shadow-lg transform hover:scale-105">
+                Our Services
+            </button>
+            <button class="bg-transparent border border-blue-500 text-blue-400 hover:bg-blue-500/20 hover:text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                           shadow-md hover:shadow-lg">
+                Our Portfolio
+            </button>
+        </div>
+    </section>
+
+    <section id="services" class="bg-gray-800 py-28">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold mb-20 text-blue-400 text-center">Our Creative Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="p-6 rounded-3xl shadow-2xl transition-all duration-300
+                            bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10
+                            hover:scale-105 group">
+                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-square text-blue-400 w-8 h-8 group-hover:text-blue-300 transition-colors">
+                            <path d="M12 20h9"></path><path d="m16.5 3.5-9 9L3 15l2.5-4.5 9-9Z"></path><path d="M15 5.5a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white group-hover:text-blue-300 transition-colors">Logo Design</h3>
+                    <p class="text-gray-300 text-lg">Crafting unique and memorable logos that define your brand's identity.</p>
+                </div>
+                <div class="p-6 rounded-3xl shadow-2xl transition-all duration-300
+                            bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10
+                            hover:scale-105 group">
+                    <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-2 text-purple-400 w-8 h-8 group-hover:text-purple-300 transition-colors">
+                            <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"></path><path d="M8 2v4"></path><path d="M16 2v4"></path><path d="M12 6v4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white group-hover:text-purple-300 transition-colors">Web Design</h3>
+                    <p class="text-gray-300 text-lg">Designing stunning and user-friendly websites that elevate your online presence.</p>
+                </div>
+                <div class="p-6 rounded-3xl shadow-2xl transition-all duration-300
+                            bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10
+                            hover:scale-105 group">
+                    <div class="w-16 h-16 rounded-full bg-pink-500/20 flex items-center justify-center mb-6 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram text-pink-400 w-8 h-8 group-hover:text-pink-300 transition-colors">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white group-hover:text-pink-300 transition-colors">Social Media</h3>
+                    <p class="text-gray-300 text-lg">Creating engaging visuals for your social media to connect with your audience.</p>
+                </div>
+            </div>
+            <button class="mt-12 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 hover:text-blue-300 font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                           shadow-md hover:shadow-lg border border-blue-500/30 transform hover:scale-105">
+                Explore All Services
+            </button>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-28">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold mb-20 text-purple-400">Our Featured Projects</h2>
+            <p class="text-xl text-gray-300 mb-16 max-w-3xl mx-auto">
+                A glimpse into our creative journey, showcasing a diverse range of projects that reflect our passion for design excellence.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group
+                            border border-white/10">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <span class="text-gray-400 text-2xl font-semibold">Project 1</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Project Title 1</h3>
+                        <p class="text-gray-300 text-lg">Brief description of the project and the design services used.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group
+                            border border-white/10">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <span class="text-gray-400 text-2xl font-semibold">Project 2</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Project Title 2</h3>
+                        <p class="text-gray-300 text-lg">Brief description of the project and the design services used.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group
+                            border border-white/10">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <span class="text-gray-400 text-2xl font-semibold">Project 3</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Project Title 3</h3>
+                        <p class="text-gray-300 text-lg">Brief description of the project and the design services used.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="mt-12 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 hover:text-purple-300 font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                           shadow-md hover:shadow-lg border border-purple-500/30 transform hover:scale-105">
+                View Our Full Portfolio
+            </button>
+        </div>
+    </section>
+
+    <section id="about" class="bg-gray-800 py-28">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold mb-20 text-blue-400">About Our Studio</h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                We are a collective of creative minds, passionate about pushing the boundaries of design and delivering exceptional visual experiences.
+            </p>
+            <p class="text-xl text-gray-300 mb-16 max-w-3xl mx-auto">
+                Our collaborative approach, combined with a deep understanding of design principles, allows us to craft solutions that are both aesthetically pleasing and strategically effective.
+            </p>
+            <div class="flex justify-center mt-12">
+                <div class="w-56 h-56 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mr-12
+                            border-2 border-white/10 shadow-lg">
+                    <span class="text-white text-xl font-semibold">Our Team</span>
+                </div>
+                <div class="w-56 h-56 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center
+                            border-2 border-white/10 shadow-lg">
+                    <span class="text-white text-xl font-semibold">Our Values</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-28">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold mb-20 text-purple-400">Let's Create Something Amazing</h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Ready to bring your vision to life? Reach out to us today, and let's embark on a creative journey together.
+            </p>
+            <form class="max-w-md mx-auto">
+                <input type="text" placeholder="Your Name" class="w-full bg-black/20 text-white rounded-full p-4 mb-6 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
+                           placeholder:text-gray-400">
+                <input type="email" placeholder="Your Email" class="w-full bg-black/20 text-white rounded-full p-4 mb-6 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
+                           placeholder:text-gray-400">
+                <textarea placeholder="Your Message" class="w-full bg-black/20 text-white rounded-full p-4 mb-6 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300
+                              placeholder:text-gray-400"></textarea>
+                <button type="submit" class="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 text-lg
+                               shadow-md hover:shadow-lg transform hover:scale-105">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-8 text-center text-gray-400 border-t border-gray-700">
+        <p>&copy; 2024 Propix LK. All rights reserved.</p>
+        <p class="mt-4 opacity-70">
+            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 mr-6">Privacy Policy</a>
+            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Terms of Service</a>
+        </p>
+    </footer>
+
+    <script>
+       // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x0f172a); // Match body background
+
+        // Starfield Background
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xaaaaaa, size: 2.5, sizeAttenuation: true }); // Increased star size
+        const starVertices = [];
+        for (let i = 0; i < 15000; i++) { // Increased star count
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = -Math.random() * 1000;
+            starVertices.push(x, y, z);
+        }
+        starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        // Distorted Sphere
+        const sphereGeometry = new THREE.SphereGeometry(12, 64, 64); // Increased sphere size and detail
+        const sphereMaterial = new THREE.MeshStandardMaterial({
+            color: 0x86efac,
+            wireframe: true,
+            roughness: 0.1, // Reduced roughness for shinier look
+            metalness: 0.1, // Added a bit of metalness
+            emissive: 0x000040, // Add a slight glow
+        });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        scene.add(sphere);
+
+        // Displacement
+        let time = 0;
+        function updateSphereVertices() {
+            const positionAttribute = sphereGeometry.attributes.position;
+            for (let i = 0; i < positionAttribute.count; i++) {
+                const vertex = new THREE.Vector3();
+                vertex.fromBufferAttribute(positionAttribute, i);
+                const noise = Math.sin(vertex.x * 2 + time) + Math.cos(vertex.y * 2 + time) + Math.sin(vertex.z * 2 + time);
+                vertex.multiplyScalar(1 + noise * 0.15); // Adjust displacement intensity
+                positionAttribute.setXYZ(i, vertex.x, vertex.y, vertex.z);
+            }
+            positionAttribute.needsUpdate = true;
+        }
+
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 1.5); // Increased light intensity
+        pointLight.position.set(15, 15, 30); // Slightly moved light
+        scene.add(pointLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(-10, 0, 0);
+        scene.add(directionalLight);
+
+
+        camera.position.z = 30; // Increased camera distance
+
+        // Animation Loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            stars.position.z = camera.position.z - 500;
+
+            sphere.rotation.x += 0.004;
+            sphere.rotation.y += 0.004;
+            sphere.rotation.z += 0.004;
+            time += 0.02;
+            updateSphereVertices();
+
+            renderer.render(scene, camera);
+        };
+        animate();
+
+        // Window Resize Handling
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // P5.js Canvas Setup
+        new p5((p) => {
+            let ঢেউগুলো = [];
+            let ঢেউCount = 5; // Increased wave count
+            let ঢেউSpeed = 0.01;
+            let ঢেউAmplitude = 50;
+            let ঢেউFrequency = 0.02;
+            let particleSize = 4;
+            let particles = [];
+            let particleCount = 300;
+
+            p.setup = () => {
+                p.createCanvas(p.windowWidth, p.windowHeight);
+                for (let i = 0; i < ঢেউCount; i++) {
+                     ঢেউগুলো.push(new Wave(p, p.random(0, p.height), p.random(0.01, 0.05), p.random(0.01, 0.05), p.random(30, 80), p.random(0.02, 0.08), p.color(p.random(100, 255), p.random(100, 255), p.random(100, 255), 100)));
+                }
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle(p, p.random(p.width), p.random(p.height), p.color(p.random(200, 255), p.random(200, 255), p.random(200, 255), p.random(50, 150))));
+                }
+                p.noStroke();
+            };
+
+            p.draw = () => {
+                p.clear(0, 5); // Added slight background trail
+                 ঢেউগুলো.forEach( ঢেউ => {
+                     ঢেউ.update();
+                     ঢেউ.display();
+                });
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.display();
+                });
+            };
+
+            class Wave {
+                constructor(p, yOffset, speed, frequency, amplitude, phaseSpeed, color) {
+                    th
