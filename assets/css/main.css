@@ -2252,4 +2252,60 @@ section,
   color: var(--contrast-color); /* Ensure text color remains high contrast on hover */
 }
 
+/*--------------------------------------------------------------
+# Educational Articles Section
+--------------------------------------------------------------*/
+.educational-articles .educational-article {
+  background-color: var(--surface-color);
+  padding: 20px;
+  margin-bottom: 30px; /* Space between articles */
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  height: 100%; /* Ensure equal height if content varies */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack content vertically */
+}
+
+.educational-articles .educational-article .row {
+    align-items: center; /* Vertically align image and text */
+}
+
+.educational-articles .educational-article img {
+  border-radius: 4px;
+  margin-bottom: 15px; /* Space below image on small screens */
+}
+
+@media (min-width: 768px) {
+    .educational-articles .educational-article img {
+        margin-bottom: 0; /* Remove bottom margin on larger screens */
+    }
+}
+
+
+.educational-articles .educational-article h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+.educational-articles .educational-article p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--default-color);
+  margin-bottom: 0; /* Remove default paragraph bottom margin */
+}
+
+/* Style for the buttons section */
+.educational-articles .text-center .btn {
+    /* Inherits styles from Bootstrap .btn and your theme's button styles */
+    /* Add any specific adjustments for these buttons here if needed */
+    margin-top: 15px; /* Space above buttons */
+}
+
+/* Optional: Style for the button icons */
+.educational-articles .btn i {
+    vertical-align: middle; /* Align icon vertically with text */
+}
+
 
