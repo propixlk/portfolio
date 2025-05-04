@@ -1624,6 +1624,150 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Pricing Section
+--------------------------------------------------------------*/
+.pricing .pricing-item {
+  background-color: var(--surface-color);
+  padding: 60px 40px;
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  position: relative;
+  border-radius: 5px; /* Added border-radius for consistency */
+  transition: all 0.3s ease-in-out; /* Added transition for smooth animation */
+}
+
+.pricing h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.pricing h4 {
+  font-size: 48px;
+  color: var(--accent-color);
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
+.pricing h4 sup {
+  font-size: 28px;
+}
+
+.pricing h4 span {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+  font-size: 18px;
+}
+
+.pricing ul {
+  padding: 20px 0;
+  list-style: none;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  text-align: left;
+  line-height: 20px;
+}
+
+.pricing ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.pricing ul i {
+  color: #059652;
+  font-size: 24px;
+  padding-right: 3px;
+}
+
+.pricing ul .na {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na i {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na span {
+  text-decoration: line-through;
+}
+
+.pricing .buy-btn {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  background-color: var(--background-color);
+  display: inline-block;
+  padding: 8px 35px 10px 35px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 60%);
+  transition: none; /* Removed transition from here as it's on the main item */
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--heading-font);
+  /* transition: 0.3s; */ /* Removed duplicate transition */
+}
+
+.pricing .buy-btn:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.pricing .featured {
+  z-index: 10;
+}
+
+/* Ensure featured item also has transition */
+.pricing .featured .pricing-item {
+   /* transition: all 0.3s ease-in-out; */ /* Already added to .pricing-item */
+}
+
+
+@media (min-width: 992px) {
+  .pricing .featured .pricing-item {
+    transform: scale(1.02, 1.1);
+  }
+}
+
+.pricing .featured h3,
+.pricing .featured h4,
+.pricing .featured h4 span,
+.pricing .featured ul,
+.pricing .featured ul .na,
+.pricing .featured ul i,
+.pricing .featured ul .na i {
+  color: var(--contrast-color);
+}
+
+.pricing .featured .buy-btn {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--contrast-color);
+}
+
+.pricing .featured .buy-btn:hover {
+  background: color-mix(in srgb, var(--background-color), transparent 92%);
+}
+
+/* Added hover effect for pricing items - Changed to use scale */
+.pricing .pricing-item:hover {
+  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1); /* Keep the shadow effect */
+  transform: scale(1.05); /* Added scale transform for a more noticeable effect */
+}
+
+/* Ensure the featured item's transform is not overridden by the general hover */
+@media (min-width: 992px) {
+    .pricing .featured .pricing-item:hover {
+       /* Combine featured transform and the new scale transform */
+       /* Note: Order of transforms can matter, scale first then the featured transform */
+       transform: scale(1.05) scale(1.02, 1.1);
+       /* Alternatively, calculate the combined scale if needed, but this should work */
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Faq Section
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
 # Faq Section
 --------------------------------------------------------------*/
 .faq .faq-container .faq-item {
@@ -2048,3 +2192,64 @@ section,
   50% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+/*--------------------------------------------------------------
+# Order Form Section (Optional Styles)
+--------------------------------------------------------------*/
+.order-form-section .form-label {
+  font-weight: 600;
+  color: var(--heading-color); /* Labels වලට Heading color එක යොදන්න */
+  margin-bottom: 8px;
+}
+
+.order-form-section .form-control,
+.order-form-section .form-select {
+  /* Contact form එකේ styles වලට අමතරව අවශ්‍ය වෙනස්කම් මෙහි එකතු කරන්න */
+  /* උදා: border-radius, padding වැඩි කිරීම */
+   border-radius: 4px;
+}
+
+.order-form-section .form-text {
+    font-size: 0.875em; /* Small text size */
+    color: color-mix(in srgb, var(--default-color), transparent 80%); /* Muted color */
+    margin-top: 4px;
+    display: block; /* Ensure it takes its own line */
+}
+
+
+/* ඔබට file input එකට විශේෂ style අවශ්‍ය නම් */
+.order-form-section input[type="file"] {
+    padding: 10px 15px; /* Adjust padding as needed */
+    /* Add any other specific file input styles here */
+}
+
+/* ඔබට select box එකට විශේෂ style අවශ්‍ය නම් */
+.order-form-section select.form-select {
+     padding: 10px 25px 10px 15px; /* Adjust padding for dropdown arrow */
+     /* Add any other specific select styles here */
+}
+
+
+/* Updated style for the Submit Order button to match the Read More button */
+.order-form-section button[type="submit"] {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500; /* Adjusted font weight */
+  font-size: 16px; /* Adjusted font size */
+  letter-spacing: 1px; /* Added letter spacing */
+  display: inline-flex; /* Changed display to match read-more */
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px; /* Adjusted padding */
+  border-radius: 5px; /* Adjusted border radius */
+  transition: 0.3s;
+  border: none; /* Ensure no default button border */
+}
+
+.order-form-section button[type="submit"]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 50%);
+  color: var(--contrast-color); /* Ensure text color remains high contrast on hover */
+}
+
+
