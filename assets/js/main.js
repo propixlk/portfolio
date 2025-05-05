@@ -322,5 +322,53 @@
     initRotatingTypewriter(); // නව Typewriter Function එක Call කිරීම
   });
 
+  /**
+   * Ad Banner Image Rotation (for the section below header)
+   */
+  const adBannerImage = document.getElementById('ad-banner-image');
+  const adBannerLink = document.getElementById('ad-banner-link'); // Get the link element
+
+  if (adBannerImage) { // Check if the ad banner image element exists
+
+    // List of ad images and their corresponding links
+    const ads = [
+      { src: 'assets/img/ads/x.png', link: 'https://www.your-ad-link-1.com' },
+      { src: 'assets/img/ads/x2.png', link: 'https://www.google.com' },
+      
+      // ඔබට අවශ්‍ය තවත් ad images සහ links මෙහි එකතු කරන්න
+      // Format: { src: 'path/to/your/image.jpg', link: 'https://link.for.this.ad.com' }
+    ];
+
+    let currentAdIndex = 0;
+    const intervalTime = 5000; // Change image every 5 seconds (5000 milliseconds)
+
+    // Function to change the ad image and link
+    function changeAd() {
+      currentAdIndex++;
+      if (currentAdIndex >= ads.length) {
+        currentAdIndex = 0; // Go back to the first ad if at the end of the list
+      }
+
+      // Update the image source
+      adBannerImage.src = ads[currentAdIndex].src;
+
+      // Update the link if the link element exists
+      if (adBannerLink) {
+        adBannerLink.href = ads[currentAdIndex].link;
+      }
+    }
+
+    // Start the ad rotation after an initial delay equal to the interval time
+    // This ensures the first image is shown for the full interval before changing
+    setTimeout(() => {
+       setInterval(changeAd, intervalTime);
+    }, intervalTime);
+
+    // Set the initial link when the page loads if there are ads
+     if (adBannerLink && ads.length > 0) {
+        adBannerLink.href = ads[currentAdIndex].link;
+     }
+  }
+
 
 })();

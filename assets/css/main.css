@@ -135,7 +135,7 @@ h6 {
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+  border-bottom: 10px solid transparent; /* Corrected line */
   border-left: 15px solid #fff;
   z-index: 100;
   transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -725,6 +725,7 @@ body.starter-page-page #preloader {
   /* Add any specific styles for the starter page if needed */
 }
 
+
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/
@@ -960,24 +961,27 @@ section,
 }
 
 .hero .icon-box .icon {
-  margin-bottom: 20px;
-  padding-top: 10px;
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
+  margin: 0 auto; /* Centered icon */
+  width: 100px; /* Consistent size */
+  height: 100px; /* Consistent size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
   font-size: 36px;
   line-height: 1;
   color: var(--accent-color);
 }
 
-@media (min-width: 640px) {
-  .hero .icon-box:hover {
-    transform: scale(1.08);
-  }
-
-  .hero .icon-box:hover .title a {
-    color: var(--accent-color);
-  }
+.hero .icon-box:hover {
+  transform: scale(1.08);
 }
+
+.hero .icon-box:hover .title a {
+  color: var(--accent-color);
+}
+
 
 /*--------------------------------------------------------------
 # About Section
@@ -1012,6 +1016,7 @@ section,
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--accent-color); /* About button border */
 }
 
 .about .read-more i {
@@ -1023,6 +1028,7 @@ section,
 
 .about .read-more:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 20%); /* About button border hover */
 }
 
 .about .read-more:hover i {
@@ -1573,14 +1579,587 @@ section,
   transform: scale(1.1); /* Zoom effect on image */
 }
 
+/* Portfolio section button style - Added to match About button */
+.portfolio .read-more {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 10px 28px;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--accent-color); /* Added border */
+}
+
+.portfolio .read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
+  transition: 0.3s;
+}
+
+.portfolio .read-more:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 20%); /* Added border-color hover */
+}
+
+.portfolio .read-more:hover i {
+  transform: translate(5px, 0);
+}
 
 /* Removed the styles for the buttons section at the bottom */
 
 
 /*--------------------------------------------------------------
-# Footer
+# Team Section
 --------------------------------------------------------------*/
+.team .team-member {
+  background-color: var(--surface-color);
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
 
+.team .team-member .member-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.team .team-member .social {
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  right: 0;
+  opacity: 0;
+  transition: ease-in-out 0.3s;
+  text-align: center;
+}
+
+.team .team-member .social a {
+  background: color-mix(in srgb, var(--contrast-color), transparent 25%);
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  margin: 0 3px;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  transition: ease-in-out 0.3s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team .team-member .social a:hover {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+}
+
+.team .team-member .social i {
+  font-size: 18px;
+  line-height: 0;
+}
+
+.team .team-member .member-info {
+  padding: 25px 15px;
+}
+
+.team .team-member .member-info h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.team .team-member .member-info span {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+.team .team-member:hover .social {
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Pricing Section
+--------------------------------------------------------------*/
+.pricing .pricing-item {
+  background-color: var(--surface-color);
+  padding: 60px 40px;
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  position: relative;
+  border-radius: 5px; /* Added border-radius for consistency */
+  transition: all 0.3s ease-in-out; /* Added transition for smooth animation */
+}
+
+.pricing h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.pricing h4 {
+  font-size: 48px;
+  color: var(--accent-color);
+  font-family: var(--heading-font);
+  font-weight: 400;
+}
+
+.pricing h4 sup {
+  font-size: 28px;
+}
+
+.pricing h4 span {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+  font-size: 18px;
+}
+
+.pricing ul {
+  padding: 20px 0;
+  list-style: none;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  text-align: left;
+  line-height: 20px;
+}
+
+.pricing ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.pricing ul i {
+  color: #059652;
+  font-size: 24px;
+  padding-right: 3px;
+}
+
+.pricing ul .na {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na i {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na span {
+  text-decoration: line-through;
+}
+
+.pricing .buy-btn {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  background-color: var(--background-color);
+  display: inline-block;
+  padding: 8px 35px 10px 35px;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 60%);
+  transition: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--heading-font);
+  transition: 0.3s;
+}
+
+.pricing .buy-btn:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.pricing .featured {
+  z-index: 10;
+}
+
+.pricing .featured .pricing-item {
+  background: var(--accent-color);
+}
+
+@media (min-width: 992px) {
+  .pricing .featured .pricing-item {
+    transform: scale(1.02, 1.1);
+  }
+}
+
+.pricing .featured h3,
+.pricing .featured h4,
+.pricing .featured h4 span,
+.pricing .featured ul,
+.pricing .featured ul .na,
+.pricing .featured ul i,
+.pricing .featured ul .na i {
+  color: var(--contrast-color);
+}
+
+.pricing .featured .buy-btn {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--contrast-color);
+}
+
+.pricing .featured .buy-btn:hover {
+  background: color-mix(in srgb, var(--background-color), transparent 92%);
+}
+
+/* Added hover effect for pricing items - Changed to use scale */
+.pricing .pricing-item:hover {
+  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1); /* Keep the shadow effect */
+  transform: scale(1.05); /* Added scale transform for a more noticeable effect */
+}
+
+/* Ensure the featured item's transform is not overridden by the general hover */
+@media (min-width: 992px) {
+    .pricing .featured .pricing-item:hover {
+       /* Combine featured transform and the new scale transform */
+       /* Note: Order of transforms can matter, scale first then the featured transform */
+       transform: scale(1.05) scale(1.02, 1.1);
+       /* Alternatively, calculate the combined scale if needed, but this should work */
+    }
+}
+
+/*--------------------------------------------------------------
+# Faq Section
+--------------------------------------------------------------*/
+.faq .faq-container .faq-item {
+  background-color: var(--surface-color);
+  position: relative;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.faq .faq-container .faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq .faq-container .faq-item h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 30px 0 0;
+  transition: 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.faq .faq-container .faq-item h3 .num {
+  color: var(--accent-color);
+  padding-right: 5px;
+}
+
+.faq .faq-container .faq-item h3:hover {
+  color: var(--accent-color);
+}
+
+.faq .faq-container .faq-item .faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.faq .faq-container .faq-item .faq-content p {
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.faq .faq-container .faq-item .faq-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  line-height: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.faq .faq-container .faq-item .faq-toggle:hover {
+  color: var(--accent-color);
+}
+
+.faq .faq-container .faq-active {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.faq .faq-container .faq-active h3 {
+  color: var(--contrast-color);
+}
+
+.faq .faq-container .faq-active .faq-content {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  padding-top: 10px;
+}
+
+.faq .faq-container .faq-active .faq-toggle {
+  transform: rotate(90deg);
+  color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.contact .info-item+.info-item {
+  margin-top: 40px;
+}
+
+.contact .info-item i {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  margin-right: 15px;
+}
+
+.contact .info-item h3 {
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.contact .info-item p {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  opacity: 0.7; /* Added opacity for fade effect */
+  transition: opacity 0.3s ease-in-out; /* Added transition for smooth fade */
+}
+
+.contact .php-email-form {
+  height: 100%;
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.contact .php-email-form input[type=text]::placeholder,
+.contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.contact .php-email-form button[type=submit] {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/*--------------------------------------------------------------
+# Portfolio Details Section
+--------------------------------------------------------------*/
+.portfolio-details .portfolio-details-slider img {
+  width: 100%;
+}
+
+.portfolio-details .swiper-wrapper {
+  height: auto;
+}
+
+.portfolio-details .swiper-button-prev,
+.portfolio-details .swiper-button-next {
+  width: 48px;
+  height: 48px;
+}
+
+.portfolio-details .swiper-button-prev:after,
+.portfolio-details .swiper-button-next:after {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.15);
+  font-size: 24px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.portfolio-details .swiper-button-prev:hover:after,
+.portfolio-details .swiper-button-next:hover:after {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 575px) {
+
+  .portfolio-details .swiper-button-prev,
+  .portfolio-details .swiper-button-next {
+    display: none;
+  }
+}
+
+.portfolio-details .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.portfolio-details .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
+  opacity: 1;
+}
+
+.portfolio-details .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.portfolio-details .portfolio-info h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  bottom: 0;
+}
+
+.portfolio-details .portfolio-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.portfolio-details .portfolio-info ul li {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.portfolio-details .portfolio-info ul strong {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  font-size: 14px;
+}
+
+.portfolio-details .portfolio-info .btn-visit {
+  padding: 8px 40px;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.portfolio-details .portfolio-info .btn-visit:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.portfolio-details .portfolio-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.portfolio-details .portfolio-description p {
+  padding: 0;
+}
+
+.portfolio-details .portfolio-description .testimonial-item {
+  padding: 30px 30px 0 30px;
+  position: relative;
+  background: color-mix(in srgb, var(--default-color), transparent 97%);
+  margin-bottom: 50px;
+}
+
+.portfolio-details .portfolio-description .testimonial-item .testimonial-img {
+  width: 90px;
+  border-radius: 50px;
+  border: 6px solid var(--background-color);
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.portfolio-details .portfolio-description .testimonial-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0 5px 0;
+  padding-top: 20px;
+}
+
+.portfolio-details .portfolio-description .testimonial-item h4 {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.portfolio-details .portfolio-description .testimonial-item .quote-icon-left,
+.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
+  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  font-size: 26px;
+  line-height: 0;
+}
+
+.portfolio-details .portfolio-description .testimonial-item .quote-icon-left {
+  display: inline-block;
+  left: -5px;
+  position: relative;
+}
+
+.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
+  display: inline-block;
+  right: -5px;
+  position: relative;
+  top: 10px;
+  transform: scale(-1, -1);
+}
+
+.portfolio-details .portfolio-description .testimonial-item p {
+  font-style: italic;
+  margin: 0 0 15px 0 0 0;
+  padding: 0;
+}
 
 /*--------------------------------------------------------------
 # Service Details Section
@@ -1785,4 +2364,82 @@ section,
     vertical-align: middle; /* Align icon vertically with text */
 }
 
+}
 
+/* Style for the Ad Banner Section - No Padding */
+/* මෙම style මගින් banner එක අඩංගු සම්පූර්ණ කොටස සකසයි */
+.ad-banner-section {
+  padding: 0; /* ඉහල සහ පහල padding සම්පූර්ණයෙන්ම ඉවත් කරයි */
+  /* text-align: center; // මෙම පේළිය ඉවත් කරන්න */
+  background-color: var(--background-color); /* කොටසේ පසුබිම් වර්ණය */
+  overflow: hidden; /* මෙම section එකෙන් පිට යන දේවල් සැඟවීමට */
+  margin: 0; /* ආරක්ෂිත හේතූන් මත margin ද 0 ලෙස සකසමු */
+}
+
+/* Style for the Ad Banner Container - Full Width of Container and Centered */
+/* මෙම style මගින් Banner Image එක අඩංගු වන කොටුව (Container) සකසයි */
+.ad-banner-container {
+  display: block; /* Container එක block element එකක් ලෙස සකසයි */
+  width: 100%; /* Container එකේ ඇති parent Container එකේ (.container) සම්පූර්ණ පළල ගැනීමට */
+  /* max-width: 728px; // මෙම පේළිය සම්පූර්ණයෙන්ම ඉවත් කරන්න */
+  height: auto; /* උස ස්වයංක්‍රීයව පිංතූරයට අනුව සකස් වීමට */
+  max-height: 90px; /* විශාල තිර වලදී උපරිම උස 90px ලෙස සකසයි */
+  margin: 0 auto !important; /* Banner Container එක තිරස් අතට මධ්‍යගත කිරීමට. !important යොදා ඇත්තේ වෙනත් style එකක් මගින් මෙය override වීම වැලැක්වීමටයි (ගැටලුව සොයා ගැනීමට). */
+  overflow: hidden; /* Container එකෙන් පිට යන පිංතූර කොටස් සැඟවීමට */
+
+  /* ඔබට අවශ්‍ය නම් Border එකතු කරන්න */
+  /* border: 1px solid #ccc; */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+/* Style for the Ad Banner Image - Ensures the image fills within the container */
+/* මෙම style මගින් Banner පිංතූරය (<img> tag එක) සකසයි */
+.ad-banner-container img {
+  display: block; /* පිංතූරය block element එකක් ලෙස සකසයි. */
+  width: 100%; /* පිංතූරය එහි ඇති Container එකේ (.ad-banner-container) පළලින් 100% ක් ගැනීමට */
+  height: auto; /* උස ස්වයංක්‍රීයව සකස් වීමට */
+  object-fit: cover; /* පිංතූරයේ අනුපාතය විකෘති නොවී, Container එක පුරා පෙන්වීමට. */
+}
+
+/* කුඩා තිර සඳහා Styles (Mobile Responsiveness) */
+@media (max-width: 767.98px) { /* Browser window එකේ පළල pixels 767.98 ට වඩා අඩු වූ විට මෙම styles ක්‍රියාත්මක වේ. */
+  .ad-banner-container {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: auto;
+    margin: 0 auto !important; /* කුඩා තිර වලදී ද මධ්‍යගත කිරීම */
+  }
+
+  .ad-banner-container img {
+      height: auto;
+      object-fit: contain; /* කුඩා තිර වලදී පිංතූරය කපී යාම වැලැක්වීමට 'contain' භාවිතා කරයි. */
+  }
+}
+
+/* ඔබට අවශ්‍ය නම් ඉතා කුඩා තිර වලදී Banner එක සම්පූර්ණයෙන්ම නොපෙන්වීමට */
+/* පහත media query එක uncomment කර භාවිතා කළ හැකියි */
+/*
+@media (max-width: 575.98px) { // Browser window එකේ පළල pixels 575.98 ට වඩා අඩු වූ විට
+  .ad-banner-section {
+    display: none !important; // Banner Section එක සම්පූර්ණයෙන්ම සඟවයි
+  }
+}
+*/
+
+/* Style for About Section - Reduced Top Padding */
+/* About Us Section එකේ ඉහලින් ඇති හිස් ඉඩ අඩු කිරීමට */
+#about.section {
+    padding-top: 0 !important; /* ඉහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. !important යොදා ඇත්තේ අනෙකුත් section styles override කිරීමටයි. */
+    /* ඔබට අවශය නම් පහල padding ද වෙනස් කළ හැකියි */
+    /* padding-bottom: 60px; */
+}
+
+/* ඔබට අවශ්‍ය නම් Banner එකට ඉහලින් ඇති Section එකේ පහල padding ද අඩු කිරීමට */
+/* ඔබගේ Header එකට පහලින් ඇති කොටසේ class එක සොයාගෙන පහත ආකාරයට style එකතු කරන්න */
+/* උදා: If the section above Banner is Hero section with id="hero" */
+/*
+#hero.section {
+   padding-bottom: 0 !important;
+}
+*/
