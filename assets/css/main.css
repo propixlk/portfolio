@@ -2369,22 +2369,22 @@ section,
 /* Style for the Ad Banner Section - No Padding */
 /* මෙම style මගින් banner එක අඩංගු සම්පූර්ණ කොටස සකසයි */
 .ad-banner-section {
-  padding: 0; /* ඉහල සහ පහල padding සම්පූර්ණයෙන්ම ඉවත් කරයි */
-  /* text-align: center; // මෙම පේළිය ඉවත් කරන්න */
+  padding: 0 !important; /* ඉහල සහ පහල padding සම්පූර්ණයෙන්ම ඉවත් කරයි */
+  text-align: center; /* Container එක තුල ඇති අන්තර්ගතය (Banner Container එක) තිරස් අතට මධ්‍යගත කිරීමට උත්සාහ කරයි */
   background-color: var(--background-color); /* කොටසේ පසුබිම් වර්ණය */
   overflow: hidden; /* මෙම section එකෙන් පිට යන දේවල් සැඟවීමට */
-  margin: 0; /* ආරක්ෂිත හේතූන් මත margin ද 0 ලෙස සකසමු */
+  margin: 0 !important; /* ආරක්ෂිත හේතූන් මත margin ද 0 ලෙස සකසමු */
 }
 
 /* Style for the Ad Banner Container - Full Width of Container and Centered */
 /* මෙම style මගින් Banner Image එක අඩංගු වන කොටුව (Container) සකසයි */
 .ad-banner-container {
-  display: block; /* Container එක block element එකක් ලෙස සකසයි */
+  display: inline-block; /* Container එක inline-block element එකක් ලෙස සකසයි. text-align: center; සමග මධ්‍යගත වීමට මෙය උපකාරී විය හැකියි. */
   width: 100%; /* Container එකේ ඇති parent Container එකේ (.container) සම්පූර්ණ පළල ගැනීමට */
-  /* max-width: 728px; // මෙම පේළිය සම්පූර්ණයෙන්ම ඉවත් කරන්න */
+  /* max-width: 728px; // පෙර තිබූ max-width එක ඉවත් කර ඇත */
   height: auto; /* උස ස්වයංක්‍රීයව පිංතූරයට අනුව සකස් වීමට */
   max-height: 90px; /* විශාල තිර වලදී උපරිම උස 90px ලෙස සකසයි */
-  margin: 0 auto !important; /* Banner Container එක තිරස් අතට මධ්‍යගත කිරීමට. !important යොදා ඇත්තේ වෙනත් style එකක් මගින් මෙය override වීම වැලැක්වීමටයි (ගැටලුව සොයා ගැනීමට). */
+  margin: 0 auto !important; /* Banner Container එක තිරස් අතට මධ්‍යගත කිරීමට. !important යොදා ඇත. */
   overflow: hidden; /* Container එකෙන් පිට යන පිංතූර කොටස් සැඟවීමට */
 
   /* ඔබට අවශ්‍ය නම් Border එකතු කරන්න */
@@ -2392,7 +2392,7 @@ section,
   /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
-/* Style for the Ad Banner Image - Ensures the image fills within the container */
+/* Style for the Ad Banner Image - Ensures the image fits within the container */
 /* මෙම style මගින් Banner පිංතූරය (<img> tag එක) සකසයි */
 .ad-banner-container img {
   display: block; /* පිංතූරය block element එකක් ලෙස සකසයි. */
@@ -2427,19 +2427,20 @@ section,
 }
 */
 
-/* Style for About Section - Reduced Top Padding */
+/* Style for About Section - Removed Top Padding */
 /* About Us Section එකේ ඉහලින් ඇති හිස් ඉඩ අඩු කිරීමට */
 #about.section {
-    padding-top: 0 !important; /* ඉහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. !important යොදා ඇත්තේ අනෙකුත් section styles override කිරීමටයි. */
+    padding-top: 0 !important; /* ඉහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. */
     /* ඔබට අවශය නම් පහල padding ද වෙනස් කළ හැකියි */
     /* padding-bottom: 60px; */
+    /* අනෙකුත් styles එලෙසම තබා ගන්න */
 }
 
-/* ඔබට අවශ්‍ය නම් Banner එකට ඉහලින් ඇති Section එකේ පහල padding ද අඩු කිරීමට */
-/* ඔබගේ Header එකට පහලින් ඇති කොටසේ class එක සොයාගෙන පහත ආකාරයට style එකතු කරන්න */
-/* උදා: If the section above Banner is Hero section with id="hero" */
-/*
+/* Style for Hero Section - Removed Bottom Padding */
+/* Banner එකට ඉහලින් ඇති Hero Section එකේ පහල padding ඉවත් කිරීමට */
 #hero.section {
-   padding-bottom: 0 !important;
+   /* Hero section එකට දැනට ඇති අනෙකුත් styles */
+   padding-bottom: 40px; /* පහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. */
+   /* ඔබට අවශය නම් ඉහල padding ද වෙනස් කළ හැකියි */
+   /* padding-top: 60px; */
 }
-*/
