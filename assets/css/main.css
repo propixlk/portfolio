@@ -662,7 +662,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Preloader - New CMYK Animation
+# Preloader - Eye Animation (No Blinking)
 --------------------------------------------------------------*/
 #preloader {
   position: fixed; /* තිරයේ එක තැනක සිටීමට */
@@ -670,87 +670,49 @@ h6 {
   z-index: 999999; /* අනෙකුත් elements වලට වඩා ඉදිරියෙන් පෙන්වීමට */
   overflow: hidden; /* පිටතට යන කොටස් සැඟවීමට */
   background: var(--background-color); /* ඔබේ theme එකේ background color එක යොදාගන්න */
-  transition: all 0.6s ease-out; /* සුමටව අතුරුදහන් වීම සඳහා */
+  transition: all 3s ease-out; /* සුමටව අතුරුදහන් වීම සඳහා */
 
-  /* නව animation එක තිරයේ මැදට සිටීම සඳහා */
+  /* animation එක තිරයේ මැදට සිටීම සඳහා */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* පෙර තිබූ loader-container, bubble styles සහ bubble-animation keyframes මෙතැනින් ඉවත් කර ඇත */
+/* පෙර තිබූ අනෙකුත් loader styles සහ keyframes මෙතැනින් ඉවත් කර ඇත */
+/* විශේෂයෙන්ම @keyframes blink මෙතැනින් ඉවත් කර ඇත */
 
-/* නව Loader Animation Styles */
+/* Loader Animation Styles (Blinking ඉවත් කර ඇත) */
 .loader {
-    animation: rotate 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
-    height: 50px; /* loader එකේ උස */
-    width: 50px; /* loader එකේ පළල */
-    /* Pseudo elements align කිරීමට */
+    position: relative;
+    width: 108px; /* ඇස් දෙක අතර පළල */
     display: flex;
-    flex-direction: column; /* Pseudo elements තිරස් අතට සිටින සේ සකසයි */
-    align-items: center; /* Pseudo elements මැදට සිටින සේ සකසයි */
-    justify-content: center;
+    justify-content: space-between; /* ඇස් දෙක අතර ඉඩක් තැබීමට */
 }
 
-.loader:before,
-.loader:after {
-    border-radius: 50%; /* රවුම් හැඩය සඳහා */
-    content: ""; /* Pseudo elements පෙන්වීමට මෙය අවශ්‍යයි */
-    display: block;
-    height: 20px; /* බෝල වල උස */
-    width: 20px; /* බෝල වල පළල */
+.loader::after , .loader::before  {
+    content: ''; /* Pseudo elements පෙන්වීමට මෙය අවශ්‍යයි */
+    display: inline-block;
+    width: 48px; /* ඇසේ පළල */
+    height: 48px; /* ඇසේ උස - දැන් blink නොවන නිසා මෙය ස්ථාවර වේ */
+    background-color: #FFF; /* ඇසේ ප්‍රධාන වර්ණය */
+    background-image:  radial-gradient(circle 14px, #00a6ff 100%, transparent 0); /* කලු ඉංගිරියාව */
+    background-repeat: no-repeat;
+    border-radius: 50%; /* රවුම් හැඩය */
+    /* animation: [keyframes නම] [කාලය] [infinite/වෙනත්]; */
+    animation: eyeMove 3s infinite; /* blink animation call එක ඉවත් කර ඇත */
+    /* මෙහි 10s යනු eyeMove animation එකේ වේගයයි */
 }
 
-.loader:before {
-    animation: ball1 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
-    background-color: #00FFFF; /* Cyan වර්ණය - උඩ බෝලය */
-    box-shadow: 30px 0 0 #FF00FF; /* Magenta වර්ණය - සෙවනැල්ල */
-    margin-bottom: 10px; /* බෝල දෙක අතර පරතරය */
+/* Animation Keyframes - eyeMove animation එක පමණක් ඇත */
+@keyframes eyeMove {
+  0%  , 10% {     background-position: 0px 0px}
+  13%  , 40% {     background-position: -15px 0px} /* වමට බැලීම */
+  43%  , 70% {     background-position: 15px 0px} /* දකුණට බැලීම */
+  73%  , 90% {     background-position: 0px 15px} /* පහළට බැලීම */
+  93%  , 100% {     background-position: 0px 0px} /* කෙලින් බැලීම */
 }
 
-.loader:after {
-    animation: ball2 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
-    background-color: #FF00FF; /* Magenta වර්ණය - යට බෝලය */
-    box-shadow: 30px 0 0 #00FFFF; /* Cyan වර්ණය - සෙවනැල්ල */
-    /* margin-top: 0; */
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg) scale(0.8) }
-    50% { transform: rotate(360deg) scale(1.2) }
-    100% { transform: rotate(720deg) scale(0.8) }
-}
-
-@keyframes ball1 {
-    0% {
-      box-shadow: 30px 0 0 #FF00FF; /* Magenta */
-    }
-    50% {
-      box-shadow: 0 0 0 #FF00FF; /* Magenta */
-      margin-bottom: 0;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #FF00FF; /* Magenta */
-      margin-bottom: 10px;
-    }
-}
-
-@keyframes ball2 {
-    0% {
-      box-shadow: 30px 0 0 #00FFFF; /* Cyan */
-    }
-    50% {
-      box-shadow: 0 0 0 #00FFFF; /* Cyan */
-      margin-top: -20px;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #00FFFF; /* Cyan */
-      margin-top: 0;
-    }
-}
-
+/* @keyframes blink animation එක මෙතැනින් සම්පූර්ණයෙන් ඉවත් කර ඇත */
 
 /*--------------------------------------------------------------
 # Scroll Top Button
@@ -948,7 +910,7 @@ section,
   display: inline-block;
   padding: 14px 50px;
   border-radius: 5px;
-  transition: 0.5s;
+  transition: 0.3s;
   margin-top: 30px;
 }
 
