@@ -332,8 +332,8 @@
 
     // List of ad images and their corresponding links
     const ads = [
-      { src: 'assets/img/ads/x.png', link: 'https://www.your-ad-link-1.com' },
-      { src: 'assets/img/ads/x2.png', link: 'https://www.google.com' },
+      { src: 'assets/img/ads/x.png', link: 'buy.html' },
+      { src: 'assets/img/ads/x2.png', link: '#contact' },
       
       // ඔබට අවශ්‍ය තවත් ad images සහ links මෙහි එකතු කරන්න
       // Format: { src: 'path/to/your/image.jpg', link: 'https://link.for.this.ad.com' }
