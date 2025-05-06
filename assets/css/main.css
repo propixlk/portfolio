@@ -662,67 +662,93 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Preloader - Four CMYK Bubbles Animation
+# Preloader - New CMYK Animation
 --------------------------------------------------------------*/
 #preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  overflow: hidden;
-  background: var(--background-color); /* Uses the theme's background color */
-  transition: all 0.6s ease-out;
+  position: fixed; /* තිරයේ එක තැනක සිටීමට */
+  inset: 0; /* සම්පූර්ණ තිරය ආවරණය කිරීමට */
+  z-index: 999999; /* අනෙකුත් elements වලට වඩා ඉදිරියෙන් පෙන්වීමට */
+  overflow: hidden; /* පිටතට යන කොටස් සැඟවීමට */
+  background: var(--background-color); /* ඔබේ theme එකේ background color එක යොදාගන්න */
+  transition: all 0.6s ease-out; /* සුමටව අතුරුදහන් වීම සඳහා */
+
+  /* නව animation එක තිරයේ මැදට සිටීම සඳහා */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#preloader .loader-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 120px; /* Adjust width as needed */
+/* පෙර තිබූ loader-container, bubble styles සහ bubble-animation keyframes මෙතැනින් ඉවත් කර ඇත */
+
+/* නව Loader Animation Styles */
+.loader {
+    animation: rotate 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
+    height: 50px; /* loader එකේ උස */
+    width: 50px; /* loader එකේ පළල */
+    /* Pseudo elements align කිරීමට */
+    display: flex;
+    flex-direction: column; /* Pseudo elements තිරස් අතට සිටින සේ සකසයි */
+    align-items: center; /* Pseudo elements මැදට සිටින සේ සකසයි */
+    justify-content: center;
 }
 
-#preloader .bubble {
-  width: 20px; /* Adjust bubble size as needed */
-  height: 20px; /* Adjust bubble size as needed */
-  border-radius: 50%;
-  animation: bubble-animation 1.2s infinite ease-in-out;
+.loader:before,
+.loader:after {
+    border-radius: 50%; /* රවුම් හැඩය සඳහා */
+    content: ""; /* Pseudo elements පෙන්වීමට මෙය අවශ්‍යයි */
+    display: block;
+    height: 20px; /* බෝල වල උස */
+    width: 20px; /* බෝල වල පළල */
 }
 
-/* Staggered animation delays */
-#preloader .bubble:nth-child(1) {
-  /* Cyan - delay handled by default animation start */
+.loader:before {
+    animation: ball1 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
+    background-color: #00FFFF; /* Cyan වර්ණය - උඩ බෝලය */
+    box-shadow: 30px 0 0 #FF00FF; /* Magenta වර්ණය - සෙවනැල්ල */
+    margin-bottom: 10px; /* බෝල දෙක අතර පරතරය */
 }
 
-#preloader .bubble:nth-child(2) {
-  /* Magenta */
-  animation-delay: 0.15s;
+.loader:after {
+    animation: ball2 5s infinite; /* මෙහි 1s යනු animation වේගයයි */
+    background-color: #FF00FF; /* Magenta වර්ණය - යට බෝලය */
+    box-shadow: 30px 0 0 #00FFFF; /* Cyan වර්ණය - සෙවනැල්ල */
+    /* margin-top: 0; */
 }
 
-#preloader .bubble:nth-child(3) {
-  /* Yellow */
-  animation-delay: 0.3s;
+@keyframes rotate {
+    0% { transform: rotate(0deg) scale(0.8) }
+    50% { transform: rotate(360deg) scale(1.2) }
+    100% { transform: rotate(720deg) scale(0.8) }
 }
 
-#preloader .bubble:nth-child(4) {
-  /* Black */
-  animation-delay: 0.45s;
+@keyframes ball1 {
+    0% {
+      box-shadow: 30px 0 0 #FF00FF; /* Magenta */
+    }
+    50% {
+      box-shadow: 0 0 0 #FF00FF; /* Magenta */
+      margin-bottom: 0;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #FF00FF; /* Magenta */
+      margin-bottom: 10px;
+    }
 }
 
-
-@keyframes bubble-animation {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px); /* Adjust bounce height as needed */
-  }
-}
-
-/* Ensure preloader is visible before it's removed by JS */
-body.starter-page-page #preloader {
-  /* Add any specific styles for the starter page if needed */
+@keyframes ball2 {
+    0% {
+      box-shadow: 30px 0 0 #00FFFF; /* Cyan */
+    }
+    50% {
+      box-shadow: 0 0 0 #00FFFF; /* Cyan */
+      margin-top: -20px;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #00FFFF; /* Cyan */
+      margin-top: 0;
+    }
 }
 
 
