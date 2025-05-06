@@ -1962,8 +1962,9 @@ section,
 
 .contact .php-email-form input[type=text]::placeholder,
 .contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form input[type=tel]::placeholder,
 .contact .php-email-form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
 .contact .php-email-form button[type=submit] {
