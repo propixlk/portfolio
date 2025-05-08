@@ -1406,206 +1406,296 @@ section,
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
-.portfolio .section-title {
-  padding-bottom: 40px;
-}
-
 .portfolio .portfolio-filters {
   padding: 0;
-  margin: 0 auto 35px auto;
+  margin: 0 auto 20px auto;
   list-style: none;
   text-align: center;
-  background: var(--background-color);
-  border-radius: 50px;
-  padding: 2px 15px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* Added subtle shadow to filters */
 }
 
 .portfolio .portfolio-filters li {
   cursor: pointer;
   display: inline-block;
-  padding: 10px 15px 8px 15px;
-  font-size: 16px;
-  font-weight: 500;
+  padding: 8px 20px 10px 20px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 1;
-  text-transform: uppercase;
-  color: var(--default-color);
   margin-bottom: 5px;
+  border-radius: 50px;
   transition: all 0.3s ease-in-out;
+  font-family: var(--heading-font);
 }
 
 .portfolio .portfolio-filters li:hover,
 .portfolio .portfolio-filters li.filter-active {
   color: var(--accent-color);
-  /* Added a subtle underline effect on hover/active */
-  position: relative;
 }
 
-.portfolio .portfolio-filters li.filter-active::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 30px; /* Underline width */
-    height: 2px; /* Underline thickness */
-    background-color: var(--accent-color);
-    transition: width 0.3s ease-in-out;
+.portfolio .portfolio-filters li:first-child {
+  margin-left: 0;
 }
-
 
 .portfolio .portfolio-filters li:last-child {
   margin-right: 0;
 }
 
-.portfolio .portfolio-item {
-  margin-bottom: 30px;
-  overflow: hidden; /* Ensure overflow is hidden for hover effect */
-  border-radius: 8px; /* Added border radius to items */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Added subtle shadow to items */
-  transition: all 0.3s ease-in-out; /* Added transition for item itself */
+@media (max-width: 575px) {
+  .portfolio .portfolio-filters li {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+  }
 }
 
-.portfolio .portfolio-wrap {
-  transition: all 0.4s ease-in-out; /* Increased transition duration */
+.portfolio .portfolio-item {
   position: relative;
   overflow: hidden;
-  z-index: 1;
-  /* Using a color-mix with accent color for a more integrated look */
-  background: color-mix(in srgb, var(--accent-color), transparent 40%); /* Overlay color */
 }
 
-/* Removed the ::before overlay as the background on .portfolio-wrap is sufficient */
-/*
-.portfolio .portfolio-wrap::before {
-  content: "";
-  background: rgba(36, 135, 206, 0.6); // Overlay color
+.portfolio .portfolio-item .portfolio-info {
+  opacity: 0;
   position: absolute;
-  left: 30px;
-  right: 30px;
-  top: 30px;
-  bottom: 30px;
-  transition: all ease-in-out 0.3s;
-  z-index: 2;
-  opacity: 0; // Start hidden
+  left: 12px;
+  right: 12px;
+  bottom: -100%;
+  z-index: 3;
+  transition: all ease-in-out 0.5s;
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  padding: 15px;
 }
+
+.portfolio .portfolio-item .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+  position: absolute;
+  right: 50px;
+  font-size: 24px;
+  top: calc(50% - 14px);
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  transition: 0.3s;
+  line-height: 0;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link:hover,
+.portfolio .portfolio-item .portfolio-info .details-link:hover {
+  color: var(--accent-color);
+}
+
+.portfolio .portfolio-item .portfolio-info .details-link {
+  right: 14px;
+  font-size: 28px;
+}
+
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1;
+  bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section හි View More බොත්තම සඳහා Style
+--------------------------------------------------------------*/
+.portfolio .view-more {
+  background: var(--accent-color); /* theme එකේ ප්‍රධාන වර්ණය පසුබිම ලෙස යොදයි */
+  color: var(--contrast-color); /* theme එකේ අකුරු වලට ගැලපෙන වර්ණය (සාමාන්‍යයෙන් සුදු) යොදයි */
+  font-family: var(--heading-font); /* theme එකේ heading font එක යොදයි */
+  font-weight: 500; /* අකුරු වල ඝනකම (font weight) */
+  font-size: 16px; /* අකුරු ප්‍රමාණය */
+  letter-spacing: 1px; /* අකුරු අතර පරතරය */
+  padding: 10px 28px; /* බොත්තම ඇතුලත padding */
+  border-radius: 5px; /* බොත්තමේ කොන් වක්‍ර කිරීම */
+  transition: 0.3s; /* hover effect එක සඳහා animation කාලය */
+  display: inline-flex; /* අන්තර්ගතය (text සහ icon) inline flexbox ලෙස පෙළගැස්වීම */
+  align-items: center; /* සිරස් අතට මධ්‍යගත කිරීම */
+  justify-content: center; /* තිරස් අතට මධ්‍යගත කිරීම (අවශ්‍ය නම්) */
+  border: 2px solid var(--accent-color); /* බොත්තම වටා theme වර්ණයෙන් border එකක් */
+}
+
+
+.portfolio .view-more i {
+  font-size: 18px; /* icon එකේ ප්‍රමාණය */
+  margin-left: 5px; /* icon එකට වමට ඉඩක් තැබීම */
+  line-height: 0; /* icon එක පෙළගැස්වීම සඳහා */
+  transition: 0.3s; /* hover effect එක සඳහා animation කාලය */
+}
+
+
+.portfolio .view-more:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%); /* hover කල විට පසුබිම් වර්ණය තරමක් විනිවිදභාවයෙන් අඩු කිරීම */
+  border-color: color-mix(in srgb, var(--accent-color), transparent 20%); /* hover කල විට border වර්ණය වෙනස් කිරීම */
+  color: var(--contrast-color); /* hover කල විට අකුරු වර්ණය එලෙසම තබා ගැනීම */
+}
+
+
+.portfolio .view-more:hover i {
+  transform: translate(5px, 0); /* hover කල විට icon එක දකුණට මදක් චලනය කිරීම */
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section Styles
+--------------------------------------------------------------*/
+/* Portfolio filters (category buttons) සඳහා styles */
+.portfolio .portfolio-filters {
+  padding: 0; /* default padding ඉවත් කරයි */
+  margin: 0 auto 20px auto; /* මධ්‍යගත කර පහලින් ඉඩක් තබයි */
+  list-style: none; /* list item bullets ඉවත් කරයි */
+  text-align: center; /* බොත්තම් මධ්‍යගත කරයි */
+}
+
+/* එක් එක් filter button (li) සඳහා styles */
+.portfolio .portfolio-filters li {
+  cursor: pointer; /* cursor එක pointer එකක් ලෙස පෙන්වයි */
+  display: inline-block; /* බොත්තම් එක පේලියට පෙන්වයි */
+  padding: 8px 20px 10px 20px; /* බොත්තම ඇතුලත padding */
+  margin: 0 5px 5px 5px; /* බොත්තම් අතර පරතරය */
+  font-size: 15px; /* අකුරු ප්‍රමාණය */
+  font-weight: 600; /* අකුරු වල ඝනකම */
+  line-height: 1; /* line height එක */
+  border-radius: 50px; /* බොත්තමේ කොන් වක්‍ර කර රවුම් හැඩයක් ලබා දෙයි */
+  transition: all 0.3s ease-in-out; /* animation සඳහා transition */
+  font-family: var(--heading-font); /* theme එකේ heading font එක යොදයි */
+  color: var(--default-color); /* default අකුරු වර්ණය */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%); /* default border එක */
+}
+
+/* filter button එක මත hover කල විට සහ active (තෝරාගත්) විට styles */
+.portfolio .portfolio-filters li:hover,
+.portfolio .portfolio-filters li.filter-active {
+  color: var(--accent-color); /* theme එකේ ප්‍රධාන වර්ණය අකුරු වලට යොදයි */
+  border-color: var(--accent-color); /* theme එකේ ප්‍රධාන වර්ණය border එකට යොදයි */
+  background-color: color-mix(in srgb, var(--accent-color), transparent 95%); /* පසුබිම් වර්ණය තරමක් විනිවිදභාවයෙන් අඩු කරයි */
+}
+
+/* පළමු filter button එකේ වම් margin එක ඉවත් කරයි */
+.portfolio .portfolio-filters li:first-child {
+  margin-left: 0;
+}
+
+/* අවසාන filter button එකේ දකුණු margin එක ඉවත් කරයි */
+.portfolio .portfolio-filters li:last-child {
+  margin-right: 0;
+}
+
+/* කුඩා තිර සඳහා filter buttons styles */
+@media (max-width: 575px) {
+  .portfolio .portfolio-filters li {
+    font-size: 14px; /* අකුරු ප්‍රමාණය අඩු කරයි */
+    margin: 0 0 10px 0; /* බොත්තම් අතර පරතරය වෙනස් කරයි */
+  }
+}
+
+/* එක් එක් portfolio item එක සඳහා styles */
+.portfolio .portfolio-item {
+  position: relative; /* overlay එක සඳහා relative position එකක් ලබා දෙයි */
+  overflow: hidden; /* item එකෙන් පිට යන කොටස් සැඟවීමට */
+  border-radius: 5px; /* කොන් වක්‍ර කිරීම */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* මදක් shadow එකක් එක් කරයි */
+  transition: all 0.3s ease-in-out; /* hover animation සඳහා */
+}
+
+/* Portfolio item එක මත hover කල විට styles */
+.portfolio .portfolio-item:hover {
+    transform: translateY(-5px); /* hover කල විට මදක් ඉහලට චලනය වේ */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* shadow එක වැඩි කරයි */
+}
+
+
+/* Portfolio item එක මත hover කල විට දිස්වන overlay (info) එක සඳහා styles */
+.portfolio .portfolio-item .portfolio-info {
+  opacity: 0; /* මුලින් overlay එක නොපෙන්වයි */
+  position: absolute; /* image එක මත පිහිටීම සඳහා */
+  left: 0; /* වම් කෙලවරට පෙළගස්වයි */
+  right: 0; /* දකුණු කෙලවරට පෙළගස්වයි */
+  bottom: 0; /* පහල කෙලවරට පෙළගස්වයි */
+  top: 0; /* ඉහල කෙලවරට පෙළගස්වයි - සම්පූර්ණ image එකම ආවරණය කරයි */
+  z-index: 2; /* image එකට ඉහලින් පෙන්වයි */
+  transition: all ease-in-out 0.4s; /* animation සඳහා transition */
+  background: color-mix(in srgb, var(--background-color), transparent 30%); /* පසුබිම් වර්ණය (theme background color එකේ විනිවිදභාවය අඩු කර) යොදයි */
+  padding: 15px; /* overlay එක ඇතුලත padding */
+  display: flex; /* අන්තර්ගතය (title, category, icons) පෙළගැස්වීම සඳහා */
+  flex-direction: column; /* අන්තර්ගතය සිරස් අතට පෙළගස්වයි */
+  justify-content: flex-end; /* අන්තර්ගතය පහලට පෙළගස්වයි */
+  align-items: flex-start; /* අන්තර්ගතය වමට පෙළගස්වයි */
+}
+
+/* Portfolio item එක මත hover කල විට overlay එක පෙන්වයි */
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1; /* overlay එක පෙන්වයි */
+}
+
+
+/* Portfolio item එකේ title (h4) සඳහා styles */
+.portfolio .portfolio-item .portfolio-info h4 {
+  font-size: 18px; /* අකුරු ප්‍රමාණය */
+  font-weight: 600; /* අකුරු වල ඝනකම */
+  color: var(--heading-color); /* theme එකේ heading color එක යොදයි */
+  margin-bottom: 5px; /* පහලින් ඉඩක් තබයි */
+}
+
+/* Portfolio item එකේ category (p) සඳහා styles */
+.portfolio .portfolio-item .portfolio-info p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%); /* අකුරු වර්ණය (theme default color එකේ විනිවිදභාවය අඩු කර) යොදයි */
+  font-size: 14px; /* අකුරු ප්‍රමාණය */
+  margin-bottom: 10px; /* පහලින් ඉඩක් තබයි */
+}
+
+/* Preview සහ Details links (icons) අඩංගු div එක */
+.portfolio .portfolio-info .links {
+    margin-top: auto; /* අන්තර්ගතය පහලට තල්ලු කරයි */
+    display: flex; /* icons පෙළගැස්වීම සඳහා */
+    gap: 10px; /* icons අතර පරතරය */
+}
+
+
+/* Preview link (zoom icon) සහ Details link (link icon) සඳහා styles */
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+  font-size: 24px; /* icon ප්‍රමාණය */
+  color: color-mix(in srgb, var(--default-color), transparent 40%); /* icon වර්ණය */
+  transition: 0.3s; /* hover animation සඳහා */
+  line-height: 0; /* පෙළගැස්වීම සඳහා */
+  display: flex; /* icon එක මධ්‍යගත කිරීමට */
+  align-items: center; /* සිරස් අතට මධ්‍යගත කිරීමට */
+  justify-content: center; /* තිරස් අතට මධ්‍යගත කිරීමට */
+  background-color: color-mix(in srgb, var(--surface-color), transparent 20%); /* මදක් විනිවිද පෙනෙන පසුබිමක් */
+  width: 36px; /* icon background එකේ පළල */
+  height: 36px; /* icon background එකේ උස */
+  border-radius: 50%; /* රවුම් හැඩය */
+}
+
+/* Preview සහ Details links මත hover කල විට styles */
+.portfolio .portfolio-item .portfolio-info .preview-link:hover,
+.portfolio .portfolio-item .portfolio-info .details-link:hover {
+  color: var(--contrast-color); /* theme එකේ contrast color එක යොදයි (සාමාන්‍යයෙන් සුදු) */
+  background-color: var(--accent-color); /* theme එකේ ප්‍රධාන වර්ණය පසුබිමට යොදයි */
+}
+
+/* Details link එක සඳහා විශේෂ styles (අවශ්‍ය නම්) */
+/* .portfolio .portfolio-item .portfolio-info .details-link {
+  right: 14px;
+  font-size: 28px;
+} */
+
+/*
+   සටහන: ඔබගේ index.html හි ඇති portfolio section එකේ CSS styles
+   මෙම styles වලට සමාන විය හැක. එසේනම්, මෙම කේතය
+   main.css ගොනුවට එක් කිරීමේදී දැනට පවතින styles
+   අනුව වෙනස්කම් සිදු කිරීමට හෝ අනුපිටපත් ඉවත් කිරීමට
+   සිදු විය හැකිය.
 */
 
-.portfolio .portfolio-wrap img {
-  transition: all ease-in-out 0.4s; /* Increased transition duration */
-  transform: scale(1); /* Ensure initial scale is 1 */
-  display: block; /* Ensure image is block level */
-  width: 100%; /* Make image take full width of container */
-  height: auto; /* Maintain aspect ratio */
-}
 
-.portfolio .portfolio-info {
-  opacity: 0; /* Start hidden */
-  position: absolute;
-  top: 0; /* Position at the top */
-  left: 0;
-  right: 0;
-  bottom: 0; /* Extend to the bottom */
-  display: flex; /* Use flexbox for centering content */
-  flex-direction: column; /* Stack title and description */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  text-align: center;
-  z-index: 3;
-  transition: all ease-in-out 0.4s; /* Increased transition duration */
-  color: var(--contrast-color); /* Text color for description */
-  padding: 20px; /* Add more padding */
-  background: rgba(36, 135, 206, 0.8); /* Semi-transparent background for info */
-}
-
-.portfolio .portfolio-info h4 {
-  font-size: 20px;
-  color: var(--contrast-color); /* Heading color */
-  font-weight: 600;
-  margin-bottom: 5px;
-  opacity: 0; /* Start hidden for animation */
-  transform: translateY(20px); /* Start slightly lower */
-  transition: all 0.3s ease-in-out 0.1s; /* Animation with delay */
-}
-
-.portfolio .portfolio-info p {
-  color: var(--contrast-color); /* Paragraph color */
-  font-size: 14px;
-  margin-bottom: 15px; /* Space below paragraph */
-  opacity: 0; /* Start hidden for animation */
-  transform: translateY(20px); /* Start slightly lower */
-  transition: all 0.3s ease-in-out 0.2s; /* Animation with delay */
-}
-
-.portfolio .portfolio-info .preview-link,
-.portfolio .portfolio-info .details-link {
-  /* margin-top: 15px; */ /* Removed fixed margin top */
-  font-size: 24px; /* Larger icons */
-  display: inline-block;
-  color: var(--contrast-color);
-  line-height: 1;
-  margin: 0 8px; /* Increased margin between icons */
-  transition: all 0.3s ease-in-out 0.3s; /* Animation with delay */
-  opacity: 0; /* Start hidden for animation */
-  transform: translateY(20px); /* Start slightly lower */
-}
-
-.portfolio .portfolio-info .preview-link:hover,
-.portfolio .portfolio-info .details-link:hover {
-  color: color-mix(in srgb, var(--contrast-color), transparent 20%);
-}
-
-/* Hover effect - Show info overlay and animate elements */
-.portfolio .portfolio-item:hover .portfolio-info {
-  opacity: 1; /* Show info overlay */
-}
-
-.portfolio .portfolio-item:hover .portfolio-info h4,
-.portfolio .portfolio-item:hover .portfolio-info p,
-.portfolio .portfolio-item:hover .portfolio-info .preview-link,
-.portfolio .portfolio-item:hover .portfolio-info .details-link {
-  opacity: 1; /* Fade in text and icons */
-  transform: translateY(0); /* Slide up to final position */
-}
-
-.portfolio .portfolio-item:hover img {
-  transform: scale(1.1); /* Zoom effect on image */
-}
-
-/* Portfolio section button style - Added to match About button */
-.portfolio .read-more {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  font-family: var(--heading-font);
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  padding: 10px 28px;
-  border-radius: 5px;
-  transition: 0.3s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--accent-color); /* Added border */
-}
-
-.portfolio .read-more i {
-  font-size: 18px;
-  margin-left: 5px;
-  line-height: 0;
-  transition: 0.3s;
-}
-
-.portfolio .read-more:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-  border-color: color-mix(in srgb, var(--accent-color), transparent 20%); /* Added border-color hover */
-}
-
-.portfolio .read-more:hover i {
-  transform: translate(5px, 0);
-}
-
-/* Removed the styles for the buttons section at the bottom */
 
 
 /*--------------------------------------------------------------
@@ -1980,7 +2070,7 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-/*--------------------------------------------------------------
+//*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
 .portfolio-details .portfolio-details-slider img {
