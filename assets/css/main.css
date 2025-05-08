@@ -2465,9 +2465,8 @@ section,
 .ad-banner-container {
   display: inline-block; /* Container එක inline-block element එකක් ලෙස සකසයි. text-align: center; සමග මධ්‍යගත වීමට මෙය උපකාරී විය හැකියි. */
   width: 100%; /* Container එකේ ඇති parent Container එකේ (.container) සම්පූර්ණ පළල ගැනීමට */
-  /* max-width: 728px; // පෙර තිබූ max-width එක ඉවත් කර ඇත */
   height: auto; /* උස ස්වයංක්‍රීයව පිංතූරයට අනුව සකස් වීමට */
-  max-height: 90px; /* විශාල තිර වලදී උපරිම උස 90px ලෙස සකසයි */
+  /* max-height: 90px; // මෙම පේලිය ඉවත් කර ඇත */
   margin: 0 auto !important; /* Banner Container එක තිරස් අතට මධ්‍යගත කිරීමට. !important යොදා ඇත. */
   overflow: hidden; /* Container එකෙන් පිට යන පිංතූර කොටස් සැඟවීමට */
 
@@ -2482,10 +2481,11 @@ section,
   display: block; /* පිංතූරය block element එකක් ලෙස සකසයි. */
   width: 100%; /* පිංතූරය එහි ඇති Container එකේ (.ad-banner-container) පළලින් 100% ක් ගැනීමට */
   height: auto; /* උස ස්වයංක්‍රීයව සකස් වීමට */
-  object-fit: cover; /* පිංතූරයේ අනුපාතය විකෘති නොවී, Container එක පුරා පෙන්වීමට. */
+  object-fit: contain; /* පිංතූරයේ අනුපාතය විකෘති නොවී, Container එක පුරා පෙන්වීමට. මෙය 'cover' වෙනුවට යොදා ඇත. */
 }
 
 /* කුඩා තිර සඳහා Styles (Mobile Responsiveness) */
+/* කුඩා තිර සඳහා object-fit: contain; දැනටමත් තිබූ නිසා මෙහි විශාල වෙනසක් සිදු නොවේ */
 @media (max-width: 767.98px) { /* Browser window එකේ පළල pixels 767.98 ට වඩා අඩු වූ විට මෙම styles ක්‍රියාත්මක වේ. */
   .ad-banner-container {
     width: 100%;
@@ -2510,6 +2510,7 @@ section,
   }
 }
 */
+
 
 /* Style for About Section - Removed Top Padding */
 /* About Us Section එකේ ඉහලින් ඇති හිස් ඉඩ අඩු කිරීමට */
