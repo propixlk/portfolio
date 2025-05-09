@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Place Your Order - Propix LK</title> <meta name="description" content="Order your graphic design plan from Propix LK and upload necessary files."> <meta name="keywords" content="order graphic design, buy design plan, upload files, Propix LK"> <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Custom styles for the Order page */
+    .order-page-section {
+        padding: 60px 0; /* Standard section padding */
+    }
+
+    .order-form-container {
+        background-color: #ffffff; /* White background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        max-width: 700px; /* Max width for the form container */
+        margin: 0 auto; /* Center the container */
+    }
+
+    .order-form-container h2 {
+        font-family: var(--heading-font);
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .order-form-container .form-group {
+        margin-bottom: 20px;
+    }
+
+    .order-form-container label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block; /* Make label a block element */
+    }
+
+    .order-form-container .form-control,
+    .order-form-container select.form-control {
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        width: 100%; /* Full width inputs */
+    }
+
+     .order-form-container select.form-control {
+         appearance: none; /* Remove default dropdown arrow */
+         background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.362%22%20height%3D%22292.362%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287.9%20139.769L146.13%20281.539C144.053%20283.616%20141.333%20284.655%20138.613%20284.655c-2.72%200-5.44-1.039-7.517-3.115L4.46%20139.769c-4.237-4.237-4.237-11.104%200-15.342l14.13-14.13c4.237-4.237%2011.104-4.237%2015.341%200L138.613%20221.2l104.55-104.551c4.237-4.237%2011.104-4.237%2015.341%200l14.13%2014.13c4.237%204.237%204.237%2011.104%200%2015.342z%22%2F%3E%3C%2Fsvg%3E'); /* Custom dropdown arrow */
+         background-repeat: no-repeat;
+         background-position: right 15px center;
+         background-size: 12px;
+         padding-right: 30px; /* Make space for the arrow */
+     }
+
+
+    .order-form-container textarea.form-control {
+        resize: vertical; /* Allow vertical resizing */
+    }
+
+    .order-form-container button[type="submit"] {
+        display: block; /* Make button a block element */
+        width: 100%; /* Full width button */
+        padding: 12px 20px;
+        background-color: var(--accent-color); /* Using your theme's accent color */
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .order-form-container button[type="submit"]:hover {
+        background-color: color-mix(in srgb, var(--accent-color), transparent 20%); /* Darken on hover */
+    }
+
+     /* Formspree success/error messages - Match your contact form styles */
+     .order-form-container .my-3 {
+         margin-top: 1rem !important;
+         margin-bottom: 1rem !important;
+     }
+
+     .order-form-container .loading, .order-form-container .error-message, .order-form-container .sent-message {
+         display: none; /* Hide by default */
+         text-align: center;
+         padding: 15px;
+         margin-bottom: 10px;
+         border-radius: 5px;
+     }
+
+     .order-form-container .loading {
+         color: #000;
+         background: #fff;
+         border: 1px solid #ddd;
+     }
+
+     .order-form-container .error-message {
+         color: #fff;
+         background: #ed3c0d;
+     }
+
+     .order-form-container .sent-message {
+         color: #fff;
+         background: #18d26e;
+     }
+
+     /* Style for file upload input */
+     .order-form-container input[type="file"] {
+         padding: 10px 15px; /* Match padding of other inputs */
+         border: 1px solid #ccc; /* Match border */
+         border-radius: 5px; /* Match border-radius */
+         width: 100%; /* Full width */
+         background-color: #f8f8f8; /* Slightly different background */
+     }
+
+
+  </style>
+</head>
+
+<body class="order-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Propix LK</h1> </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home<br></a></li> <li><a href="index.html#about">About</a></li> <li><a href="index.html#services">Services</a></li> <li><a href="portfolio.html">Portfolio</a></li> <li><a href="#order-section" class="active">Order</a></li> <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contact">Contact</a></li> </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="https://wa.me/message/JGOBR5KKO5UAF1">Whatsapp</a>
+
+      </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title accent-background">
+      <div class="container">
+        <h1>Place Your Order</h1> <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Order</li> </ol>
+        </nav>
+      </div>
+    </div><section id="order-section" class="order-page-section">
+      <div class="container" data-aos="fade-up">
+
+        <div class="order-form-container">
+          <h2>Order Your Graphic Design Plan</h2> <form action="https://formspree.io/f/xwpolbba" method="post" enctype="multipart/form-data" class="php-email-form"> <div class="form-group">
+              <label for="plan">Select Your Plan:</label>
+              <select class="form-control" name="plan" id="plan" required>
+                <option value="">-- Select a Plan --</option>
+                <option value="Lite Plan">Lite Plan (LKR 2500)</option>
+                <option value="Plus Plan">Plus Plan (LKR 5000)</option>
+                <option value="Max Plan">Max Plan (LKR 7500)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Your Name:</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+
+             <div class="form-group">
+              <label for="whatsapp">WhatsApp Number:</label>
+              <input type="tel" class="form-control" name="whatsapp" id="whatsapp" placeholder="e.g., +94761234567" pattern="\+?[0-9]{6,14}" required>
+              <small class="form-text text-muted">Include country code (e.g., +94).</small>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Project Details / Requirements:</label>
+              <textarea class="form-control" name="message" rows="6" id="message" placeholder="Tell us about your project and specific needs" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload Files (Optional):</label>
+                <input type="file" class="form-control" name="upload[]" id="file" multiple> <small class="form-text text-muted">Attach any relevant images, documents, or briefs.</small>
+            </div>
+
+            <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your order request has been sent. Thank you!</div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit">Place Order</button>
+            </div>
+            <input type="hidden" name="_next" value="YOUR_SUCCESS_PAGE_URL"> <input type="hidden" name="_subject" value="New Order Request from Website">
+          </form>
+        </div>
+
+      </div>
+    </section></main><footer id="footer" class="footer light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Propix LK</span> </a>
+          <p>Offering expert Graphic Design Services to elevate your brand. Visually stunning solutions are crafted Us to make you stand out.</p> <div class="social-links d-flex mt-4">
+            <a href="https://wa.me/message/JGOBR5KKO5UAF1"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://t.me/propixlk"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.tiktok.com/@propix_lk?_t=ZS-8w1kGAKPsbC&_r=1"><i class="bi bi-tiktok"></i></i></a>
+            <a href="https://www.facebook.com/share/1Bj9wAdLRN/"><i class="bi bi-facebook"></i></a>
+            <a href="https://youtube.com/@propixlk?si=ef645iRbOCQ4nPaR"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About us</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Monaragala</p> <p>Sri Lanka</p> <p></p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+94 76 829 44 96</span></p> <p><strong>Email:</strong> <span><a href="https://www.propixlk@gmail.com">propixlk@gmail.com</a></span></p> </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">propix lk</strong> <span>All Rights Reserved</span></p> <div class="credits">
+        2024 - 2025 </div>
+    </div>
+
+  </footer><a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader">
+    <div class="loader"></div> </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script> <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // JavaScript to automatically select the plan based on URL parameter
+    window.addEventListener('load', () => {
+        // Initialize AOS if used in this page section
+        AOS.init({
+          duration: 1000,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false
+        });
+
+        // Check URL for pre-selected plan
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPlan = urlParams.get('plan');
+        if (selectedPlan) {
+            const planSelect = document.getElementById('plan');
+            // Find the option that matches the plan parameter (case-insensitive check)
+            for (let i = 0; i < planSelect.options.length; i++) {
+                // Check if the option value contains the selected plan name
+                if (planSelect.options[i].value.toLowerCase().includes(selectedPlan.toLowerCase())) {
+                    planSelect.value = planSelect.options[i].value;
+                    break; // Stop once found
+                }
+            }
+        }
+    });
+  </script>
+
+</body>
+
+</html>
