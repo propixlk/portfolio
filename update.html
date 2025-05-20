@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Soon - Propix LK</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,100;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic Reset and Body Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif; /* Using a font from your theme */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Full viewport height */
+            color: #333; /* Default text color */
+            overflow: hidden; /* Prevent scrollbars */
+            position: relative; /* Needed for z-index */
+        }
+
+        /* Canvas for 3D background */
+        canvas {
+            position: fixed; /* Fix position to cover the entire viewport */
+            top: 0;
+            left: 0;
+            display: block; /* Remove extra space below the canvas */
+            z-index: -1; /* Place behind other content */
+        }
+
+        /* Container for content */
+        .container {
+            text-align: center; /* Center text inside container */
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            opacity: 0; /* Start hidden for fade-in animation */
+            transform: translateY(20px); /* Start slightly below for animation */
+            animation: fadeInScaleUp 0.8s ease-out forwards; /* Apply fade-in and scale-up animation */
+            max-width: 90%; /* Max width for responsiveness */
+            width: 500px; /* Preferred width */
+            z-index: 1; /* Ensure content is above the background */
+            position: relative; /* Ensure z-index works */
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInScaleUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Heading Style */
+        h1 {
+            font-family: 'Raleway', sans-serif; /* Using a heading font from your theme */
+            color: #124265; /* Using a heading color from your theme */
+            font-size: 2.5em; /* Large font size */
+            margin-bottom: 15px;
+            animation: pulse 2s infinite ease-in-out; /* Add a subtle pulse animation to the heading */
+        }
+
+         /* Pulse animation for the heading */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        /* Paragraph Style */
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons Container */
+        .buttons {
+            display: flex; /* Use flexbox for buttons */
+            justify-content: center; /* Center buttons horizontally */
+            gap: 20px; /* Space between buttons */
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+        }
+
+        /* Button Base Style */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+            border: none; /* Remove default border */
+            cursor: pointer; /* Indicate clickable */
+        }
+
+        /* Go Home Button Style */
+        .btn-home {
+            background-color: #2487ce; /* Using accent color from your theme */
+            color: #ffffff; /* White text */
+        }
+
+        /* Go Back Button Style */
+        .btn-back {
+            background-color: #6c757d; /* A neutral grey color */
+            color: #ffffff; /* White text */
+        }
+
+        /* Button Hover Effect */
+        .btn:hover {
+            transform: translateY(-3px); /* Lift button slightly on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+        }
+
+        /* Specific Hover for Home Button */
+        .btn-home:hover {
+             background-color: color-mix(in srgb, #2487ce, transparent 20%); /* Darken accent color slightly */
+        }
+
+        /* Specific Hover for Back Button */
+        .btn-back:hover {
+             background-color: color-mix(in srgb, #6c757d, transparent 20%); /* Darken grey color slightly */
+        }
+
+         /* Responsive adjustments */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em; /* Adjust heading size on smaller screens */
+            }
+            p {
+                font-size: 1em; /* Adjust paragraph size */
+            }
+            .buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 15px; /* Adjust gap */
+            }
+            .btn {
+                padding: 10px 20px; /* Adjust padding */
+                max-width: 200px; /* Limit max width on small screens */
+                margin: 0 auto; /* Center buttons when stacked */
+            }
+             /* Ensure the anchor tag inside the button also behaves correctly */
+            .btn-home {
+                 width: auto; /* Ensure the anchor tag doesn't force full width */
+                 max-width: 200px; /* Match the max-width of the button class */
+                 margin: 0 auto; /* Center the link button */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="backgroundCanvas"></canvas>
+
+    <div class="container">
+        <h1>Update Soon!</h1>
+        <p>We are working hard to bring you new content. Please check back later!</p>
+        <div class="buttons">
+            <button class="btn btn-back" onclick="history.back()">Go Back</button>
+            <a href="index.html" class="btn btn-home">Go Home</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // Three.js Background Animation
+        let scene, camera, renderer, particles, particleMaterial, particleSystem;
+
+        function initBackground() {
+            // Scene setup
+            scene = new THREE.Scene();
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer setup
+            const canvas = document.getElementById('backgroundCanvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio); // Handle high DPI displays
+
+            // Create colourful particles
+            const particleCount = 1000;
+            particles = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3); // x, y, z for each particle
+            const colors = new Float32Array(particleCount * 3); // r, g, b for each particle
+
+            const color = new THREE.Color();
+
+            for (let i = 0; i < particleCount; i++) {
+                // Position particles randomly in a cube
+                positions[i * 3] = (Math.random() - 0.5) * 10;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+
+                // Assign random vibrant colors
+                color.setHSL(Math.random(), 1.0, 0.5); // Hue, Saturation, Lightness
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            // Particle material
+            particleMaterial = new THREE.PointsMaterial({
+                size: 0.1, // Size of the particles
+                vertexColors: true, // Use colors defined in the geometry
+                transparent: true, // Allow transparency
+                opacity: 0.8 // Set opacity
+            });
+
+            // Particle system
+            particleSystem = new THREE.Points(particles, particleMaterial);
+            scene.add(particleSystem);
+
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start animation loop
+            animateBackground();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animateBackground() {
+            requestAnimationFrame(animateBackground);
+
+            // Animate particles (rotate the particle system)
+            particleSystem.rotation.x += 0.001;
+            particleSystem.rotation.y += 0.002;
+
+            // Optional: Animate camera slightly
+            // camera.position.x += 0.001;
+            // camera.position.y += 0.001;
+
+            renderer.render(scene, camera);
+        }
+
+        // Initialize the background on window load
+        window.onload = function () {
+            initBackground();
+            // You can keep the fade-in animation for the content container here if needed
+            // const container = document.querySelector('.container');
+            // container.style.opacity = 1; // or trigger the CSS animation class
+        }
+
+    </script>
+
+</body>
+</html>
