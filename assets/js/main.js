@@ -330,7 +330,7 @@
       //{ src: 'assets/img/ads/x1.png', link: 'buy.html' },
       //{ src: 'assets/img/ads/x2.png', link: 'update.html' },
       //{ src: 'assets/img/ads/x3.png', link: 'update.html' },
-      { src: 'assets/img/ads/x4.png', link: '#contact' },
+      { src: 'assets/img/ads/x.png', link: '#contact' },
       
       // ඔබට අවශ්‍ය තවත් ad images සහ links මෙහි එකතු කරන්න
       // Format: { src: 'path/to/your/image.jpg', link: 'https://link.for.this.ad.com' }
