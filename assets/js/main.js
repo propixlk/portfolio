@@ -365,7 +365,37 @@
      if (adBannerLink && ads.length > 0) {
         adBannerLink.href = ads[currentAdIndex].link;
      }
+  }/**
+ * Dark Mode Toggle
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeToggle = document.querySelector('#dark-mode-toggle');
+  const body = document.body;
+
+  // Function to apply the correct mode on load
+  const applyInitialMode = () => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      body.classList.add('dark-mode');
+    }
+  };
+
+  // Function to toggle dark mode
+  const toggleDarkMode = () => {
+    body.classList.toggle('dark-mode');
+    // Save the user's preference to localStorage
+    const isDarkModeEnabled = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkModeEnabled);
+  };
+
+  // Event listener for the toggle button
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', toggleDarkMode);
   }
+
+  // Apply the initial mode when the DOM is fully loaded
+  applyInitialMode();
+});
 
 
 })();

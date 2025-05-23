@@ -283,7 +283,8 @@ h6 {
 }
 
 .scrolled .header {
-  border-color: var(--contrast-color);
+  background-color: var(--background-color); /* මෙම පේළිය අලුතින් එකතු කරන්න */
+  border-color: var(--contrast-color); /* මෙය border-bottom-color: var(--contrast-color); ලෙස වෙනස් කිරීම වඩා සුදුසු විය හැක */
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
 }
 
@@ -2527,4 +2528,112 @@ section,
 
 .number-plus::after {
   content: "+";
+}
+
+/*--------------------------------------------------------------
+# Dark Mode Styles
+--------------------------------------------------------------*/
+/* body ට dark-mode class එක එකතු වූ විට ක්‍රියාත්මක වන styles */
+body.dark-mode {
+  --background-color: #1a1a1a;
+  --default-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --surface-color: #2c2c2c;
+
+  --nav-mobile-background-color: #1a1a1a;
+  --nav-dropdown-background-color: #2c2c2c;
+  --nav-dropdown-color: #e0e0e0;
+  --nav-dropdown-hover-color: var(--accent-color);
+}
+
+/* Dark mode එකේදී header එක scroll කළ විට පෙනුම */
+.dark-mode .scrolled .header {
+  background-color: rgba(26, 26, 26, 0.9);
+  border-bottom-color: #333;
+}
+
+/* Testimonials වැනි කොටස් වල පසුබිම් වර්ණය වෙනස් කිරීම */
+body.dark-mode .testimonials .testimonial-item p {
+  background: #2c2c2c;
+}
+
+/* FAQ කොටසේ background වර්ණය */
+body.dark-mode .faq .faq-container .faq-item {
+    background-color: var(--surface-color);
+    border-color: #444;
+}
+
+/* Contact form එකේ input fields වල පෙනුම */
+body.dark-mode .contact .php-email-form input[type=text],
+body.dark-mode .contact .php-email-form input[type=email],
+body.dark-mode .contact .php-email-form input[type=tel],
+body.dark-mode .contact .php-email-form textarea {
+  background-color: #2c2c2c;
+  border-color: #444;
+  color: #ffffff;
+}
+
+/*--------------------------------------------------------------
+# Dark Mode Toggle Button
+--------------------------------------------------------------*/
+.dark-mode-toggle {
+  position: fixed;
+  z-index: 9999;
+  top: 19px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  background-color: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background-color: color-mix(in srgb, var(--surface-color), #000 10%);
+}
+
+.dark-mode-toggle .bi-moon-stars,
+.dark-mode-toggle .bi-sun {
+  font-size: 20px;
+  color: var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+/* Light mode එකේදී moon icon එක පෙන්වීම */
+.dark-mode .dark-mode-toggle .bi-moon-stars {
+  display: none;
+}
+.dark-mode-toggle .bi-sun {
+  display: none;
+}
+.dark-mode .dark-mode-toggle .bi-sun {
+  display: block;
+}
+.dark-mode-toggle .bi-moon-stars {
+  display: block;
+}
+/*--------------------------------------------------------------
+# Dark Mode Styles
+--------------------------------------------------------------*/
+/* ... ඔබ කලින් එකතු කළ dark mode styles මෙතන තියෙන්න ඕන ... */
+
+
+/* --- මෙතනින් පහළට අලුතින් එකතු කරන්න --- */
+
+/* light-background class එක ඇති sections dark mode එකේදී වෙනස් කිරීමට */
+body.dark-mode .light-background {
+  --background-color: #222425; /* ප්‍රධාන පසුබිමට වඩා මදක් වෙනස් අඳුරු පැහැයක් */
+  --surface-color: #2c2c2c;
+  --default-color: #e0e0e0;
+  --heading-color: #ffffff;
+}
+
+/* Accent background එක dark mode එකේදී වෙනස් කිරීමට (අවශ්‍ය නම්) */
+body.dark-mode .accent-background {
+  --background-color: #1f73b1; /* Accent color එකේ මදක් අඳුරු shade එකක් */
 }
