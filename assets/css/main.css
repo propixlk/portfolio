@@ -509,7 +509,7 @@ h6 {
     top: 15px;
     right: 15px;
     margin-right: 0;
-    z-index: 9999;
+    z-index: 10001;
   }
 
   .mobile-nav-active .navmenu {
@@ -518,6 +518,7 @@ h6 {
     inset: 0;
     background: rgba(33, 37, 41, 0.8);
     transition: 0.3s;
+    z-index: 10000;
   }
 
   .mobile-nav-active .navmenu>ul {
@@ -2065,7 +2066,7 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-//*--------------------------------------------------------------
+ /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
 .portfolio-details .portfolio-details-slider img {
@@ -2309,9 +2310,7 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
+
 
 /* Typewriter effect styles */
 /* Cursor for typewriter effect */
@@ -2443,7 +2442,7 @@ section,
     vertical-align: middle; /* Align icon vertically with text */
 }
 
-}
+
 
 /* Style for the Ad Banner Section - No Padding */
 /* මෙම style මගින් banner එක අඩංගු සම්පූර්ණ කොටස සකසයි */
