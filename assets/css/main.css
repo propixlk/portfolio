@@ -2616,6 +2616,16 @@ body.dark-mode .contact .php-email-form textarea {
 .dark-mode-toggle .bi-moon-stars {
   display: block;
 }
+
+/* === ජංගම දුරකථන සඳහා Dark Mode Toggle එක සකස් කිරීම (මෙම කොටස අලුතින් එක් කරන්න) === */
+@media (max-width: 1199px) {
+  .dark-mode-toggle {
+    top: 15px; /* ඉහළට ඇති දුර අවශ්‍ය නම් සකසන්න */
+    right: 65px; /* මෙනු බොත්තමට ඉඩ දීමට දකුණු පසට ඇති දුර වැඩි කිරීම */
+    /* width: 40px; */ /* අවශ්‍ය නම් ප්‍රමාණය වෙනස් කරන්න */
+    /* height: 40px; */ /* අවශ්‍ය නම් ප්‍රමාණය වෙනස් කරන්න */
+  }
+}
 /*--------------------------------------------------------------
 # Dark Mode Styles
 --------------------------------------------------------------*/
@@ -2635,4 +2645,124 @@ body.dark-mode .light-background {
 /* Accent background එක dark mode එකේදී වෙනස් කිරීමට (අවශ්‍ය නම්) */
 body.dark-mode .accent-background {
   --background-color: #1f73b1; /* Accent color එකේ මදක් අඳුරු shade එකක් */
+}
+
+/* --- Dark Mode Styles for Buy, Get Ad, Get Plan Pages --- */
+
+/* Page backgrounds for form pages */
+body.dark-mode .order-page, /* For buy.html, get-plan.html */
+body.dark-mode .starter-page-page { /* For get-ad.html */
+  background-color: var(--background-color);
+}
+
+/* Form container backgrounds and text colors */
+body.dark-mode .order-form-container, /* For buy.html, get-plan.html */
+body.dark-mode .form-container-card { /* For get-ad.html */
+  background-color: var(--surface-color) !important; /* Override inline #ffffff if present */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #444; /* Darker border for containers */
+}
+
+body.dark-mode .order-form-container h2,
+body.dark-mode .form-container-card h2 {
+  color: var(--heading-color);
+}
+
+body.dark-mode .order-form-container label,
+body.dark-mode .form-container-card .form-label,
+body.dark-mode .order-form-container .form-text.text-muted { /* Target smaller descriptive text as well */
+  color: var(--default-color);
+}
+
+/* Input, select, and textarea styles for form containers */
+body.dark-mode .order-form-container .form-control,
+body.dark-mode .order-form-container select.form-control,
+body.dark-mode .form-container-card .form-control,
+body.dark-mode .form-container-card .form-select {
+  background-color: #3a3a3a; /* Darker input background */
+  border-color: #555; /* Darker border for inputs */
+  color: #ffffff; /* White text for inputs */
+}
+
+/* Custom dropdown arrow for buy.html/get-plan.html select in dark mode */
+body.dark-mode .order-form-container select.form-control {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.362%22%20height%3D%22292.362%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M287.9%20139.769L146.13%20281.539C144.053%20283.616%20141.333%20284.655%20138.613%20284.655c-2.72%200-5.44-1.039-7.517-3.115L4.46%20139.769c-4.237-4.237-4.237-11.104%200-15.342l14.13-14.13c4.237-4.237%2011.104-4.237%2015.341%200L138.613%20221.2l104.55-104.551c4.237-4.237%2011.104-4.237%2015.341%200l14.13%2014.13c4.237%204.237%204.237%2011.104%200%2015.342z%22%2F%3E%3C%2Fsvg%3E'); /* Light grey arrow for dark mode */
+}
+
+/* Placeholder text color for form inputs */
+body.dark-mode .order-form-container .form-control::placeholder,
+body.dark-mode .form-container-card .form-control::placeholder,
+body.dark-mode .order-form-container .php-email-form input[type=text]::placeholder, /* From original contact form */
+body.dark-mode .order-form-container .php-email-form input[type=email]::placeholder,
+body.dark-mode .order-form-container .php-email-form input[type=tel]::placeholder,
+body.dark-mode .order-form-container .php-email-form textarea::placeholder,
+body.dark-mode .form-container-card .php-email-form input[type=text]::placeholder,
+body.dark-mode .form-container-card .php-email-form input[type=email]::placeholder,
+body.dark-mode .form-container-card .php-email-form input[type=tel]::placeholder,
+body.dark-mode .form-container-card .php-email-form textarea::placeholder {
+  color: #aaa; /* Lighter placeholder text */
+}
+
+/* Dark mode for submit buttons on form pages */
+body.dark-mode .order-form-container button[type="submit"], /* buy.html, get-plan.html */
+body.dark-mode .form-container-card .btn-submit { /* get-ad.html */
+    /* Buttons generally use accent-color, ensure hover is also adjusted if needed */
+}
+
+body.dark-mode .order-form-container button[type="submit"]:hover,
+body.dark-mode .form-container-card .btn-submit:hover {
+    background-color: color-mix(in srgb, var(--accent-color), #000 20%) !important; /* Darken accent color on hover */
+}
+
+/* Dark mode for page title section with accent-background on form pages */
+body.dark-mode .page-title.accent-background {
+    background-color: #1f73b1 !important; /* Darker shade of original accent, ensure override */
+    /* --default-color and --heading-color from .accent-background are already white, which is good for dark mode */
+}
+
+body.dark-mode .page-title.accent-background h1,
+body.dark-mode .page-title.accent-background .breadcrumbs ol {
+    color: var(--heading-color); /* Ensure heading and breadcrumbs text uses the (now white) heading color */
+}
+
+body.dark-mode .page-title.accent-background .breadcrumbs ol a {
+    color: color-mix(in srgb, var(--heading-color), transparent 30%); /* Slightly transparent white for links */
+}
+
+body.dark-mode .page-title.accent-background .breadcrumbs ol li+li::before {
+    color: color-mix(in srgb, var(--heading-color), transparent 70%); /* More transparent white for separator */
+}
+
+/* Styles for .php-email-form inputs inside specific form containers in dark mode */
+/* This ensures that if these forms also use .php-email-form class, their inputs are styled */
+body.dark-mode .order-form-container .php-email-form input[type=text],
+body.dark-mode .order-form-container .php-email-form input[type=email],
+body.dark-mode .order-form-container .php-email-form input[type=tel],
+body.dark-mode .order-form-container .php-email-form input[type=date], /* Added date type if used */
+body.dark-mode .order-form-container .php-email-form select,
+body.dark-mode .order-form-container .php-email-form textarea,
+body.dark-mode .form-container-card .php-email-form input[type=text],
+body.dark-mode .form-container-card .php-email-form input[type=email],
+body.dark-mode .form-container-card .php-email-form input[type=tel],
+body.dark-mode .form-container-card .php-email-form input[type=date], /* Added date type if used */
+body.dark-mode .form-container-card .php-email-form select,
+body.dark-mode .form-container-card .php-email-form textarea {
+  background-color: #3a3a3a; /* Match general form control dark style */
+  border-color: #555; /* Match general form control dark style */
+  color: #ffffff; /* Match general form control dark style */
+}
+
+/* Ensure general dark mode styles for .light-background and .accent-background are present */
+/* (මෙම කොටස් ඔබගේ main.css ගොනුවේ අවසානයේ දැනටමත් තිබිය යුතුය, ඒවා නිවැරදි දැයි තහවුරු කරගන්න) */
+body.dark-mode .light-background {
+  --background-color: #222425;
+  --surface-color: #2c2c2c;
+  --default-color: #e0e0e0;
+  --heading-color: #ffffff;
+}
+
+body.dark-mode .accent-background {
+  /* This is general. For .page-title.accent-background, a more specific rule is used above. */
+  /* If .accent-background is used on other elements, this will apply. */
+  /* --background-color: #1f73b1; */ /* Consider if this general rule is needed or if specific overrides are better */
 }
