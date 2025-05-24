@@ -2766,3 +2766,101 @@ body.dark-mode .accent-background {
   /* If .accent-background is used on other elements, this will apply. */
   /* --background-color: #1f73b1; */ /* Consider if this general rule is needed or if specific overrides are better */
 }
+
+
+/* Custom Styles for New Portfolio Carousels in portfolio-new section */
+.portfolio-new .swiper-button-next,
+.portfolio-new .swiper-button-prev {
+  color: var(--accent-color); /* Default icon color */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for arrows */
+  border-radius: 50%;
+  width: 38px; /* Adjust size */
+  height: 38px;
+  line-height: 38px; /* Center icon */
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.portfolio-new .swiper-button-next:hover,
+.portfolio-new .swiper-button-prev:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color); /* Icon color on hover */
+}
+
+.portfolio-new .swiper-button-next::after,
+.portfolio-new .swiper-button-prev::after {
+  font-size: 16px; /* Adjust icon size */
+  font-weight: bold;
+}
+
+/* Positioning arrows outside, adjust as needed */
+.portfolio-new .swiper-button-prev {
+  left: -5px;
+}
+.portfolio-new .swiper-button-next {
+  right: -5px;
+}
+@media (max-width: 767px) {
+  .portfolio-new .swiper-button-prev {
+    left: 5px; /* Adjust for smaller screens if they overlap */
+  }
+  .portfolio-new .swiper-button-next {
+    right: 5px; /* Adjust for smaller screens */
+  }
+}
+
+
+.portfolio-new .swiper-pagination {
+  position: relative; /* Default static positioning */
+  bottom: auto; /* Reset bottom positioning if any from other swipers */
+  padding-top: 10px; /* Space between swiper and dots */
+}
+
+.portfolio-new .swiper-pagination .swiper-pagination-bullet {
+  width: 10px; /* Adjust size */
+  height: 10px;
+  background-color: #ddd; /* Inactive dot color (light grey) */
+  opacity: 1;
+  border: 1px solid var(--accent-color); /* Optional border for inactive */
+  margin: 0 5px !important; /* Spacing between dots */
+  transition: background-color 0.3s ease;
+}
+
+.portfolio-new .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--accent-color); /* Active dot color */
+  border-color: var(--accent-color);
+}
+
+.portfolio-new .portfolio-category-caption h5 {
+  margin-top: 8px; /* Space above caption, adjust from default 10px if needed */
+  font-size: 1rem; /* Caption font size (Bootstrap h5 is usually 1.25rem, this makes it smaller) */
+  color: var(--default-color); /* More subtle color for caption */
+  font-weight: 500; /* Medium weight */
+}
+
+/* Ensure portfolio items within the carousel are styled well */
+.portfolio-new .portfolio-carousel-item-wrapper .portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px; /* Add some rounding to the item container */
+  box-shadow: 0 0 15px rgba(0,0,0,0.07); /* Subtle shadow */
+}
+
+.portfolio-new .portfolio-carousel-item-wrapper .portfolio-item img {
+  width: 100%;
+  height: 250px; /* Or a fixed height or use aspect-ratio */
+  object-fit: cover; /* Ensures image covers the area, might crop */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on the image (optional) */
+/* .portfolio-new .portfolio-carousel-item-wrapper .portfolio-item:hover img {
+  transform: scale(1.05);
+} */
+
+/* Adjustments for portfolio-info if needed inside smaller carousel items */
+.portfolio-new .portfolio-item .portfolio-info {
+  /* Default styles from main.css apply. Add overrides if layout is cramped. */
+  /* e.g., padding, font sizes for h4, p inside portfolio-info */
+}

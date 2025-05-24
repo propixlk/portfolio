@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio - Propix LK</title>
-  <meta name="description" content="View our graphic design portfolio showcasing a range of digital and print projects.">
-  <meta name="keywords" content="graphic design portfolio, digital design, print design, Sri Lanka, propix lk">
+  <title>අපගේ නිර්මාණ එකතුව - OnePage Bootstrap Template</title> <meta name="description" content="">
+  <meta name="keywords" content="">
 
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -22,166 +21,364 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/main.css" rel="stylesheet">
-  <script> window.chtlConfig = { chatbotId: "7771799381" } </script>
-  <script async data-id="7771799381" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 
-  <style>
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+  </head>
 
-    .portfolio-item {
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      aspect-ratio: 1 / 1;
-    }
-
-    .portfolio-item-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.5s ease-in-out, transform 0.3s ease;
-    }
-
-    .portfolio-item:hover .portfolio-item-img {
-        transform: scale(1.05);
-    }
-  </style>
-
-</head>
-
-<body class="portfolio-page">
-
-  <header id="header" class="header d-flex align-items-center sticky-top">
+<body class="portfolio-page-body"> <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <h1 class="sitename">Propix LK</h1>
+        <h1 class="sitename">OnePage</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Home<br></a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="portfolio.html" class="active">Portfolio</a></li>
-          <li><a href="index.html#call-to-action">Order</a></li>
-          <li class="dropdown"><a href="#"><span>More Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li><a href="index.html#hero">මුල් පිටුව<br></a></li>
+          <li><a href="index.html#about">අපි ගැන</a></li>
+          <li><a href="index.html#services">සේවාවන්</a></li>
+          <li><a href="portfolio.html" class="active">නිර්මාණ එකතුව</a></li>
+          <li><a href="index.html#team">කණ්ඩායම</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="ads.html">Ad Boost</a></li>
-              <li><a href="edu.html">Edu Hub</a></li>
-              <li><a href="plan.html">Packages</a></li>
-              <li><a href="index.html#clients">Testimonials</a></li>
-              <li><a href="index.html#faq">FAQs</a></li>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#contact">සම්බන්ධ වන්න</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="https://wa.me/message/JGOBR5KKO5UAF1">Whatsapp</a>
-      <div id="dark-mode-toggle" class="dark-mode-toggle">
-        <i class="bi bi-moon-stars"></i>
-        <i class="bi bi-sun"></i>
-      </div>
+      <a class="btn-getstarted" href="index.html#about">ආරම්භ කරන්න</a>
 
     </div>
   </header>
+
   <main class="main">
 
-    <div class="page-title" data-aos="fade">
+    <div class="page-title accent-background">
       <div class="container">
-        <nav class="breadcrumbs">
+        <h1>අපගේ නිර්මාණ එකතුව</h1> <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Portfolio</li>
-          </ol>
+            <li><a href="index.html">මුල් පිටුව</a></li>
+            <li class="current">නිර්මාණ එකතුව</li> </ol>
         </nav>
-        <h1>Our Works</h1>
       </div>
-    </div><section id="portfolio" class="portfolio section">
+    </div><section id="portfolio-new" class="portfolio-new section">
+      <div class="container">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
 
-        <div class="portfolio-grid">
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/1.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/2.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/3.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/4.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/5.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/6.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/7.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/8.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/9.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/1.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/2.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-          <div class="portfolio-item"><img src="assets/img/portfolio/next/3.jpeg" alt="Portfolio Image" class="portfolio-item-img"></div>
-        </div></div>
+          <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "slidesPerView": 1,
+                  "spaceBetween": 10,
+                  "pagination": { "el": ".swiper-pagination-menu", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-menu", "prevEl": ".swiper-button-prev-menu" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/menu-1.jpg" data-gallery="gallery-menu" class="glightbox">
+                        <img src="assets/img/portfolio/next/1.jpeg" class="img-fluid" alt="Menu Design 1">
+                    </a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/next/2.jpeg" data-gallery="gallery-menu" class="glightbox">
+                        <img src="assets/img/portfolio/next/2.jpeg" class="img-fluid" alt="Menu Design 2">
+                    </a>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/next/3.jpeg" data-gallery="gallery-menu" class="glightbox">
+                        <img src="assets/img/portfolio/next/3.jpeg" class="img-fluid" alt="Menu Design 3">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination swiper-pagination-menu"></div>
+              <div class="swiper-button-next swiper-button-next-menu"></div>
+              <div class="swiper-button-prev swiper-button-prev-menu"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>Menu Design</h5>
+            </div>
+          </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true, "slidesPerView": 1, "spaceBetween": 10,
+                  "pagination": { "el": ".swiper-pagination-social", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-social", "prevEl": ".swiper-button-prev-social" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/social-1.jpg" data-gallery="gallery-social" class="glightbox">
+                        <img src="assets/img/portfolio/social-1.jpg" class="img-fluid" alt="Social Media Post 1">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Social Media Post 1</h4>
+                        <p>Engaging Facebook post</p>
+                        <a href="assets/img/portfolio/social-1.jpg" title="View Image" data-gallery="gallery-social" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/social-2.jpg" data-gallery="gallery-social" class="glightbox">
+                        <img src="assets/img/portfolio/social-2.jpg" class="img-fluid" alt="Social Media Post 2">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Social Media Post 2</h4>
+                        <p>Instagram story highlight</p>
+                        <a href="assets/img/portfolio/social-2.jpg" title="View Image" data-gallery="gallery-social" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination swiper-pagination-social"></div>
+              <div class="swiper-button-next swiper-button-next-social"></div>
+              <div class="swiper-button-prev swiper-button-prev-social"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>Social Media Post Design</h5>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="300">
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true, "slidesPerView": 1, "spaceBetween": 10,
+                  "pagination": { "el": ".swiper-pagination-voucher", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-voucher", "prevEl": ".swiper-button-prev-voucher" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/voucher-1.jpg" data-gallery="gallery-voucher" class="glightbox">
+                        <img src="assets/img/portfolio/voucher-1.jpg" class="img-fluid" alt="Voucher Design 1">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Voucher Design 1</h4>
+                        <p>Gift voucher template</p>
+                        <a href="assets/img/portfolio/voucher-1.jpg" title="View Image" data-gallery="gallery-voucher" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/voucher-2.jpg" data-gallery="gallery-voucher" class="glightbox">
+                        <img src="assets/img/portfolio/voucher-2.jpg" class="img-fluid" alt="Voucher Design 2">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Voucher Design 2</h4>
+                        <p>Discount coupon design</p>
+                        <a href="assets/img/portfolio/voucher-2.jpg" title="View Image" data-gallery="gallery-voucher" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination swiper-pagination-voucher"></div>
+              <div class="swiper-button-next swiper-button-next-voucher"></div>
+              <div class="swiper-button-prev swiper-button-prev-voucher"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>Voucher Design</h5>
+            </div>
+          </div>
+
+        </div> <div class="row gy-4 mt-4"> <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper init-swiper"> <script type="application/json" class="swiper-config">
+                {
+                  "loop": false, "slidesPerView": 1, "spaceBetween": 10, /* Loop false for single item unless more are added */
+                  "pagination": { "el": ".swiper-pagination-packaging", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-packaging", "prevEl": ".swiper-button-prev-packaging" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/packaging-1.jpg" data-gallery="gallery-packaging" class="glightbox">
+                        <img src="assets/img/portfolio/packaging-1.jpg" class="img-fluid" alt="Packaging Design 1">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Spaghetti Packaging</h4>
+                        <p>Creative food packaging</p>
+                        <a href="assets/img/portfolio/packaging-1.jpg" title="View Image" data-gallery="gallery-packaging" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              <div class="swiper-pagination swiper-pagination-packaging"></div>
+              <div class="swiper-button-next swiper-button-next-packaging"></div>
+              <div class="swiper-button-prev swiper-button-prev-packaging"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>Packaging Design</h5>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true, "slidesPerView": 1, "spaceBetween": 10,
+                  "pagination": { "el": ".swiper-pagination-book", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-book", "prevEl": ".swiper-button-prev-book" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/book-1.jpg" data-gallery="gallery-book" class="glightbox">
+                        <img src="assets/img/portfolio/book-1.jpg" class="img-fluid" alt="Book Design 1">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>Book Cover Design</h4>
+                        <p>Novel cover art</p>
+                        <a href="assets/img/portfolio/book-1.jpg" title="View Image" data-gallery="gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination swiper-pagination-book"></div>
+              <div class="swiper-button-next swiper-button-next-book"></div>
+              <div class="swiper-button-prev swiper-button-prev-book"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>Book Design</h5>
+            </div>
+          </div>
+            
+          <div class="col-lg-4 col-md-6 portfolio-carousel-item-wrapper" data-aos="fade-up" data-aos-delay="300">
+            <div class="swiper init-swiper">
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true, "slidesPerView": 1, "spaceBetween": 10,
+                  "pagination": { "el": ".swiper-pagination-ict", "clickable": true },
+                  "navigation": { "nextEl": ".swiper-button-next-ict", "prevEl": ".swiper-button-prev-ict" }
+                }
+              </script>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="portfolio-item">
+                    <a href="assets/img/portfolio/ict-1.jpg" data-gallery="gallery-ict" class="glightbox">
+                        <img src="assets/img/portfolio/ict-1.jpg" class="img-fluid" alt="ICT Project Design 1">
+                    </a>
+                    <div class="portfolio-info">
+                        <h4>ICT Learning Material</h4>
+                        <p>Educational card design</p>
+                        <a href="assets/img/portfolio/ict-1.jpg" title="View Image" data-gallery="gallery-ict" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination swiper-pagination-ict"></div>
+              <div class="swiper-button-next swiper-button-next-ict"></div>
+              <div class="swiper-button-prev swiper-button-prev-ict"></div>
+            </div>
+            <div class="portfolio-category-caption text-center mt-2">
+              <h5>ICT Project Design</h5>
+            </div>
+          </div>
+
+        </div> </div>
     </section></main>
 
   <footer id="footer" class="footer light-background">
+
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Propix Lk</span>
+            <span class="sitename">OnePage</span>
           </a>
-          <p>Offering expert Graphic Design Services to elevate your brand. Visually stunning solutions are crafted Us to make you stand out.</p>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
           <div class="social-links d-flex mt-4">
-            <a href="https://wa.me/message/JGOBR5KKO5UAF1"><i class="bi bi-whatsapp"></i></a>
-            <a href="https://t.me/propixlk"><i class="bi bi-telegram"></i></a>
-            <a href="https://www.tiktok.com/@propix_lk?_t=ZS-8w1kGAKPsbC&_r=1"><i class="bi bi-tiktok"></i></a>
-            <a href="https://www.facebook.com/share/1Bj9wAdLRN/"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
+
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About us</a></li>
-            <li><a href="index.html#services">Services</a></li>
-            <li><a href="terms-and-conditions.html">Terms of service</a></li>
-            <li><a href="privacy-policy.html">Privacy policy</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
           </ul>
         </div>
+
         <div class="col-lg-2 col-6 footer-links">
-          <h4>Other Links</h4>
+          <h4>Our Services</h4>
           <ul>
-            <li><a href="index.html#call-to-action">Order</a></li>
-            <li><a href="plan.html">packages</a></li>
-            <li><a href="portfolio.html">portfolio</a></li>
-            <li><a href="index.html#clients">Testimonials</a></li>
-            <li><a href="index.html#faq">FAQs</a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
           </ul>
         </div>
+
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
-          <p>Monaragala</p>
-          <p>Sri Lanka</p>
-          <p></p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+94 76 829 44 96</span></p>
-          <p><strong>Email:</strong> <span><a href="mailto:propixlk@gmail.com">propixlk@gmail.com</a></span></p>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
         </div>
+
       </div>
     </div>
+
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">propix lk</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">OnePage</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        2024 - 2025
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
+
   </footer>
+
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader">
-    <div class="loader"></div>
-  </div>
+  <div id="preloader"></div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -190,56 +387,9 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script> 
 
   <script src="assets/js/main.js"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      const imageUrls = [];
-      // ඔබ ඉල්ලා සිටි පරිදි පින්තූර 1 සිට 50 දක්වා ලින්ක්ස් ස්වයංක්‍රීයව සාදා ගැනීම
-      for (let i = 1; i <= 9; i++) {
-        imageUrls.push(`assets/img/portfolio/next/${i}.jpeg`);
-      }
-
-      const imageElements = document.querySelectorAll('.portfolio-item-img');
-
-      // පිටුව පූරණය වන විට එක් එක් කොටුවට අහඹු, එකිනෙකට වෙනස් පින්තූරයක් යෙදීම
-      function setInitialImages() {
-        let availableImages = [...imageUrls];
-        imageElements.forEach(img => {
-          if (availableImages.length === 0) {
-            availableImages = [...imageUrls];
-          }
-          const randomIndex = Math.floor(Math.random() * availableImages.length);
-          img.src = availableImages[randomIndex];
-          availableImages.splice(randomIndex, 1); 
-        });
-      }
-
-      // සෑම තත්පර 3කට වරක් සියලුම පින්තූර වෙනස් කිරීම
-      function changeAllImages() {
-        let availableImages = [...imageUrls];
-        imageElements.forEach(img => {
-          if (availableImages.length === 0) {
-            availableImages = [...imageUrls];
-          }
-          const randomIndex = Math.floor(Math.random() * availableImages.length);
-          
-          img.style.opacity = 0;
-          setTimeout(() => {
-            img.src = availableImages[randomIndex];
-            img.style.opacity = 1;
-            availableImages.splice(randomIndex, 1);
-          }, 500); 
-        });
-      }
-
-      setInitialImages(); 
-      setInterval(changeAllImages, 6000);
-    });
-  </script>
 
 </body>
 
