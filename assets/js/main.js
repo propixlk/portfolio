@@ -29,16 +29,22 @@
   mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
 
   /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
+ * Hide mobile nav on same-page/hash links
+ */
+document.querySelectorAll('#navmenu a').forEach(navmenu => {
+  navmenu.addEventListener('click', () => {
+    // Check if the clicked link is part of a dropdown. If so, do nothing.
+    if (navmenu.parentElement.classList.contains('dropdown')) {
+      return;
+    }
 
+    // If it's a regular link, close the mobile nav.
+    if (document.querySelector('.mobile-nav-active')) {
+      mobileNavToogle();
+    }
   });
+});
+
 
   /**
    * Toggle mobile nav dropdowns
