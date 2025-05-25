@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Design Prices - Propix Lk</title>
+  <meta name="description" content="Check out the design service prices offered by Propix Lk. Order your custom designs today.">
+  <meta name="keywords" content="graphic design prices, design packages, logo design cost, social media design price, Propix Lk">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+  <script> window.chtlConfig = { chatbotId: "7771799381" } </script>
+  <script async data-id="7771799381" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  <style>
+    #designSearchInput {
+        margin-bottom: 30px;
+        border-radius: 5px;
+        padding: 10px 15px;
+        border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+        background-color: var(--background-color);
+        color: var(--default-color);
+    }
+
+    #designSearchInput::placeholder {
+        color: color-mix(in srgb, var(--default-color), transparent 50%);
+    }
+
+    .design-item-row {
+        background-color: var(--surface-color);
+        border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+    }
+
+    .design-item-row:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .design-item-row .design-details p {
+        margin-bottom: 0;
+        line-height: 1.6;
+        color: var(--default-color);
+    }
+
+    .design-item-row .design-details .detail-label {
+        font-weight: 600;
+        color: var(--heading-color);
+    }
+    
+    .design-item-row .buy-btn { /* This is for "Order Now" buttons inside rows */
+        /* It uses .pricing .buy-btn styles from main.css by default */
+        /* If you need to override specifically for rows: */
+        padding: 10px 25px; 
+        font-size: 0.9rem; 
+    }
+
+    /* New class for solid accent buttons, similar to order form submit button */
+    .btn-solid-accent {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--contrast-color);
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 16px; /* Matches order form submit button */
+      padding: 12px 35px; /* Matches order form submit button */
+      border-radius: 5px; /* Matches order form submit button */
+      transition: 0.4s; /* Matches order form submit button */
+      border: none; /* Matches order form submit button (no border) */
+      text-align: center;
+      text-decoration: none;
+      line-height: 1.5; /* Standard line height for buttons */
+    }
+
+    .btn-solid-accent:hover {
+      background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+      color: var(--contrast-color); /* Ensure text color stays */
+    }
+
+    /* Dark mode specific styles */
+    body.dark-mode #designSearchInput {
+        background-color: #3a3a3a;
+        border-color: #555;
+        color: #ffffff;
+    }
+    body.dark-mode #designSearchInput::placeholder {
+        color: #aaa;
+    }
+
+    body.dark-mode .design-item-row {
+        border-color: #444;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    body.dark-mode .design-item-row:hover {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    body.dark-mode .design-item-row .design-details p {
+        color: var(--default-color);
+    }
+    body.dark-mode .design-item-row .design-details .detail-label {
+        color: var(--heading-color);
+    }
+    /* No specific dark mode for .btn-solid-accent needed as it uses CSS variables */
+
+  </style>
+</head>
+
+<body class="prices-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Propix LK</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="index.html#order">Order</a></li>
+          <li class="dropdown"><a href="javascript:void(0);"><span>More Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="ads.html">Ad Packs</a></li>
+              <li><a href="plan.html">Design Plans</a></li>
+              <li><a href="update.html">Gift Section</a></li>
+              <li><a href="update.html">Edu Hub</a></li>
+              <li><a href="index.html#clients">Testimonials</a></li>
+              <li><a href="index.html#faq">FAQs</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="prices.html" class="active">Prices</a></li> </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div id="dark-mode-toggle" class="dark-mode-toggle">
+        <i class="bi bi-moon-stars"></i>
+        <i class="bi bi-sun"></i>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title" data-aos="fade">
+      <div class="container">
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Design Prices</li>
+          </ol>
+        </nav>
+        <h1>Our Design Prices</h1>
+        <p>Find the perfect design service for your needs. All prices are in LKR.</p>
+      </div>
+    </div>
+
+    <section id="design-prices-table" class="design-prices-table section">
+      <div class="container">
+
+        <div class="row mb-4" data-aos="fade-up">
+          <div class="col-md-6 offset-md-3">
+            <input type="text" id="designSearchInput" class="form-control" placeholder="Search by Design Name or Code...">
+          </div>
+        </div>
+
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="100" data-name="Logo Design - Basic" data-code="DPX001">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPX001</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Logo Design - Basic</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> LKR 5,000</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="#" class="buy-btn order-now-btn" data-code="DPX001" data-name="Logo Design - Basic" data-price="5000">Order Now</a>
+          </div>
+        </div>
+
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="150" data-name="Social Media Post" data-code="DPX002">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPX002</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Social Media Post</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> LKR 1,500 / post</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="#" class="buy-btn order-now-btn" data-code="DPX002" data-name="Social Media Post" data-price="1500">Order Now</a>
+          </div>
+        </div>
+
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="200" data-name="Tute Cover Page" data-code="DPX003">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPX003</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Tute Cover Page</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> LKR 2,000</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="#" class="buy-btn order-now-btn" data-code="DPX003" data-name="Tute Cover Page" data-price="2000">Order Now</a>
+          </div>
+        </div>
+
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="250" data-name="Business Card" data-code="DPX004">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPX004</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Business Card</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> LKR 2,500</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="#" class="buy-btn order-now-btn" data-code="DPX004" data-name="Business Card" data-price="2500">Order Now</a>
+          </div>
+        </div>
+
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="300" data-name="Flyer Design (A5)" data-code="DPX005">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPX005</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Flyer Design (A5)</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> LKR 3,000</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="#" class="buy-btn order-now-btn" data-code="DPX005" data-name="Flyer Design (A5)" data-price="3000">Order Now</a>
+          </div>
+        </div>
+        
+        <div class="row design-item-row" data-aos="fade-up" data-aos-delay="350" data-name="Custom Package" data-code="DPXCUSTOM">
+          <div class="col-lg-3 col-md-6 design-details">
+            <p><span class="detail-label">Code:</span> DPXCUSTOM</p>
+          </div>
+          <div class="col-lg-4 col-md-6 design-details">
+            <p><span class="detail-label">Name:</span> Custom Package</p>
+          </div>
+          <div class="col-lg-2 col-md-6 design-details mt-2 mt-md-0">
+            <p><span class="detail-label">Price:</span> Contact Us</p>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center text-lg-end mt-2 mt-lg-0">
+            <a href="index.html#contact" class="buy-btn">Get a Quote</a>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 pt-4" data-aos="fade-up" data-aos-delay="400">
+          <a href="portfolio.html" class="btn btn-solid-accent">View Portfolio</a>
+          <a href="plan.html" class="btn btn-solid-accent ms-2">Special Design Plans</a>
+          <a href="ads.html" class="btn btn-solid-accent ms-2">Meta Ad Packs</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Propix Lk</span>
+          </a>
+          <p>Offering expert Graphic Design Services to elevate your brand. Visually stunning solutions are crafted Us to make you stand out.</p>
+          <div class="social-links d-flex mt-4">
+            <a href="https://wa.me/message/JGOBR5KKO5UAF1"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://t.me/propixlk"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.tiktok.com/@propix_lk?_t=ZS-8w1kGAKPsbC&_r=1"><i class="bi bi-tiktok"></i></i></a>
+            <a href="https://www.facebook.com/share/1Bj9wAdLRN/"><i class="bi bi-facebook"></i></a>
+            <a href="https://youtube.com/@propixlk?si=ef645iRbOCQ4nPaR"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html.html">About us</a></li>
+            <li><a href="service-details.html">Services</a></li>
+            <li><a href="terms-and-conditions.html">Terms of service</a></li>
+            <li><a href="privacy-policy.html">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Other Links</h4>
+          <ul>
+            <li><a href="buy.html">Order</a></li>
+            <li><a href="ads.html">Ad Packs</a></li>
+            <li><a href="update.html">Edu Hub</a></li>
+            <li><a href="portfolio.html">portfolio</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Monaragala</p>
+          <p>Sri Lanka</p>
+          <p></p>
+          <p class="mt-4"><strong>Phone:</strong> <span><a href="https://wa.me/message/JGOBR5KKO5UAF1">+94 76 829 44 96</a></span></p>
+          <p><strong>Email:</strong> <span><a href="mailto:propixlk@gmail.com">propixlk@gmail.com</a></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">propix lk</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        2024 - 2025
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Order Now Button functionality
+      const orderNowButtons = document.querySelectorAll('.order-now-btn');
+      orderNowButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          const designCode = this.getAttribute('data-code');
+          const designName = this.getAttribute('data-name');
+          const designPrice = this.getAttribute('data-price');
+          const params = new URLSearchParams({
+            code: designCode,
+            name: designName,
+            price: designPrice
+          });
+          window.location.href = `order-form.html?${params.toString()}`;
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById('designSearchInput');
+      const designItems = document.querySelectorAll('.design-item-row');
+
+      if (searchInput && designItems.length > 0) {
+        searchInput.addEventListener('input', function () {
+          const searchTerm = this.value.toLowerCase().trim();
+
+          designItems.forEach(item => {
+            const itemName = item.getAttribute('data-name').toLowerCase();
+            const itemCode = item.getAttribute('data-code').toLowerCase();
+
+            if (itemName.includes(searchTerm) || itemCode.includes(searchTerm)) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

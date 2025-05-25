@@ -2864,3 +2864,225 @@ body.dark-mode .accent-background {
   /* Default styles from main.css apply. Add overrides if layout is cramped. */
   /* e.g., padding, font sizes for h4, p inside portfolio-info */
 }
+
+/*--------------------------------------------------------------
+# Design Prices Page & Order Form Page
+--------------------------------------------------------------*/
+.design-prices .pricing-item {
+  background-color: var(--surface-color);
+  padding: 40px 30px; /* Adjusted padding */
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  position: relative;
+  border-radius: 8px; /* Consistent border-radius */
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.design-prices .pricing-item h3 {
+  font-weight: 600;
+  margin-bottom: 10px; /* Adjusted margin */
+  font-size: 22px; /* Slightly larger */
+}
+
+.design-prices .pricing-item .design-code {
+  font-size: 0.9em;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  margin-bottom: 15px;
+}
+
+.design-prices .pricing-item h4 {
+  font-size: 42px; /* Adjusted size */
+  color: var(--accent-color);
+  font-family: var(--heading-font);
+  font-weight: 400;
+  margin-bottom: 20px; /* Added margin */
+}
+
+.design-prices .pricing-item h4 sup {
+  font-size: 24px; /* Adjusted size */
+}
+
+.design-prices .pricing-item h4 span {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+  font-size: 16px; /* Adjusted size */
+}
+
+.design-prices .pricing-item ul {
+  padding: 0; /* Removed default padding */
+  list-style: none;
+  color: var(--default-color); /* Darker text for better readability */
+  text-align: left;
+  line-height: 22px; /* Adjusted line height */
+  margin-bottom: 25px; /* Added margin */
+  flex-grow: 1; /* Allows ul to take available space */
+}
+
+.design-prices .pricing-item ul li {
+  padding: 8px 0; /* Adjusted padding */
+  display: flex;
+  align-items: center;
+}
+
+.design-prices .pricing-item ul i {
+  color: var(--accent-color); /* Use accent color for checks */
+  font-size: 20px; /* Adjusted size */
+  padding-right: 8px; /* Increased padding */
+}
+
+.design-prices .pricing-item .buy-btn {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  display: inline-block;
+  padding: 10px 35px; /* Adjusted padding */
+  border-radius: 5px; /* Consistent border-radius */
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--heading-font);
+  border: 2px solid var(--accent-color); /* Ensure border for consistency */
+}
+
+.design-prices .pricing-item .buy-btn:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.design-prices .pricing-item:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles for the bottom buttons on prices page */
+.design-prices .btn-get-startedราคา,
+.design-prices .btn-outline-accentราคา {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 10px 28px;
+  border-radius: 5px;
+  transition: 0.3s;
+  margin: 5px; /* Add some margin for spacing */
+}
+
+.design-prices .btn-get-startedราคา {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: 2px solid var(--accent-color);
+}
+
+.design-prices .btn-get-startedราคา:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.design-prices .btn-outline-accentราคา {
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  background: transparent;
+}
+
+.design-prices .btn-outline-accentราคา:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+
+/* Order Form Page Specific Styles */
+.order-form-page .page-title,
+.prices-page .page-title { /* Apply to prices page title as well */
+  padding: 80px 0 40px 0; /* Adjusted padding */
+}
+
+
+.order-design-form .form-label {
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+}
+
+.order-design-form .form-control,
+.order-design-form .form-select {
+  border-radius: 4px;
+  font-size: 15px; /* Match other form inputs */
+  padding: 10px 15px;
+  color: var(--default-color);
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.order-design-form .form-control:focus,
+.order-design-form .form-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: none; /* Remove default focus shadow */
+}
+
+.order-design-form .form-control[readonly] {
+  background-color: color-mix(in srgb, var(--default-color), transparent 90%); /* Slightly different for readonly */
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.order-design-form button[type="submit"] {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 12px 35px; /* Larger padding */
+  transition: 0.4s;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: var(--heading-font);
+}
+
+.order-design-form button[type="submit"]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.order-design-form .php-email-form .error-message,
+.order-design-form .php-email-form .sent-message {
+  margin-top: 15px; /* Ensure space from the button */
+}
+
+/* Dark Mode Adjustments for new pages */
+body.dark-mode .design-prices .pricing-item {
+  background-color: var(--surface-color);
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .design-prices .pricing-item .design-code {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+body.dark-mode .design-prices .pricing-item ul {
+  color: var(--default-color);
+}
+
+body.dark-mode .order-design-form .form-control,
+body.dark-mode .order-design-form .form-select {
+  background-color: #3a3a3a;
+  border-color: #555;
+  color: #ffffff;
+}
+body.dark-mode .order-design-form .form-control::placeholder,
+body.dark-mode .order-design-form .form-select::placeholder {
+  color: #aaa;
+}
+
+
+body.dark-mode .order-design-form .form-control[readonly] {
+  background-color: #2c2c2c; /* Darker readonly for dark mode */
+  opacity: 0.7;
+}
+
+body.dark-mode .design-prices .btn-outline-accentราคา {
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+}
+
+body.dark-mode .design-prices .btn-outline-accentราคา:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
