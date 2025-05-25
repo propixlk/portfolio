@@ -332,7 +332,7 @@ document.querySelectorAll('#navmenu a').forEach(navmenu => {
 
     // List of ad images and their corresponding links
     const ads = [
-      { src: 'assets/img/ads/x.png', link: '#contact' },
+      { src: 'assets/img/ads/x.png', link: 'index.html#contact' },
       //{ src: 'assets/img/ads/x1.png', link: 'buy.html' },
       //{ src: 'assets/img/ads/x2.png', link: 'update.html' },
       //{ src: 'assets/img/ads/x3.png', link: 'update.html' },
