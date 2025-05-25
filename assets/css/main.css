@@ -2509,7 +2509,7 @@ section,
 /* Style for About Section - Removed Top Padding */
 /* About Us Section එකේ ඉහලින් ඇති හිස් ඉඩ අඩු කිරීමට */
 #about.section {
-    padding-top: 0 !important; /* ඉහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. */
+    padding-top: 60px; /* ඉහල padding අගය සම්පූර්ණයෙන්ම ඉවත් කරන්න. */
     /* ඔබට අවශය නම් පහල padding ද වෙනස් කළ හැකියි */
     /* padding-bottom: 60px; */
     /* අනෙකුත් styles එලෙසම තබා ගන්න */
