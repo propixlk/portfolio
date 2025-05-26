@@ -3086,30 +3086,3 @@ body.dark-mode .design-prices .btn-outline-accentราคา:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
 }
-
-/*--------------------------------------------------------------
-# Responsive Button Alignment for Prices Page
---------------------------------------------------------------*/
-@media (max-width: 767px) {
-  .design-prices .text-center a.btn { /* Target all anchor buttons in that specific div */
-    display: block; /* Buttons ටික එකකට යටින් එකක් එන්න සලස්වනවා */
-    width: 90%;    /* Button එකේ පළල තිරයෙන් 90% ක් කරනවා */
-    margin-left: auto;  /* Button එක මැදට ගන්නවා */
-    margin-right: auto; /* Button එක මැදට ගන්නවා */
-    margin-top: 10px;   /* උඩින් පොඩි ඉඩක් තියනවා */
-    margin-bottom: 10px; /* යටින් පොඩි ඉඩක් තියනවා */
-  }
-
-  .design-prices .text-center a.btn + a.btn { /* ළඟ ළඟ තියෙන buttons අතර */
-    margin-left: auto; /* ms-2 වගේ class වලින් එන margin අයින් කරලා, block alignment එකට හරියන්න සකස් කරනවා */
-  }
-}
-
-/* කුඩාම තිර සඳහා (Optional - අවශ්‍ය නම් තවදුරටත් සකස් කිරීමට) */
-@media (max-width: 575px) {
-  .design-prices .text-center a.btn {
-    width: 95%; /* තවත් පොඩි තිර වලදී පළල ටිකක් වැඩි කරනවා */
-    font-size: 15px; /* අකුරු ප්‍රමාණය පොඩි කරනවා */
-    padding: 10px 20px; /* Button එක ඇතුලේ ඉඩ ප්‍රමාණය (padding) අඩු කරනවා */
-  }
-}
