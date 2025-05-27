@@ -109,6 +109,11 @@
             border-radius: 5px;
         }
 
+        .message.info {
+            background-color: #e0f2f7; /* Light blue for info */
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
         .message.success {
             background-color: #d4edda;
             color: #155724;
@@ -188,7 +193,7 @@
         // Function to display messages
         function displayMessage(messageDiv, message, type) {
             messageDiv.style.display = 'block';
-            messageDiv.classList.remove('success', 'error');
+            messageDiv.classList.remove('success', 'error', 'info'); // Remove all types first
             messageDiv.classList.add(type);
             messageDiv.textContent = message;
         }
@@ -196,11 +201,9 @@
         // --- Tab Switching Logic ---
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons and forms
                 document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
                 document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding form
+
                 this.classList.add('active');
                 const targetTab = this.dataset.tab;
                 document.getElementById(targetTab + 'Form').classList.add('active');
@@ -219,32 +222,38 @@
             const password = document.getElementById('loginPassword').value;
             const responseMessageDiv = document.getElementById('loginResponseMessage');
 
-            displayMessage(responseMessageDiv, 'Logging in...', 'info'); // 'info' for a neutral state
+            displayMessage(responseMessageDiv, 'Logging in...', 'info');
 
             const data = {
                 action: 'login',
-                username: username,
+                username: username, // Your App Script now checks for 'username'
                 password: password
             };
 
             fetch(scriptUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json', // *** මෙතන JSON ලෙස වෙනස් කරන්න ***
                 },
-                body: new URLSearchParams(data).toString(),
-                // For direct JSON response from App Script, remove 'no-cors' and set CORS headers in App Script
-                // mode: 'no-cors' 
+                body: JSON.stringify(data), // *** මෙතන JSON.stringify() ලෙස වෙනස් කරන්න ***
+                // mode: 'no-cors' // Remove 'no-cors' if your App Script handles CORS
             })
             .then(response => {
-                // If using 'no-cors', the response is opaque. You must rely on App Script for redirection.
-                // If App Script sends JSON response, remove 'no-cors' and parse JSON:
-                // return response.json(); 
-                // For demonstration, we'll assume a successful request means App Script is working.
-                console.log('Login request sent.');
-                // Placeholder for 'no-cors' or until App Script responds
-                displayMessage(responseMessageDiv, 'Login request sent. Waiting for server response...', 'info');
-                // You would typically wait for the App Script to redirect or send a definitive JSON response here.
+                if (response.ok) { // response.ok means 200-299 status code
+                    return response.json(); // Parse JSON response from App Script
+                } else {
+                    // Handle HTTP errors (e.g., 404, 500)
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            })
+            .then(data => {
+                if (data && data.status === 'success') {
+                    displayMessage(responseMessageDiv, data.message, 'success');
+                    // Successfully logged in, redirect to Gift.html
+                    window.location.href = 'Gift.html'; // *** මෙතන ඔබේ "Gift.html" පිටුවට URL එක දාන්න ***
+                } else {
+                    displayMessage(responseMessageDiv, data.message || 'Login failed. Please try again.', 'error');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -271,7 +280,7 @@
             displayMessage(responseMessageDiv, 'Signing up...', 'info');
 
             const data = {
-                action: 'signup', // New action for your Google App Script
+                action: 'signup',
                 username: username,
                 email: email,
                 password: password
@@ -280,87 +289,36 @@
             fetch(scriptUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json', // *** මෙතන JSON ලෙස වෙනස් කරන්න ***
                 },
-                body: new URLSearchParams(data).toString(),
-                // mode: 'no-cors' // Again, remove if App Script sends JSON response with CORS headers
+                body: JSON.stringify(data), // *** මෙතන JSON.stringify() ලෙස වෙනස් කරන්න ***
+                // mode: 'no-cors' // Remove 'no-cors' if your App Script handles CORS
             })
             .then(response => {
-                console.log('Sign up request sent.');
-                // Placeholder for 'no-cors' or until App Script responds
-                displayMessage(responseMessageDiv, 'Sign up request sent. Waiting for server response...', 'info');
-                // As with login, you'd handle JSON response or redirection from App Script
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+            })
+            .then(data => {
+                if (data && data.status === 'success') {
+                    displayMessage(responseMessageDiv, data.message, 'success');
+                    // Optionally, switch to login tab after successful signup
+                    setTimeout(() => {
+                        document.querySelector('.tab-button[data-tab="login"]').click();
+                        document.getElementById('loginUsername').value = username; // Pre-fill username
+                        document.getElementById('loginPassword').value = ''; // Clear password
+                    }, 2000); // Wait 2 seconds before switching
+                } else {
+                    displayMessage(responseMessageDiv, data.message || 'Sign up failed. Please try again.', 'error');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
                 displayMessage(responseMessageDiv, 'An error occurred during sign up. Please try again later.', 'error');
             });
         });
-
-        // --- IMPORTANT: Google App Script (Code.gs) adjustments ---
-        // Your Google App Script will need to be updated to handle these 'action' parameters.
-        // Example structure for doPost(e) in your Google App Script:
-
-        /*
-        function doPost(e) {
-            var action = e.parameter.action;
-            var result = {};
-
-            if (action == 'login') {
-                var username = e.parameter.username;
-                var password = e.parameter.password;
-                // Implement your login logic here
-                // Check username/password against your Google Sheet
-                if (isValidLogin(username, password)) {
-                    // Redirect on success
-                    return ContentService.createTextOutput().setMimeType(ContentService.MimeType.REDIRECT).setContent("https://yourwebsite.com/gift_section.html");
-                    // OR send JSON response (requires CORS headers in App Script and removing 'no-cors' from client fetch)
-                    // result = { status: 'success', message: 'Login successful' };
-                } else {
-                    // result = { status: 'fail', message: 'Invalid credentials' };
-                }
-            } else if (action == 'signup') {
-                var username = e.parameter.username;
-                var email = e.parameter.email;
-                var password = e.parameter.password;
-                // Implement your sign up logic here
-                // Save new user data to your Google Sheet
-                if (registerUser(username, email, password)) {
-                    // result = { status: 'success', message: 'Sign up successful! You can now log in.' };
-                } else {
-                    // result = { status: 'fail', message: 'Sign up failed. Username or email might already exist.' };
-                }
-            }
-
-            // If sending JSON response from App Script:
-            // var output = ContentService.createTextOutput(JSON.stringify(result));
-            // output.setMimeType(ContentService.MimeType.JSON);
-            // output.setAccessControlAllowOrigin('*'); // Crucial for CORS
-            // return output;
-        }
-
-        // Dummy functions for demonstration in App Script
-        function isValidLogin(username, password) {
-            // Your logic to check credentials in Google Sheet
-            // For example:
-            // var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
-            // var data = sheet.getDataRange().getValues();
-            // for (var i = 1; i < data.length; i++) { // Skip header row
-            //     if (data[i][0] == username && data[i][1] == password) { // Assuming col 0 is username, col 1 is password
-            //         return true;
-            //     }
-            // }
-            return false; // Replace with actual validation
-        }
-
-        function registerUser(username, email, password) {
-            // Your logic to save new user to Google Sheet
-            // For example:
-            // var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
-            // sheet.appendRow([username, password, email]); // Add new row
-            return true; // Replace with actual registration status
-        }
-        */
     </script>
 </body>
 </html>
