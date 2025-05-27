@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Section - Login / Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .auth-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px; /* Slightly wider to accommodate both forms */
+            text-align: center;
+        }
+
+        .auth-container h2 {
+            margin-bottom: 30px;
+            color: #2487ce;
+            font-weight: 700;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab-button {
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .tab-button.active {
+            color: #2487ce;
+            border-bottom: 2px solid #2487ce;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #2487ce;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(36, 135, 206, 0.25);
+        }
+
+        button.btn-primary {
+            width: 100%;
+            padding: 12px;
+            background-color: #2487ce;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.btn-primary:hover {
+            background-color: #1a6bb2;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .auth-form {
+            display: none; /* Hide forms by default, show active one with JS */
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .auth-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Gift Section</h2>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="login">Login</button>
+            <button class="tab-button" data-tab="signup">Sign Up</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active">
+            <div class="form-group">
+                <label for="loginUsername">Username / Email</label>
+                <input type="text" id="loginUsername" class="form-control" placeholder="Enter your username or email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+            <div id="loginResponseMessage" class="message" style="display: none;"></div>
+        </form>
+
+        <form id="signupForm" class="auth-form">
+            <div class="form-group">
+                <label for="signupUsername">Username</label>
+                <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username" required>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="btn-primary">Sign Up</button>
+            <div id="signupResponseMessage" class="message" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzFav6HkETlhJ4YPewvGUoKrp1AsUdjll0drlndVH-VTqVhkaRD7xlEf-M8D5V98gfJ/exec';
+
+        // Function to display messages
+        function displayMessage(messageDiv, message, type) {
+            messageDiv.style.display = 'block';
+            messageDiv.classList.remove('success', 'error');
+            messageDiv.classList.add(type);
+            messageDiv.textContent = message;
+        }
+
+        // --- Tab Switching Logic ---
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and forms
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding form
+                this.classList.add('active');
+                const targetTab = this.dataset.tab;
+                document.getElementById(targetTab + 'Form').classList.add('active');
+
+                // Clear previous messages when switching tabs
+                document.getElementById('loginResponseMessage').style.display = 'none';
+                document.getElementById('signupResponseMessage').style.display = 'none';
+            });
+        });
+
+        // --- Login Form Submission ---
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const responseMessageDiv = document.getElementById('loginResponseMessage');
+
+            displayMessage(responseMessageDiv, 'Logging in...', 'info'); // 'info' for a neutral state
+
+            const data = {
+                action: 'login',
+                username: username,
+                password: password
+            };
+
+            fetch(scriptUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(data).toString(),
+                // For direct JSON response from App Script, remove 'no-cors' and set CORS headers in App Script
+                // mode: 'no-cors' 
+            })
+            .then(response => {
+                // If using 'no-cors', the response is opaque. You must rely on App Script for redirection.
+                // If App Script sends JSON response, remove 'no-cors' and parse JSON:
+                // return response.json(); 
+                // For demonstration, we'll assume a successful request means App Script is working.
+                console.log('Login request sent.');
+                // Placeholder for 'no-cors' or until App Script responds
+                displayMessage(responseMessageDiv, 'Login request sent. Waiting for server response...', 'info');
+                // You would typically wait for the App Script to redirect or send a definitive JSON response here.
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage(responseMessageDiv, 'An error occurred during login. Please try again later.', 'error');
+            });
+        });
+
+        // --- Sign Up Form Submission ---
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const responseMessageDiv = document.getElementById('signupResponseMessage');
+
+            // Client-side password confirmation
+            if (password !== confirmPassword) {
+                displayMessage(responseMessageDiv, 'Passwords do not match.', 'error');
+                return;
+            }
+
+            displayMessage(responseMessageDiv, 'Signing up...', 'info');
+
+            const data = {
+                action: 'signup', // New action for your Google App Script
+                username: username,
+                email: email,
+                password: password
+            };
+
+            fetch(scriptUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(data).toString(),
+                // mode: 'no-cors' // Again, remove if App Script sends JSON response with CORS headers
+            })
+            .then(response => {
+                console.log('Sign up request sent.');
+                // Placeholder for 'no-cors' or until App Script responds
+                displayMessage(responseMessageDiv, 'Sign up request sent. Waiting for server response...', 'info');
+                // As with login, you'd handle JSON response or redirection from App Script
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage(responseMessageDiv, 'An error occurred during sign up. Please try again later.', 'error');
+            });
+        });
+
+        // --- IMPORTANT: Google App Script (Code.gs) adjustments ---
+        // Your Google App Script will need to be updated to handle these 'action' parameters.
+        // Example structure for doPost(e) in your Google App Script:
+
+        /*
+        function doPost(e) {
+            var action = e.parameter.action;
+            var result = {};
+
+            if (action == 'login') {
+                var username = e.parameter.username;
+                var password = e.parameter.password;
+                // Implement your login logic here
+                // Check username/password against your Google Sheet
+                if (isValidLogin(username, password)) {
+                    // Redirect on success
+                    return ContentService.createTextOutput().setMimeType(ContentService.MimeType.REDIRECT).setContent("https://yourwebsite.com/gift_section.html");
+                    // OR send JSON response (requires CORS headers in App Script and removing 'no-cors' from client fetch)
+                    // result = { status: 'success', message: 'Login successful' };
+                } else {
+                    // result = { status: 'fail', message: 'Invalid credentials' };
+                }
+            } else if (action == 'signup') {
+                var username = e.parameter.username;
+                var email = e.parameter.email;
+                var password = e.parameter.password;
+                // Implement your sign up logic here
+                // Save new user data to your Google Sheet
+                if (registerUser(username, email, password)) {
+                    // result = { status: 'success', message: 'Sign up successful! You can now log in.' };
+                } else {
+                    // result = { status: 'fail', message: 'Sign up failed. Username or email might already exist.' };
+                }
+            }
+
+            // If sending JSON response from App Script:
+            // var output = ContentService.createTextOutput(JSON.stringify(result));
+            // output.setMimeType(ContentService.MimeType.JSON);
+            // output.setAccessControlAllowOrigin('*'); // Crucial for CORS
+            // return output;
+        }
+
+        // Dummy functions for demonstration in App Script
+        function isValidLogin(username, password) {
+            // Your logic to check credentials in Google Sheet
+            // For example:
+            // var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
+            // var data = sheet.getDataRange().getValues();
+            // for (var i = 1; i < data.length; i++) { // Skip header row
+            //     if (data[i][0] == username && data[i][1] == password) { // Assuming col 0 is username, col 1 is password
+            //         return true;
+            //     }
+            // }
+            return false; // Replace with actual validation
+        }
+
+        function registerUser(username, email, password) {
+            // Your logic to save new user to Google Sheet
+            // For example:
+            // var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
+            // sheet.appendRow([username, password, email]); // Add new row
+            return true; // Replace with actual registration status
+        }
+        */
+    </script>
+</body>
+</html>
