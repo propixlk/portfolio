@@ -26,6 +26,7 @@
   <style>
     body {
       display: flex;
+      flex-direction: column; /* Allow content and buttons to stack vertically */
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -44,6 +45,7 @@
       border-radius: 8px;
       background-color: var(--surface-color); /* From main.css */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px; /* Space between content and buttons */
     }
 
     h1 {
@@ -73,6 +75,44 @@
       text-decoration: underline;
     }
 
+    .buttons-container {
+      display: flex;
+      gap: 15px; /* Space between buttons */
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .buttons-container .btn {
+      padding: 10px 25px;
+      font-size: 1em;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .buttons-container .btn-primary {
+      background-color: var(--accent-color); /* Primary button color */
+      color: #fff;
+      border: 1px solid var(--accent-color);
+    }
+
+    .buttons-container .btn-primary:hover {
+      background-color: color-mix(in srgb, var(--accent-color), black 10%); /* Darker on hover */
+      border-color: color-mix(in srgb, var(--accent-color), black 10%);
+    }
+
+    .buttons-container .btn-secondary {
+      background-color: transparent;
+      color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+    }
+
+    .buttons-container .btn-secondary:hover {
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+
     /* Dark Mode Adjustments for this page */
     body.dark-mode .container {
       background-color: var(--surface-color); /* Should already be darker in main.css for dark mode */
@@ -84,16 +124,36 @@
     body.dark-mode p, body.dark-mode .contact-info {
         color: #ccc; /* Lighter text color for dark mode */
     }
+    body.dark-mode .contact-info a {
+      color: var(--accent-color); /* Still accent color, but ensure good contrast */
+    }
+    body.dark-mode .buttons-container .btn-secondary {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+    body.dark-mode .buttons-container .btn-secondary:hover {
+      background-color: var(--accent-color);
+      color: #fff;
+    }
   </style>
 </head>
 
 <body>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <h1>Update Soon!</h1>
-    <p>We are working hard to bring you new content. Please check back later!</p>
-    <p>Thank You!!</p>
-    
+    <h1>Our Website is Undergoing Updates!</h1>
+    <p>Our website is currently undergoing maintenance and updates to bring you a better experience. We are working hard to improve our services.</p>
+    <p>Please check back soon. Thank you for your patience!</p>
+    <div class="contact-info">
+      <p>For any urgent inquiries, please contact us:</p>
+      <p><strong>Email:</strong> <a href="mailto:propixlk@gmail.com">propixlk@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="https://wa.me/message/JGOBR5KKO5UAF1" target="_blank" rel="noopener noreferrer">+94 76 829 44 96</a></p>
+    </div>
+  </div>
+
+  <div class="buttons-container" data-aos="fade-up" data-aos-delay="200">
+    <button class="btn btn-secondary" onclick="history.back()">Go Back</button>
+    <a href="index.html" class="btn btn-primary">Go to Home</a>
   </div>
 
   <script src="assets/vendor/aos/aos.js"></script>
