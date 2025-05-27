@@ -187,8 +187,10 @@
     </div>
 
     <script>
-        // *** ඔබගේ නව Google App Script URL එක මෙහි දමා ඇත ***
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycby7dXLzAWfPIogX3AE7R4vGWzajpgOd7SbfnTaioyGpDphciLyvXVtMZaHxmMJZpHrZ/exec';
+        // *** ඔබගේ Google App Script URL එක මෙහි දමා ඇත.
+        //     DEPLOY කරන විට ලැබෙන "exec" URL එක භාවිතා කරන්න.
+        //     "dev" URL එක බොහෝ විට CORS ගැටලු ඇති කරයි.
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxv_O0ex_bvwPpiuUPzuPhUAqxUs8Xkdj1Ug1RUR0SjBAsgZ0RXbbepdNpwXT9ojHF5/exec';
 
         // Function to display messages
         function displayMessage(messageDiv, message, type) {
@@ -232,10 +234,13 @@
 
             fetch(scriptUrl, {
                 method: 'POST',
+                // *** Content-Type එක 'application/x-www-form-urlencoded' ලෙස වෙනස් කර ඇත.
+                //     මෙය 'simple request' එකක් වන අතර CORS preflight එක මඟ හරියි. ***
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify(data),
+                // *** body එක URLSearchParams ලෙස වෙනස් කර ඇත. ***
+                body: new URLSearchParams(data).toString(),
             })
             .then(response => {
                 if (response.ok) {
@@ -286,10 +291,12 @@
 
             fetch(scriptUrl, {
                 method: 'POST',
+                // *** Content-Type එක 'application/x-www-form-urlencoded' ලෙස වෙනස් කර ඇත. ***
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify(data),
+                // *** body එක URLSearchParams ලෙස වෙනස් කර ඇත. ***
+                body: new URLSearchParams(data).toString(),
             })
             .then(response => {
                 if (response.ok) {
@@ -304,8 +311,8 @@
                     // Optionally, switch to login tab after successful signup
                     setTimeout(() => {
                         document.querySelector('.tab-button[data-tab="login"]').click();
-                        document.getElementById('loginUsername').value = username; // Pre-fill username
-                        document.getElementById('loginPassword').value = ''; // Clear password
+                        document.getElementById('loginUsername').value = username;
+                        document.getElementById('loginPassword').value = '';
                     }, 2000);
                 } else {
                     displayMessage(responseMessageDiv, data.message || 'Sign up failed. Please try again.', 'error');
