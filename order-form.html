@@ -202,7 +202,7 @@
   <div id="preloader"><div class="loader"></div></div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -212,51 +212,100 @@
 
   <script src="assets/js/main.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const designCode = urlParams.get('code');
-      const designName = urlParams.get('name');
-      const designPrice = urlParams.get('price');
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const designCode = urlParams.get('code');
+    const designName = urlParams.get('name');
+    const designPrice = urlParams.get('price');
 
-      const designCodeInput = document.getElementById('designCode');
-      const designNameInput = document.getElementById('designName');
-      const designPriceInput = document.getElementById('designPrice');
-      const emailSubjectInput = document.getElementById('emailSubject');
+    const designCodeInput = document.getElementById('designCode');
+    const designNameInput = document.getElementById('designName');
+    const designPriceInput = document.getElementById('designPrice');
+    const emailSubjectInput = document.getElementById('emailSubject');
 
+    if (designCodeInput && designCode) {
+      designCodeInput.value = designCode;
+    }
+    if (designNameInput && designName) {
+      designNameInput.value = designName;
+    }
+    if (designPriceInput && designPrice) {
+      designPriceInput.value = designPrice;
+    }
+    if (emailSubjectInput && designName && designCode) {
+      emailSubjectInput.value = `New Design Order: ${designName} (${designCode})`;
+    }
 
-      if (designCodeInput && designCode) {
-        designCodeInput.value = designCode;
-      }
-      if (designNameInput && designName) {
-        designNameInput.value = designName;
-      }
-      if (designPriceInput && designPrice) {
-        designPriceInput.value = designPrice;
-      }
-      if (emailSubjectInput && designName && designCode) {
-        emailSubjectInput.value = `New Design Order: ${designName} (${designCode})`;
-      }
+    // -- START: REPLACEMENT VALIDATION LOGIC --
+    const form = document.querySelector('.php-email-form.needs-validation');
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default submission in all cases
 
-      // Bootstrap form validation
-      const forms = document.querySelectorAll('.php-email-form.needs-validation');
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          const sentMessage = form.querySelector('.sent-message');
-          const errorMessage = form.querySelector('.error-message');
+        const loading = form.querySelector('.loading');
+        const errorMessage = form.querySelector('.error-message');
+        const sentMessage = form.querySelector('.sent-message');
 
-          form.addEventListener('submit', function (event) {
-            if (sentMessage) sentMessage.style.display = 'none';
-            if (errorMessage) errorMessage.style.display = 'none';
+        // Hide previous messages
+        if (sentMessage) sentMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'none';
+        
+        // Add was-validated class to show feedback
+        form.classList.add('was-validated');
 
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
+        if (!form.checkValidity()) {
+          event.stopPropagation(); // Stop if the form is invalid
+          return; // Exit the function
+        }
+
+        // If the form is valid, show loading and proceed with submission
+        if (loading) loading.style.display = 'block';
+
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (loading) loading.style.display = 'none';
+          if (response.ok) {
+            if (sentMessage) sentMessage.style.display = 'block';
+            form.reset(); // Reset the form fields
+            form.classList.remove('was-validated'); // Remove validation styles
+          } else {
+            // Handle server-side errors from Formspree
+            response.json().then(data => {
+              if (errorMessage) {
+                if (Object.hasOwn(data, 'errors')) {
+                  errorMessage.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                } else {
+                  errorMessage.innerHTML = "Oops! There was a problem submitting your form.";
+                }
+                errorMessage.style.display = 'block';
+              }
+            }).catch(() => {
+                if (errorMessage) {
+                    errorMessage.innerHTML = "Oops! There was a problem and the server response could not be read.";
+                    errorMessage.style.display = 'block';
+                }
+            });
+          }
+        }).catch(error => {
+          // Handle network errors
+          if (loading) loading.style.display = 'none';
+          if (errorMessage) {
+            errorMessage.innerHTML = 'Oops! A network error occurred. Please try again.';
+            errorMessage.style.display = 'block';
+          }
         });
-    });
-  </script>
+      }, false);
+    }
+    // -- END: REPLACEMENT VALIDATION LOGIC --
+  });
+</script>
 
 </body>
 </html>
