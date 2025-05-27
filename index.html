@@ -620,7 +620,7 @@
                           <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                       </div>
                       <div class="col-md-12">
-                          <input type="tel" class="form-control" name="whatsapp" placeholder="WhatsApp Number (e.g., +1234567890)" pattern="\+?[1-9][0-9]{7,14}" required>
+                          <input type="tel" class="form-control" name="whatsapp" placeholder="WhatsApp Number (e.g., +1234567890)" pattern="^\+?[1-9][0-9]{7,14}$|^0[0-9]{9}$" required>
                       </div>
                       <div class="col-md-12">
                           <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>

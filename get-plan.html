@@ -209,8 +209,8 @@
 
              <div class="form-group">
               <label for="whatsapp">WhatsApp Number:</label>
-              <input type="tel" class="form-control" name="whatsapp" id="whatsapp" placeholder="e.g., +94761234567" pattern="\+?[0-9]{6,14}" required>
-              <small class="form-text text-muted">Include country code (e.g., +94).</small>
+              <input type="tel" class="form-control" name="whatsapp" id="whatsapp" placeholder="e.g., +94761234567" pattern="^\+?[1-9][0-9]{7,14}$|^0[0-9]{9}$" required>
+              <small class="form-text text-muted">Please enter a valid WhatsApp number.</small>
             </div>
 
             <div class="form-group">

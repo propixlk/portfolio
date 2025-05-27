@@ -105,8 +105,8 @@
                 </div>
                 <div class="col-md-12">
                   <label for="userWhatsapp" class="form-label">WhatsApp Number <span class="text-danger">*</span></label>
-                  <input type="tel" class="form-control" name="whatsapp" id="userWhatsapp" placeholder="WhatsApp Number (e.g., +94760000000)" pattern="\+?[1-9][0-9]{7,14}" required>
-                   <div class="invalid-feedback">Please enter a valid WhatsApp number (e.g., +94760000000).</div>
+                  <input type="tel" class="form-control" name="whatsapp" id="userWhatsapp" placeholder="WhatsApp Number (e.g., +94760000000)" pattern="^\+?[1-9][0-9]{7,14}$|^0[0-9]{9}$" required>
+                   <div class="invalid-feedback">Please enter a valid WhatsApp number.</div>
                 </div>
                 <div class="col-md-12">
                   <label for="userMessage" class="form-label">Message / Design Brief</label> <textarea class="form-control" name="message" id="userMessage" rows="6" placeholder="Provide details about your design requirements, preferences, text, and any specific instructions."></textarea> </div>
