@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Updates Soon - Propix Lk</title>
-  <meta name="description" content="Propix Lk is currently undergoing updates. Please check back soon!">
-  <meta name="keywords" content="updates, maintenance, propix lk, coming soon">
+  <title>Gift Section -Propix Lk</title>
+  <meta name="description" content="Download free Gift packs from Propix Lk's Gift Section. Get your free design resources today!">
+  <meta name="keywords" content="free fonts, font packs, Sinhala fonts, English fonts, download fonts, graphic design resources, Propix Lk, gift section, font passwords">
 
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -23,150 +23,429 @@
 
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <script> window.chtlConfig = { chatbotId: "8449492451" } </script>
+  <script async data-id="8449492451" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+
   <style>
-    body {
-      display: flex;
-      flex-direction: column; /* Allow content and buttons to stack vertically */
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      background-color: var(--background-color); /* From main.css */
-      color: var(--default-color); /* From main.css */
-      font-family: var(--default-font); /* From main.css */
-      margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .container {
-      max-width: 600px;
-      padding: 40px;
+    /* Custom styles for Gift Section Page */
+    .gift-item {
+      background-color: var(--surface-color);
+      padding: 30px;
+      padding-top: 50px; /* Extra padding at the top for the absolute positioned button */
       border-radius: 8px;
-      background-color: var(--surface-color); /* From main.css */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px; /* Space between content and buttons */
+      text-align: center;
+      margin-bottom: 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative; /* For positioning the show password button */
     }
 
-    h1 {
-      font-size: 2.5em;
-      color: var(--heading-color); /* From main.css */
+    .show-password-btn-box {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      z-index: 10;
+    }
+    .show-password-btn-box:hover {
+      background-color: var(--accent-color);
+      color: var(--contrast-color);
+    }
+    .show-password-btn-box i {
+      font-size: 1.1rem;
+    }
+
+    .gift-icon-container {
       margin-bottom: 20px;
     }
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
+    .gift-icon {
+      font-size: 4.5rem;
+      color: var(--accent-color);
+      display: inline-block;
+      animation: giftPulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes giftPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    .gift-item h3 {
+      font-size: 1.5rem;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .gift-item .description { /* Added class for description paragraph */
+      font-size: 0.95rem;
+      color: var(--default-color);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    
+    .password-display-box {
+      margin-top: 15px;
+      margin-bottom: 15px; /* Space before download button */
+      padding: 10px;
+      background-color: color-mix(in srgb, var(--background-color), #000 3%);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+      border-radius: 4px;
+      display: none; /* Initially hidden */
+    }
+    .password-display-box p {
+      font-size: 1rem;
+      color: var(--default-color);
       margin-bottom: 10px;
     }
-
-    .contact-info {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #666;
+    .password-display-box p .password-text-box {
+      font-weight: bold;
+      color: var(--accent-color);
     }
-
-    .contact-info a {
-      color: var(--accent-color); /* From main.css */
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    .buttons-container {
-      display: flex;
-      gap: 15px; /* Space between buttons */
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .buttons-container .btn {
-      padding: 10px 25px;
-      font-size: 1em;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
+    .copy-password-btn-box {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      padding: 6px 15px;
+      border-radius: 4px;
+      transition: 0.3s;
+      border: none;
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 0.9rem;
       cursor: pointer;
     }
-
-    .buttons-container .btn-primary {
-      background-color: var(--accent-color); /* Primary button color */
-      color: #fff;
-      border: 1px solid var(--accent-color);
+    .copy-password-btn-box:hover {
+       background: color-mix(in srgb, var(--accent-color), transparent 20%);
+    }
+    .copy-status-box {
+      font-size: 0.85rem;
+      margin-left: 8px;
+      display: inline-block; /* To allow margin */
     }
 
-    .buttons-container .btn-primary:hover {
-      background-color: color-mix(in srgb, var(--accent-color), black 10%); /* Darker on hover */
-      border-color: color-mix(in srgb, var(--accent-color), black 10%);
+    .btn-download {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 10px 28px;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent-color);
+      text-decoration: none; /* For anchor tags */
+      margin-top: auto; /* Pushes download button to bottom if content varies */
     }
 
-    .buttons-container .btn-secondary {
-      background-color: transparent;
-      color: var(--accent-color);
-      border: 1px solid var(--accent-color);
+    .btn-download:hover {
+      background: color-mix(in srgb, var(--accent-color), transparent 20%);
+      border-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+      color: var(--contrast-color);
+    }
+    .btn-download i {
+      margin-left: 8px;
     }
 
-    .buttons-container .btn-secondary:hover {
-      background-color: var(--accent-color);
-      color: #fff;
+    /* Dark mode adjustments for gift page specifics */
+    body.dark-mode .gift-item {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Darker shadow */
     }
-
-    /* Dark Mode Adjustments for this page */
-    body.dark-mode .container {
-      background-color: var(--surface-color); /* Should already be darker in main.css for dark mode */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    body.dark-mode .password-display-box {
+      background-color: color-mix(in srgb, var(--background-color), #fff 5%);
+      border-color: color-mix(in srgb, var(--default-color), transparent 60%);
     }
-    body.dark-mode h1 {
-        color: #f0f0f0; /* Lighter heading color for dark mode */
-    }
-    body.dark-mode p, body.dark-mode .contact-info {
-        color: #ccc; /* Lighter text color for dark mode */
-    }
-    body.dark-mode .contact-info a {
-      color: var(--accent-color); /* Still accent color, but ensure good contrast */
-    }
-    body.dark-mode .buttons-container .btn-secondary {
-      color: var(--accent-color);
+    body.dark-mode .show-password-btn-box {
       border-color: var(--accent-color);
+      color: var(--accent-color);
     }
-    body.dark-mode .buttons-container .btn-secondary:hover {
+    body.dark-mode .show-password-btn-box:hover {
       background-color: var(--accent-color);
-      color: #fff;
+      color: var(--contrast-color);
     }
+
+
   </style>
 </head>
 
-<body>
+<body class="index-page">
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <h1>Our Website is Undergoing Updates!</h1>
-    <p>Our website is currently undergoing maintenance and updates to bring you a better experience. We are working hard to improve our services.</p>
-    <p>Please check back soon. Thank you for your patience!</p>
-    
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Propix LK</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="index.html#order">Order</a></li>
+          <li class="dropdown"><a href="javascript:void(0);" class="active"><span>More Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="ads.html">Ad Packs</a></li>
+              <li><a href="plan.html">Design Plans</a></li>
+              <li><a href="gift-section.html" class="active">Gift Section</a></li>
+              <li><a href="update.html">Edu Hub</a></li>
+              <li><a href="index.html#clients">Testimonials</a></li>
+              <li><a href="index.html#faq">FAQs</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div id="dark-mode-toggle" class="dark-mode-toggle">
+        <i class="bi bi-moon-stars"></i>
+        <i class="bi bi-sun"></i>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title accent-background">
+      <div class="container">
+        <h1>Gift Section</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Gift Section</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section id="gifts" class="gifts section">
+      <div class="container">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="gift-item">
+              <button class="show-password-btn-box" data-password-target="sinhalaPasswordArea" aria-label="Show Password" aria-expanded="false">
+                <i class="bi bi-eye-fill"></i>
+              </button>
+              <div> <div class="gift-icon-container">
+                  <i class="bi bi-gift-fill gift-icon"></i>
+                </div>
+                <h3>Sinhala Font Pack</h3>
+                <p class="description">A curated collection of beautiful and versatile Sinhala fonts for all your design needs. Perfect for print, web, and creative projects.</p>
+              </div>
+              <div> <div class="password-display-box" id="sinhalaPasswordArea">
+                  <p>Password: <span class="password-text-box">125648a</span></p>
+                  <button class="copy-password-btn-box" data-password-text="125648a">Copy</button>
+                  <span class="copy-status-box"></span>
+                </div>
+                <a href="https://drive.google.com/uc?export=download&id=1qW5wQPmsDSk72G25HwtMb2AHxcAc1RRr" class="btn-download" download>
+                  Free Download <i class="bi bi-download"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="gift-item">
+              <button class="show-password-btn-box" data-password-target="englishPasswordArea" aria-label="Show Password" aria-expanded="false">
+                <i class="bi bi-eye-fill"></i>
+              </button>
+              <div> <div class="gift-icon-container">
+                  <i class="bi bi-gift-fill gift-icon"></i>
+                </div>
+                <h3>English Font Pack</h3>
+                <p class="description">A handpicked selection of stylish and professional English fonts. Ideal for branding, presentations, and modern design work.</p>
+              </div>
+              <div> <div class="password-display-box" id="englishPasswordArea">
+                  <p>Password: <span class="password-text-box"></span></p>
+                  <button class="copy-password-btn-box" data-password-text="48545b">Copy</button>
+                  <span class="copy-status-box"></span>
+                </div>
+                <a href="update.html" class="btn-download" download>
+                  Free Download <i class="bi bi-download"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div> </div>
+    </section></main>
+
+  <footer id="footer" class="footer light-background">
+
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Propix Lk</span>
+            </a>
+            <p>Offering expert Graphic Design Services to elevate your brand. Visually stunning solutions are crafted Us to make you stand out.</p>
+            <div class="social-links d-flex mt-4">
+              <a href="https://wa.me/message/JGOBR5KKO5UAF1"><i class="bi bi-whatsapp"></i></a>
+              <a href="https://t.me/propixlk"><i class="bi bi-telegram"></i></a>
+              <a href="https://www.tiktok.com/@propix_lk?_t=ZS-8w1kGAKPsbC&_r=1"><i class="bi bi-tiktok"></i></a>
+              <a href="https://www.facebook.com/share/1Bj9wAdLRN/"><i class="bi bi-facebook"></i></a>
+              <a href="https://youtube.com/@propixlk?si=ef645iRbOCQ4nPaR"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about-us.html">About us</a></li>
+              <li><a href="service-details.html">Services</a></li>
+              <li><a href="terms-and-conditions.html">Terms of service</a></li>
+              <li><a href="privacy-policy.html">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Other Links</h4>
+            <ul>
+              <li><a href="buy.html">Order</a></li>
+              <li><a href="ads.html">Ad Packs</a></li>
+              <li><a href="update.html">Edu Hub</a></li>
+              <li><a href="portfolio.html">portfolio</a></li>
+              <li><a href="index.html#testimonials">Testimonials</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>Monaragala</p>
+            <p>Sri Lanka</p>
+            <p></p>
+            <p class="mt-4"><strong>Phone:</strong> <span><a href="https://wa.me/message/JGOBR5KKO5UAF1">+94 76 829 44 96</a></span></p>
+            <p><strong>Email:</strong> <span><a href="mailto:propixlk@gmail.com">propixlk@gmail.com</a></span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">propix lk</strong> <span>All Rights Reserved</span></p>
+        <div class="credits">
+          2024 - 2025
+        </div>
+      </div>
+
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader">
+    <div class="loader"></div>
   </div>
 
-  <div class="buttons-container" data-aos="fade-up" data-aos-delay="200">
-    <button class="btn btn-secondary" onclick="history.back()">Go Back</button>
-    <a href="index.html" class="btn btn-primary">Go to Home</a>
-  </div>
-
-  <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
 
   <script>
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Handle "Show Password" buttons within gift boxes
+      document.querySelectorAll('.show-password-btn-box').forEach(button => {
+        button.addEventListener('click', function() {
+          const targetId = this.dataset.passwordTarget;
+          const passwordArea = document.getElementById(targetId);
+          if (passwordArea) {
+            const icon = this.querySelector('i');
+            if (passwordArea.style.display === 'none' || passwordArea.style.display === '') {
+              passwordArea.style.display = 'block';
+              if (icon) icon.classList.replace('bi-eye-fill', 'bi-eye-slash-fill');
+              this.setAttribute('aria-expanded', 'true');
+            } else {
+              passwordArea.style.display = 'none';
+              if (icon) icon.classList.replace('bi-eye-slash-fill', 'bi-eye-fill');
+              this.setAttribute('aria-expanded', 'false');
+              // Clear copy status if it exists within this passwordArea
+              const copyStatus = passwordArea.querySelector('.copy-status-box');
+              if (copyStatus) copyStatus.textContent = '';
+            }
+          }
+        });
+      });
+
+      // Handle "Copy Password" buttons within gift boxes
+      document.querySelectorAll('.copy-password-btn-box').forEach(button => {
+        button.addEventListener('click', function() {
+          const passwordToCopy = this.dataset.passwordText;
+          const displayArea = this.closest('.password-display-box'); // Find the parent display area
+          const copyStatusSpan = displayArea ? displayArea.querySelector('.copy-status-box') : null;
+
+          if (!copyStatusSpan) {
+            // Fallback if closest isn't working as expected, though it should
+            // This might happen if the structure is different than anticipated
+            // For now, we assume the structure is correct.
+            console.error('Copy status span could not be found for this button.');
+            return;
+          }
+
+          navigator.clipboard.writeText(passwordToCopy).then(function() {
+            copyStatusSpan.textContent = 'Copied!';
+            copyStatusSpan.style.color = 'green';
+            setTimeout(() => {
+              if (copyStatusSpan) copyStatusSpan.textContent = '';
+            }, 2000);
+          }, function(err) {
+            copyStatusSpan.textContent = 'Failed!';
+            copyStatusSpan.style.color = 'red';
+            console.error('Could not copy text: ', err);
+            setTimeout(() => {
+              if (copyStatusSpan) copyStatusSpan.textContent = '';
+            }, 2000);
+          });
+        });
+      });
+
+      // Ensure active class for nav menu
+      const navLinks = document.querySelectorAll('#navmenu .dropdown ul a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === 'gifts.html') {
+          link.closest('.dropdown').querySelectorAll('a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+      const moreLinksDropdown = document.querySelector('#navmenu .dropdown > a');
+      if (moreLinksDropdown && window.location.pathname.endsWith('gifts.html')) {
+        moreLinksDropdown.classList.add('active');
+      }
+
     });
   </script>
 
 </body>
-
 </html>
