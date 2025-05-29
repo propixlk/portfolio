@@ -4,86 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gift Section - Login / Sign Up</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+
+
     <style>
+        /* Styles specific to gifts.html, can be moved to main.css if preferred */
+        :root {
+            --gift-page-background: #f0f2f5;
+            --gift-container-background: #ffffff;
+            --gift-text-color: #333;
+            --gift-label-color: #555;
+            --gift-input-border: #ddd;
+            --gift-accent-color: #2487ce; /* Matches your main theme's accent */
+            --gift-accent-hover: #1a6bb2;
+            --gift-tab-inactive-color: #777;
+            --gift-tab-border-bottom: #eee;
+            --gift-message-info-bg: #e0f2f7;
+            --gift-message-info-text: #0c5460;
+            --gift-message-info-border: #bee5eb;
+            --gift-message-success-bg: #d4edda;
+            --gift-message-success-text: #155724;
+            --gift-message-success-border: #c3e6cb;
+            --gift-message-error-bg: #f8d7da;
+            --gift-message-error-text: #721c24;
+            --gift-message-error-border: #f5c6cb;
+            --gift-bottom-nav-bg: #6c757d;
+            --gift-bottom-nav-hover: #5a6268;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f0f2f5;
+            background-color: var(--gift-page-background);
             display: flex;
-            flex-direction: column; /* Allow content to stack vertically, including bottom buttons */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px 0; /* Add some padding to body for better spacing of elements */
-            color: #333;
+            padding: 20px 0;
+            color: var(--gift-text-color);
+            transition: background-color 0.3s, color 0.3s; /* For dark mode transition */
         }
 
         .auth-container {
-            background-color: #ffffff;
-            padding: 40px;
+            background-color: var(--gift-container-background);
+            padding: 30px 40px; /* Adjusted padding */
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 450px;
             text-align: center;
-            /* position: relative; /* No longer needed for top arrow */
+            transition: background-color 0.3s; /* For dark mode transition */
         }
 
         .auth-container h2 {
-            margin-bottom: 30px;
-            color: #2487ce;
-            font-weight: 700;
+            margin-bottom: 25px; /* Adjusted margin */
+            color: var(--gift-accent-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 28px; /* Slightly larger */
         }
 
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--gift-tab-border-bottom);
         }
 
         .tab-button {
             background-color: transparent;
             border: none;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 10px 18px; /* Adjusted padding */
+            font-size: 17px; /* Adjusted font size */
+            font-family: 'Poppins', sans-serif;
             font-weight: 500;
             cursor: pointer;
-            color: #777;
+            color: var(--gift-tab-inactive-color);
             transition: color 0.3s ease, border-bottom 0.3s ease;
-            margin: 0 10px;
+            margin: 0 8px; /* Adjusted margin */
+            border-bottom: 2px solid transparent; /* For smooth transition */
         }
 
         .tab-button.active {
-            color: #2487ce;
-            border-bottom: 2px solid #2487ce;
+            color: var(--gift-accent-color);
+            border-bottom: 2px solid var(--gift-accent-color);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px; /* Adjusted margin */
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* Adjusted margin */
             font-weight: 500;
-            color: #555;
+            font-family: 'Roboto', sans-serif;
+            color: var(--gift-label-color);
+            font-size: 15px; /* Adjusted font size */
         }
 
         .form-control {
-            width: calc(100% - 20px); /* For general form-controls */
-            padding: 12px 10px;
-            border: 1px solid #ddd;
+            width: calc(100% - 22px); /* For general form-controls to align padding */
+            padding: 10px; /* Adjusted padding */
+            border: 1px solid var(--gift-input-border);
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 15px; /* Adjusted font size */
             box-sizing: border-box;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.3s, color 0.3s;
+            background-color: var(--gift-container-background); /* Match container for light mode */
+            color: var(--gift-text-color);
         }
 
         .form-control:focus {
-            border-color: #2487ce;
+            border-color: var(--gift-accent-color);
             outline: none;
             box-shadow: 0 0 0 0.2rem rgba(36, 135, 206, 0.25);
         }
@@ -91,137 +132,222 @@
         .password-input-container {
             position: relative;
         }
-        /* For form-control within a password-input-container */
+
         .password-input-container .form-control {
-            width: 100%; /* Take full width of the container */
-            padding-right: 45px; /* Make space for the icon on the right */
+            width: 100%;
+            padding-right: 40px;
         }
         .password-toggle-icon {
             position: absolute;
-            right: 15px; /* Position of the icon from the right edge */
+            right: 12px; /* Adjusted position */
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            user-select: none; /* Prevent text selection on icon click */
-            font-size: 18px; /* Icon size */
+            user-select: none;
+            font-size: 18px;
+            color: var(--gift-label-color);
         }
 
         button.btn-primary {
             width: 100%;
-            padding: 12px;
-            background-color: #2487ce;
+            padding: 11px; /* Adjusted padding */
+            background-color: var(--gift-accent-color);
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 17px; /* Adjusted font size */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         button.btn-primary:hover {
-            background-color: #1a6bb2;
+            background-color: var(--gift-accent-hover);
         }
 
         .message {
-            margin-top: 20px;
+            margin-top: 18px;
             font-weight: 500;
             padding: 10px;
             border-radius: 5px;
+            font-size: 14px; /* Adjusted font size */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         .message.info {
-            background-color: #e0f2f7;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+            background-color: var(--gift-message-info-bg);
+            color: var(--gift-message-info-text);
+            border: 1px solid var(--gift-message-info-border);
         }
         .message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background-color: var(--gift-message-success-bg);
+            color: var(--gift-message-success-text);
+            border: 1px solid var(--gift-message-success-border);
         }
 
         .message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background-color: var(--gift-message-error-bg);
+            color: var(--gift-message-error-text);
+            border: 1px solid var(--gift-message-error-border);
         }
 
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
         
-        .form-text-error { /* Class for email validation error message */
-            font-size: 0.875em;
-            color: red;
-            display: none; /* Hidden by default */
-            margin-top: 4px;
+        .form-text-error {
+            font-size: 0.8em; /* Adjusted font size */
+            color: #dc3545; /* Bootstrap danger color */
+            display: none;
+            margin-top: 3px;
         }
 
-        /* Styles for bottom navigation buttons */
         .bottom-nav-buttons {
             text-align: center;
-            margin-top: 30px; /* Space above the buttons */
+            margin-top: 25px;
             width: 100%;
-            max-width: 450px; /* Match auth-container width */
+            max-width: 450px;
         }
 
         .bottom-nav-buttons .btn-nav,
         .bottom-nav-buttons a.btn-nav {
-            background-color: #6c757d; /* Secondary button color */
+            background-color: var(--gift-bottom-nav-bg);
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 9px 18px; /* Adjusted padding */
+            font-size: 15px; /* Adjusted font size */
+            font-family: 'Roboto', sans-serif;
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin: 5px 10px; /* Space around buttons */
-            min-width: 100px; /* Minimum width for buttons */
+            margin: 5px 8px; /* Adjusted margin */
+            min-width: 90px; /* Adjusted min-width */
             transition: background-color 0.3s ease;
         }
 
         .bottom-nav-buttons .btn-nav:hover,
         .bottom-nav-buttons a.btn-nav:hover {
-            background-color: #5a6268; /* Darker shade on hover */
+            background-color: var(--gift-bottom-nav-hover);
         }
-        /* End of bottom navigation button styles */
+
+        /* Dark Mode Toggle Button (copied from main.css and adjusted) */
+        .dark-mode-toggle-gift {
+            position: fixed;
+            z-index: 9999;
+            top: 20px;
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            background-color: var(--gift-container-background); /* Use page's surface color */
+            border: 1px solid var(--gift-input-border); /* Use page's border color */
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .dark-mode-toggle-gift:hover {
+            background-color: var(--gift-accent-hover); /* Can use accent color on hover */
+        }
+        .dark-mode-toggle-gift .bi-moon-stars,
+        .dark-mode-toggle-gift .bi-sun {
+            font-size: 20px;
+            color: var(--gift-accent-color);
+            transition: transform 0.3s ease, display 0s; /* display for instant switch */
+        }
+        body:not(.dark-mode) .dark-mode-toggle-gift .bi-sun { display: none; }
+        body.dark-mode .dark-mode-toggle-gift .bi-moon-stars { display: none; }
+        body.dark-mode .dark-mode-toggle-gift .bi-sun { display: block; }
+
 
         @media (max-width: 500px) {
             .auth-container {
-                margin: 20px auto 0 auto; /* Adjusted margin for body padding */
-                padding: 30px 20px;
+                margin: 20px auto 0 auto;
+                padding: 25px 20px; /* Adjusted padding */
             }
-            .bottom-nav-buttons {
-                margin-top: 20px;
+            .dark-mode-toggle-gift {
+                top: 15px;
+                right: 15px;
             }
+            .bottom-nav-buttons { margin-top: 20px; }
             .bottom-nav-buttons .btn-nav,
             .bottom-nav-buttons a.btn-nav {
-                padding: 10px 15px; /* Slightly less padding */
-                font-size: 15px;
-                margin: 8px 5px; /* Adjust margin for stacking */
-                width: calc(50% - 15px); /* Two buttons side-by-side with gap */
+                padding: 9px 12px;
+                font-size: 14px;
+                margin: 6px 5px;
+                width: calc(50% - 14px);
                 box-sizing: border-box;
             }
-             /* If you want them to stack on very small screens: */
-            @media (max-width: 360px) {
+             @media (max-width: 360px) {
                 .bottom-nav-buttons .btn-nav,
                 .bottom-nav-buttons a.btn-nav {
-                    width: calc(100% - 20px);
-                    margin-left: 10px;
-                    margin-right: 10px;
+                    width: calc(100% - 15px); /* Adjusted width */
+                    margin-left: 7.5px; /* Adjusted margin */
+                    margin-right: 7.5px; /* Adjusted margin */
                 }
             }
         }
+
+        /* Dark Mode Styles for gifts.html */
+        body.dark-mode {
+            --gift-page-background: #1a1a1a;
+            --gift-container-background: #2c2c2c;
+            --gift-text-color: #e0e0e0;
+            --gift-label-color: #b0b0b0;
+            --gift-input-border: #444;
+            --gift-tab-inactive-color: #999;
+            --gift-tab-border-bottom: #444;
+            
+            --gift-message-info-bg: #23353a;
+            --gift-message-info-text: #a6d8e3;
+            --gift-message-info-border: #3b626e;
+            --gift-message-success-bg: #2a3b2f;
+            --gift-message-success-text: #b8e0c0;
+            --gift-message-success-border: #476950;
+            --gift-message-error-bg: #4a2c30;
+            --gift-message-error-text: #f0c0c4;
+            --gift-message-error-border: #7c4c52;
+
+            --gift-bottom-nav-bg: #495057;
+            --gift-bottom-nav-hover: #343a40;
+        }
+
+        body.dark-mode .auth-container {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .form-control {
+            background-color: #3a3a3a; /* Darker input background */
+            color: #ffffff; /* White text for inputs */
+        }
+        body.dark-mode .form-control::placeholder {
+            color: #888;
+        }
+        body.dark-mode .password-toggle-icon {
+            color: #b0b0b0;
+        }
+        body.dark-mode .form-text-error {
+            color: #ff8080; /* Lighter red for dark mode */
+        }
+
+        body.dark-mode .dark-mode-toggle-gift {
+            background-color: var(--gift-container-background);
+            border-color: var(--gift-input-border);
+        }
+        body.dark-mode .dark-mode-toggle-gift .bi-moon-stars,
+        body.dark-mode .dark-mode-toggle-gift .bi-sun {
+            color: var(--gift-accent-color);
+        }
+
     </style>
 </head>
 <body>
+    <div id="darkModeToggleGift" class="dark-mode-toggle-gift">
+        <i class="bi bi-moon-stars"></i> <i class="bi bi-sun"></i>       </div>
+
     <div class="auth-container">
         <h2>Gift Section</h2>
 
@@ -254,7 +380,8 @@
             <div class="form-group">
                 <label for="signupEmail">Email</label>
                 <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
-                <small id="emailValidationMessage" class="form-text-error"></small> </div>
+                <small id="emailValidationMessage" class="form-text-error"></small>
+            </div>
             <div class="form-group">
                 <label for="signupPassword">Password</label>
                 <div class="password-input-container">
@@ -275,68 +402,62 @@
     </div>
 
     <div class="bottom-nav-buttons">
-        
         <a href="index.html" class="btn-nav">Home</a>
     </div>
+
     <script>
         // Your Google App Script URL.
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbzOUCuK4Glg3DRNlWcV70sLP24N-HizILmacJrs2Fogn41g_uZ8VIcd68g2TOfXxq7g/exec';
 
-        // Function to go back in history
-        function goBack() {
-            window.history.back();
-        }
-
         // Function to display messages
         function displayMessage(messageDiv, message, type) {
             messageDiv.style.display = 'block';
-            messageDiv.classList.remove('success', 'error', 'info');
+            messageDiv.className = 'message'; // Reset classes
             messageDiv.classList.add(type);
             messageDiv.textContent = message;
         }
 
-        // --- Tab Switching Logic ---
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-                
-                this.classList.add('active');
-                const targetTab = this.dataset.tab;
-                document.getElementById(targetTab + 'Form').classList.add('active');
-
-                document.getElementById('loginResponseMessage').style.display = 'none';
-                document.getElementById('signupResponseMessage').style.display = 'none';
-                if(document.getElementById('emailValidationMessage')) { 
-                     document.getElementById('emailValidationMessage').style.display = 'none'; 
-                }
-            });
-        });
-
-        // --- Password Toggle Functionality ---
-        function setupPasswordToggle(inputId, toggleId) {
-            const passwordInput = document.getElementById(inputId);
-            const togglePassword = document.getElementById(toggleId);
-
-            if (passwordInput && togglePassword) {
-                togglePassword.addEventListener('click', function () {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    this.textContent = type === 'password' ? '👁️' : '🙈';
-                });
-            }
-        }
-        
-        // --- Email Validation Function ---
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
+            // --- Tab Switching Logic ---
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    const targetTab = this.dataset.tab;
+                    document.getElementById(targetTab + 'Form').classList.add('active');
+
+                    document.getElementById('loginResponseMessage').style.display = 'none';
+                    document.getElementById('signupResponseMessage').style.display = 'none';
+                    if(document.getElementById('emailValidationMessage')) { 
+                         document.getElementById('emailValidationMessage').style.display = 'none'; 
+                    }
+                });
+            });
+
+            // --- Password Toggle Functionality ---
+            function setupPasswordToggle(inputId, toggleId) {
+                const passwordInput = document.getElementById(inputId);
+                const togglePassword = document.getElementById(toggleId);
+
+                if (passwordInput && togglePassword) {
+                    togglePassword.addEventListener('click', function () {
+                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordInput.setAttribute('type', type);
+                        this.textContent = type === 'password' ? '👁️' : '🙈';
+                    });
+                }
+            }
             setupPasswordToggle('loginPassword', 'toggleLoginPassword');
             setupPasswordToggle('signupPassword', 'toggleSignupPassword');
             setupPasswordToggle('confirmPassword', 'toggleConfirmPassword');
+            
+            // --- Email Validation Function ---
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
 
             const signupEmailInput = document.getElementById('signupEmail');
             const emailValidationMessageEl = document.getElementById('emailValidationMessage');
@@ -344,14 +465,40 @@
             if (signupEmailInput && emailValidationMessageEl) {
                 signupEmailInput.addEventListener('input', function() { 
                     if (signupEmailInput.value.length > 0 && !isValidEmail(signupEmailInput.value)) {
-                        emailValidationMessageEl.textContent = 'Please enter a valid email address (e.g., name@example.com).';
+                        emailValidationMessageEl.textContent = 'Please enter a valid email address.';
                         emailValidationMessageEl.style.display = 'block';
                     } else {
                         emailValidationMessageEl.style.display = 'none';
                     }
                 });
             }
-        });
+
+            // --- Dark Mode Toggle Logic for gifts.html ---
+            const darkModeToggleGift = document.getElementById('darkModeToggleGift');
+            const body = document.body;
+
+            const applyInitialGiftMode = () => {
+                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                if (isDarkMode) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+            };
+
+            const toggleGiftDarkMode = () => {
+                body.classList.toggle('dark-mode');
+                const isDarkModeEnabled = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkModeEnabled);
+            };
+
+            if (darkModeToggleGift) {
+                darkModeToggleGift.addEventListener('click', toggleGiftDarkMode);
+            }
+            applyInitialGiftMode(); // Apply mode on load
+
+        }); // End DOMContentLoaded
+
 
         // --- Login Form Submission ---
         document.getElementById('loginForm').addEventListener('submit', function(event) {
@@ -369,12 +516,14 @@
             })
             .then(response => {
                 if (response.ok) return response.json();
-                return response.json().then(errData => { throw new Error(errData.message || `HTTP error! status: ${response.status}`); })
-                                 .catch(() => { throw new Error(`HTTP error! status: ${response.status}`); });
+                // Try to parse error message from JSON response, otherwise use generic HTTP error
+                return response.json().then(errData => { throw new Error(errData.message || `HTTP error! Status: ${response.status}`); })
+                                 .catch(() => { throw new Error(`HTTP error! Status: ${response.status}`); });
             })
             .then(data => {
                 if (data && data.status === 'success') {
                     displayMessage(responseMessageDiv, data.message || 'Login successful! Redirecting...', 'success');
+                    sessionStorage.setItem('isAuthenticatedForGiftSection', 'true'); 
                     setTimeout(() => { window.location.href = 'gift-section.html'; }, 1500);
                 } else {
                     displayMessage(responseMessageDiv, data.message || 'Login failed. Please try again.', 'error');
@@ -382,7 +531,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                displayMessage(responseMessageDiv, error.message || 'An error occurred during login. Please try again later.', 'error');
+                displayMessage(responseMessageDiv, error.message || 'An error occurred. Please try again later.', 'error');
             });
         });
 
@@ -396,12 +545,15 @@
             const responseMessageDiv = document.getElementById('signupResponseMessage');
             const emailValidationMessageEl = document.getElementById('emailValidationMessage');
 
-            if (!isValidEmail(email)) {
+            // Re-validate email on submit
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             if (!emailRegex.test(email)) {
                 if (emailValidationMessageEl) {
-                    emailValidationMessageEl.textContent = 'Please enter a valid email address (e.g., name@example.com).';
+                    emailValidationMessageEl.textContent = 'Please enter a valid email address.';
                     emailValidationMessageEl.style.display = 'block';
                 }
-                displayMessage(responseMessageDiv, 'Please enter a valid email address.', 'error');
+                // Also display a main message if needed, or just rely on the small text
+                // displayMessage(responseMessageDiv, 'Please enter a valid email address.', 'error');
                 return; 
             } else {
                  if (emailValidationMessageEl) emailValidationMessageEl.style.display = 'none'; 
@@ -411,6 +563,11 @@
                 displayMessage(responseMessageDiv, 'Passwords do not match.', 'error');
                 return;
             }
+            if (password.length < 6) { // Example: Basic password length check
+                displayMessage(responseMessageDiv, 'Password should be at least 6 characters long.', 'error');
+                return;
+            }
+
 
             displayMessage(responseMessageDiv, 'Signing up...', 'info');
             const data = { action: 'signup', username: username, email: email, password: password };
@@ -422,20 +579,21 @@
             })
             .then(response => {
                 if (response.ok) return response.json();
-                return response.json().then(errData => { throw new Error(errData.message || `HTTP error! status: ${response.status}`); })
-                                 .catch(() => { throw new Error(`HTTP error! status: ${response.status}`); });
+                return response.json().then(errData => { throw new Error(errData.message || `HTTP error! Status: ${response.status}`); })
+                                 .catch(() => { throw new Error(`HTTP error! Status: ${response.status}`); });
             })
             .then(data => {
                 if (data && data.status === 'success') {
                     displayMessage(responseMessageDiv, data.message || 'Sign up successful! Redirecting...', 'success');
+                    sessionStorage.setItem('isAuthenticatedForGiftSection', 'true');
                     setTimeout(() => { window.location.href = 'gift-section.html'; }, 1500);
                 } else {
-                    displayMessage(responseMessageDiv, data.message || 'Sign up failed. Please try again.', 'error');
+                    displayMessage(responseMessageDiv, data.message || 'Sign up failed. Username or Email may already exist.', 'error');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                displayMessage(responseMessageDiv, error.message || 'An error occurred during sign up. Please try again later.', 'error');
+                displayMessage(responseMessageDiv, error.message || 'An error occurred. Please try again later.', 'error');
             });
         });
     </script>

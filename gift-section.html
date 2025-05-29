@@ -26,6 +26,13 @@
   <script> window.chtlConfig = { chatbotId: "8449492451" } </script>
   <script async data-id="8449492451" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 
+  <script>
+    if (sessionStorage.getItem('isAuthenticatedForGiftSection') !== 'true') {
+        // If not authenticated, redirect to the login page (gifts.html)
+        // Ensure 'gifts.html' is the correct path to your login page.
+        window.location.href = 'gifts.html';
+    }
+  </script>
   <style>
     /* Custom styles for Gift Section Page */
     .gift-item {
@@ -184,6 +191,31 @@
       color: var(--contrast-color);
     }
 
+    /* Logout button style */
+    .btn-logout {
+        background: #dc3545; /* A common color for logout/danger */
+        color: white;
+        padding: 8px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: var(--heading-font);
+        font-weight: 500;
+        border: none;
+        transition: background-color 0.3s;
+        margin-top: 30px; /* Space above logout button */
+        display: inline-block;
+    }
+    .btn-logout:hover {
+        background: #c82333; /* Darker shade on hover */
+        color: white;
+    }
+    body.dark-mode .btn-logout {
+        background: #a71d2a;
+    }
+    body.dark-mode .btn-logout:hover {
+        background: #8c1823;
+    }
+
 
   </style>
   <script type="text/javascript">
@@ -209,8 +241,7 @@
   <script type="text/javascript" src="//www.highperformanceformat.com/79770e8681a499e4ae6f46b78d11e88e/invoke.js"></script>
 </head>
 
-<body class="index-page">
-  <script async="async" data-cfasync="false" src="//pl26709422.profitableratecpm.com/d1262749251c2bdea6de04d72fe1d884/invoke.js"></script>
+<body class="index-page"> <script async="async" data-cfasync="false" src="//pl26709422.profitableratecpm.com/d1262749251c2bdea6de04d72fe1d884/invoke.js"></script>
   <div id="container-d1262749251c2bdea6de04d72fe1d884"></div>
 
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -251,7 +282,6 @@
   </header>
 
   <main class="main">
-
     <div class="page-title accent-background">
       <div class="container">
         <h1>Gift Section</h1>
@@ -317,12 +347,10 @@
                 <p class="description">A handpicked selection of stylish and professional English fonts. Ideal for branding, presentations, and modern design work.</p>
               </div>
               <div> <div class="password-display-box" id="englishPasswordArea">
-                  <p>Password: <span class="password-text-box"></span></p>
-                  <button class="copy-password-btn-box" data-password-text="">Copy</button>
+                  <p>Password: <span class="password-text-box"></span></p> <button class="copy-password-btn-box" data-password-text="">Copy</button>
                   <span class="copy-status-box"></span>
                 </div>
-                <a href="update.html" class="btn-download" download>
-                  Free Download <i class="bi bi-download"></i>
+                <a href="update.html" class="btn-download" download> Free Download <i class="bi bi-download"></i>
                 </a>
               </div>
             </div>
@@ -341,6 +369,10 @@
             };
           </script>
           <script type="text/javascript" src="//www.highperformanceformat.com/bf6057cc21bd9dc5c8e5d9ecd4636f12/invoke.js"></script>
+        </div>
+
+        <div class="text-center mt-4">
+            <button onclick="logoutGiftSection()" class="btn-logout">Logout</button>
         </div>
 
       </div>
@@ -439,8 +471,29 @@
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Logout Function
+    function logoutGiftSection() {
+        sessionStorage.removeItem('isAuthenticatedForGiftSection');
+        // Redirect to the login page (gifts.html)
+        // Ensure 'gifts.html' is the correct path to your login page.
+        window.location.href = 'gifts.html';
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+      // This script runs after the main content is potentially visible (if authenticated)
+      // or after redirection has happened.
       
+      // If the user is authenticated, we can proceed with page-specific initializations.
+      if (sessionStorage.getItem('isAuthenticatedForGiftSection') === 'true') {
+        // The main content is already visible or will be handled by main.js if it also checks
+        // Forcing display here if main.js doesn't or if you want to ensure it.
+        const mainElement = document.querySelector('main.main');
+        if (mainElement) {
+            mainElement.style.display = 'block'; // Ensure main content is visible
+        }
+      }
+
+
       // Handle "Show Password" buttons within gift boxes
       document.querySelectorAll('.show-password-btn-box').forEach(button => {
         button.addEventListener('click', function() {
@@ -468,26 +521,23 @@
       document.querySelectorAll('.copy-password-btn-box').forEach(button => {
         button.addEventListener('click', function() {
           const passwordToCopy = this.dataset.passwordText;
-          const displayArea = this.closest('.password-display-box'); // Find the parent display area
+          const displayArea = this.closest('.password-display-box'); 
           const copyStatusSpan = displayArea ? displayArea.querySelector('.copy-status-box') : null;
 
           if (!copyStatusSpan) {
-            // Fallback if closest isn't working as expected, though it should
-            // This might happen if the structure is different than anticipated
-            // For now, we assume the structure is correct.
             console.error('Copy status span could not be found for this button.');
             return;
           }
 
           navigator.clipboard.writeText(passwordToCopy).then(function() {
             copyStatusSpan.textContent = 'Copied!';
-            copyStatusSpan.style.color = 'green';
+            copyStatusSpan.style.color = 'green'; // Or use a CSS class
             setTimeout(() => {
               if (copyStatusSpan) copyStatusSpan.textContent = '';
             }, 2000);
           }, function(err) {
             copyStatusSpan.textContent = 'Failed!';
-            copyStatusSpan.style.color = 'red';
+            copyStatusSpan.style.color = 'red'; // Or use a CSS class
             console.error('Could not copy text: ', err);
             setTimeout(() => {
               if (copyStatusSpan) copyStatusSpan.textContent = '';
@@ -497,17 +547,38 @@
       });
 
       // Ensure active class for nav menu
+      // (This part of your script is good for highlighting the current page in the nav)
       const navLinks = document.querySelectorAll('#navmenu .dropdown ul a');
       navLinks.forEach(link => {
-        if (link.getAttribute('href') === 'gifts.html') {
-          link.closest('.dropdown').querySelectorAll('a').forEach(a => a.classList.remove('active'));
+        // Remove active from all first
+        link.classList.remove('active'); 
+        if (link.getAttribute('href') === 'gift-section.html') {
           link.classList.add('active');
+          // Also make the parent "More Links" active
+           const parentDropdownToggle = link.closest('.dropdown').querySelector('a[href="javascript:void(0);"]');
+           if(parentDropdownToggle) {
+            parentDropdownToggle.classList.add('active');
+           }
         }
       });
-      const moreLinksDropdown = document.querySelector('#navmenu .dropdown > a');
-      if (moreLinksDropdown && window.location.pathname.endsWith('gifts.html')) {
-        moreLinksDropdown.classList.add('active');
+      // If not using the above loop for parent, this is another way:
+      const moreLinksDropdown = document.querySelector('#navmenu li.dropdown > a'); // Target the main dropdown toggle
+      const giftSectionLinkInDropdown = document.querySelector('#navmenu .dropdown ul a[href="gift-section.html"]');
+
+      if (giftSectionLinkInDropdown && giftSectionLinkInDropdown.classList.contains('active')) {
+          if(moreLinksDropdown) moreLinksDropdown.classList.add('active');
+      } else {
+          if(moreLinksDropdown) moreLinksDropdown.classList.remove('active'); // Ensure it's not active if sub-item isn't
       }
+      // Check if any other primary nav link should be active
+      document.querySelectorAll('#navmenu > ul > li > a').forEach(mainLink => {
+          if (mainLink !== moreLinksDropdown && mainLink.href === window.location.href) {
+              mainLink.classList.add('active');
+          } else if (mainLink !== moreLinksDropdown) {
+              mainLink.classList.remove('active');
+          }
+      });
+
 
     });
   </script>
