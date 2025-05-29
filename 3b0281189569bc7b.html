@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Propix Lk</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <style>
+        /* Specific styles for forgot-password.html */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+            color: #333;
+        }
+
+        .auth-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #124265; /* Matches your main theme's heading color */
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        p.description {
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #333;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: #2487ce; /* Matches your accent color */
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(36, 135, 206, 0.2);
+        }
+
+        .form-options {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-options label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .form-options input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #2487ce;
+        }
+
+        button.submit-btn {
+            background-color: #2487ce; /* Accent color */
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button.submit-btn:hover {
+            background-color: #1a6bb2; /* Darker accent on hover */
+        }
+
+        .response-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .response-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .response-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .response-message.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+
+        body.dark-mode .auth-container {
+            background-color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode h2 {
+            color: #eee;
+        }
+
+        body.dark-mode p.description,
+        body.dark-mode label {
+            color: #bbb;
+        }
+
+        body.dark-mode input[type="text"],
+        body.dark-mode input[type="email"],
+        body.dark-mode input[type="tel"] {
+            background-color: #444;
+            border-color: #666;
+            color: #eee;
+        }
+
+        body.dark-mode input[type="text"]:focus,
+        body.dark-mode input[type="email"]:focus,
+        body.dark-mode input[type="tel"]:focus {
+            border-color: #2487ce;
+            box-shadow: 0 0 0 2px rgba(36, 135, 206, 0.4);
+        }
+
+        body.dark-mode .form-options label {
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Forgot Password</h2>
+        <p class="description">Please choose your account identification method and how you'd like to receive your password reset information.</p>
+
+        <form id="forgotPasswordForm" action="https://formspree.io/f/xwpolbba" method="POST">
+
+            <div class="form-options">
+                <p>Identify your account by:</p>
+                <label>
+                    <input type="radio" name="identification_method" value="username_id" id="identifyByUsername" required>
+                    Username
+                </label>
+                <label>
+                    <input type="radio" name="identification_method" value="email_id" id="identifyByEmail">
+                    Email
+                </label>
+            </div>
+
+            <div class="form-group" id="usernameInputDiv" style="display: none;">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username_for_reset">
+            </div>
+
+            <div class="form-group" id="emailInputDiv" style="display: none;">
+                <label for="email_for_reset">Email Address:</label>
+                <input type="email" id="email_for_reset" name="email_for_reset" placeholder="your@example.com">
+            </div>
+
+            <hr style="margin: 30px 0; border-color: #eee;"> <div class="form-options">
+                <p>Choose your preferred reset delivery method:</p>
+                <label>
+                    <input type="radio" name="delivery_method" value="WhatsApp" id="optionWhatsApp" required>
+                    Get via WhatsApp
+                </label>
+                <label>
+                    <input type="radio" name="delivery_method" value="Email" id="optionEmail">
+                    Get via Email
+                </label>
+            </div>
+
+            <div class="form-group" id="whatsappField" style="display: none;">
+                <label for="whatsapp_number">WhatsApp Number:</label>
+                <input type="tel" id="whatsapp_number" name="whatsapp_number" placeholder="e.g., +94712345678">
+            </div>
+
+            <div class="form-group" id="emailDeliveryField" style="display: none;">
+                <label for="email_delivery_address">Email Address (for delivery):</label>
+                <input type="email" id="email_delivery_address" name="email_delivery_address" placeholder="e.g., your@example.com">
+            </div>
+
+            <button type="submit" class="submit-btn">Request Password Reset</button>
+            <div id="responseMessage" class="response-message" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        // Identification Method Elements
+        const identifyByUsername = document.getElementById('identifyByUsername');
+        const identifyByEmail = document.getElementById('identifyByEmail');
+        const usernameInputDiv = document.getElementById('usernameInputDiv');
+        const emailInputDiv = document.getElementById('emailInputDiv');
+        const usernameInput = document.getElementById('username');
+        const emailForResetInput = document.getElementById('email_for_reset');
+
+        // Delivery Method Elements
+        const optionWhatsApp = document.getElementById('optionWhatsApp');
+        const optionEmail = document.getElementById('optionEmail');
+        const whatsappField = document.getElementById('whatsappField');
+        const emailDeliveryField = document.getElementById('emailDeliveryField');
+        const whatsappInput = document.getElementById('whatsapp_number');
+        const emailDeliveryInput = document.getElementById('email_delivery_address');
+        
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+        const responseMessageDiv = document.getElementById('responseMessage');
+
+        function toggleIdentificationFields() {
+            if (identifyByUsername.checked) {
+                usernameInputDiv.style.display = 'block';
+                usernameInput.setAttribute('required', 'true');
+                emailInputDiv.style.display = 'none';
+                emailForResetInput.removeAttribute('required');
+                emailForResetInput.value = ''; // Clear value when switching
+            } else if (identifyByEmail.checked) {
+                emailInputDiv.style.display = 'block';
+                emailForResetInput.setAttribute('required', 'true');
+                usernameInputDiv.style.display = 'none';
+                usernameInput.removeAttribute('required');
+                usernameInput.value = ''; // Clear value when switching
+            } else {
+                // Default or no selection: hide both
+                usernameInputDiv.style.display = 'none';
+                usernameInput.removeAttribute('required');
+                usernameInput.value = '';
+                emailInputDiv.style.display = 'none';
+                emailForResetInput.removeAttribute('required');
+                emailForResetInput.value = '';
+            }
+        }
+
+        function toggleDeliveryFields() {
+            if (optionWhatsApp.checked) {
+                whatsappField.style.display = 'block';
+                whatsappInput.setAttribute('required', 'true');
+                emailDeliveryField.style.display = 'none';
+                emailDeliveryInput.removeAttribute('required');
+                emailDeliveryInput.value = ''; // Clear value when switching
+            } else if (optionEmail.checked) {
+                emailDeliveryField.style.display = 'block';
+                emailDeliveryInput.setAttribute('required', 'true');
+                whatsappField.style.display = 'none';
+                whatsappInput.removeAttribute('required');
+                whatsappInput.value = ''; // Clear value when switching
+            } else {
+                // Default or no selection: hide both
+                whatsappField.style.display = 'none';
+                whatsappInput.removeAttribute('required');
+                whatsappInput.value = '';
+                emailDeliveryField.style.display = 'none';
+                emailDeliveryInput.removeAttribute('required');
+                emailDeliveryInput.value = '';
+            }
+        }
+
+        // Add event listeners
+        identifyByUsername.addEventListener('change', toggleIdentificationFields);
+        identifyByEmail.addEventListener('change', toggleIdentificationFields);
+        optionWhatsApp.addEventListener('change', toggleDeliveryFields);
+        optionEmail.addEventListener('change', toggleDeliveryFields);
+
+        // Initial check for all fields
+        toggleIdentificationFields();
+        toggleDeliveryFields();
+
+        // Handle form submission for messages
+        forgotPasswordForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const action = form.action;
+
+            displayMessage(responseMessageDiv, 'Sending request...', 'info');
+
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Request JSON response from Formspree
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    displayMessage(responseMessageDiv, 'Your request has been sent! We will contact you shortly.', 'success');
+                    form.reset(); // Clear the form
+                    // Re-run toggles to reset visibility and required attributes
+                    toggleIdentificationFields();
+                    toggleDeliveryFields(); 
+                } else {
+                    const errorMessage = result.errors ? result.errors.map(e => e.message).join(', ') : 'An unknown error occurred.';
+                    displayMessage(responseMessageDiv, `Error: ${errorMessage}`, 'error');
+                }
+            } catch (error) {
+                console.error('Network or submission error:', error);
+                displayMessage(responseMessageDiv, 'Network error. Please check your connection and try again.', 'error');
+            }
+        });
+
+        function displayMessage(element, message, type) {
+            element.textContent = message;
+            element.className = `response-message ${type}`; // Update class for styling
+            element.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
