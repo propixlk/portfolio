@@ -342,6 +342,58 @@
             color: var(--gift-accent-color);
         }
 
+        /* Styling for the Home button in gifts.html */
+
+.bottom-nav-buttons {
+    margin-top: 25px; /* Adjust spacing from elements above */
+    text-align: center; /* Center the content inside the div */
+    padding-bottom: 20px; /* Add some padding at the bottom for spacing */
+}
+
+.btn-nav {
+    display: inline-block; /* Allows width/padding and centering with text-align */
+    padding: 12px 25px;
+    background-color: var(--accent-color); /* Use your theme's accent color */
+    color: #ffffff; /* White text for contrast */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    min-width: 150px; /* Minimum width for the button */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.btn-nav:hover {
+    background-color: var(--gift-accent-hover); /* Darker accent on hover, or a custom hover color */
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 576px) {
+    .bottom-nav-buttons {
+        margin-top: 20px; /* Slightly less margin on smaller screens */
+        padding-bottom: 15px;
+    }
+
+    .btn-nav {
+        width: calc(100% - 40px); /* Make it take almost full width with some side padding */
+        max-width: 300px; /* Prevent it from becoming too wide on slightly larger mobiles */
+        font-size: 1em; /* Slightly smaller font size */
+        padding: 10px 20px; /* Adjust padding */
+    }
+}
+
+/* Dark Mode Adjustments for the Home button */
+body.dark-mode .btn-nav {
+    background-color: var(--accent-color); /* Keep primary accent color */
+    color: #ffffff;
+}
+
+body.dark-mode .btn-nav:hover {
+    background-color: var(--gift-accent-hover); /* Darker accent on hover */
+}
+
     </style>
 </head>
 <body>
