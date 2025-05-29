@@ -332,7 +332,7 @@ document.querySelectorAll('#navmenu a').forEach(navmenu => {
 
     // List of ad images and their corresponding links
     const ads = [
-      { src: 'assets/img/ads/x.png', link: 'index.html#contact' },
+      { src: 'assets/img/ads/x1.gif', link: 'gifts.html' },
       { src: 'assets/img/ads/x.png', link: 'index.html#contact' },
       //{ src: 'assets/img/ads/x2.png', link: 'update.html' },
       //{ src: 'assets/img/ads/x3.png', link: 'update.html' },
@@ -343,7 +343,7 @@ document.querySelectorAll('#navmenu a').forEach(navmenu => {
     ];
 
     let currentAdIndex = 0;
-    const intervalTime = 5000; // Change image every 5 seconds (5000 milliseconds)
+    const intervalTime = 3000; // Change image every 5 seconds (5000 milliseconds)
 
     // Function to change the ad image and link
     function changeAd() {
