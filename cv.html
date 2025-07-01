@@ -1,298 +1,588 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV සාදන්නා (CV Builder)</title>
+    <title>CV Builder - Propix LK</title>
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS for CV Builder -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Inherit font and color variables from main.css */
         body {
-            font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
-            background-color: #f0f4f8;
+            font-family: var(--default-font), 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--background-color);
+            color: var(--default-color);
         }
-        .form-step {
-            display: none;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font), 'Noto Sans Sinhala', sans-serif;
+            color: var(--heading-color);
         }
-        .form-step.active {
-            display: block;
-        }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; }
+
         .form-container {
-            background-color: white;
+            background-color: var(--surface-color);
             padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
         }
-        .progress-bar-fill {
-            transition: width 0.3s ease-in-out;
-        }
-        .cv-preview {
-            font-family: 'Times New Roman', Times, serif;
-        }
-        .cv-preview h2 {
-            border-bottom: 2px solid #334155;
-            color: #1e293b;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            padding-bottom: 0.25rem;
-        }
-         .cv-preview h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #334155;
-        }
+
+        .progress-bar-fill { transition: width 0.3s ease-in-out; }
+
+        /* Form Element Styles */
         .label-style {
             font-weight: 500;
-            color: #374151;
+            color: var(--heading-color);
         }
         .input-style {
-            border-color: #d1d5db;
+            background-color: color-mix(in srgb, var(--surface-color), #000 5%);
+            border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+            color: var(--default-color);
+            border-radius: 0.375rem; /* rounded-md */
         }
         .input-style:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color), transparent 80%);
             outline: none;
         }
+
+        /* Button Styles */
         .btn-primary {
-            background-color: #2563eb;
-            color: white;
+            background-color: var(--accent-color);
+            color: var(--contrast-color);
         }
         .btn-primary:hover {
-            background-color: #1d4ed8;
+            background-color: color-mix(in srgb, var(--accent-color), #000 15%);
         }
         .btn-secondary {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: color-mix(in srgb, var(--default-color), transparent 85%);
+            color: var(--default-color);
+            border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);
         }
         .btn-secondary:hover {
-            background-color: #d1d5db;
+            background-color: color-mix(in srgb, var(--default-color), transparent 80%);
         }
-        .btn-tertiary {
+         .btn-tertiary {
             background-color: transparent;
-            color: #6b7280;
+            color: var(--default-color);
         }
          .btn-tertiary:hover {
-            background-color: #f3f4f6;
+            background-color: color-mix(in srgb, var(--default-color), transparent 95%);
         }
+        
+        /* Dark Mode Overrides for CV Builder */
+        body.dark-mode .form-container {
+             border-color: #444;
+        }
+        body.dark-mode .input-style {
+            background-color: #3a3a3a;
+            border-color: #555;
+            color: #ffffff;
+        }
+        body.dark-mode .input-style::placeholder {
+            color: #aaa;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            margin-left: 15px;
+        }
+        .lang-switcher button {
+            background-color: color-mix(in srgb, var(--surface-color), #000 5%);
+            border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+            color: var(--default-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .lang-switcher button.active {
+            background-color: var(--accent-color);
+            color: var(--contrast-color);
+            font-weight: bold;
+        }
+        body.dark-mode .lang-switcher button {
+            background-color: #3a3a3a;
+            border-color: #555;
+        }
+        body.dark-mode .lang-switcher button.active {
+            background-color: var(--accent-color);
+        }
+        
+        /* Design Chooser */
+        .design-choice {
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .design-choice:hover {
+            transform: scale(1.05);
+        }
+        .design-choice.selected {
+            box-shadow: 0 0 0 4px var(--accent-color);
+            border-radius: 0.5rem;
+        }
+
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="cv-builder-page">
 
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-2">CV සාදන්නා</h1>
-        <p class="text-center text-slate-600 mb-8">ඔබේ වෘත්තීය ජීව දත්ත පත්‍රිකාව පහසුවෙන් නිර්මාණය කරගන්න.</p>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">Propix LK</h1>
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html" data-lang-key="home">Home</a></li>
+                    <li><a href="index.html#about" data-lang-key="about">About</a></li>
+                    <li><a href="index.html#services" data-lang-key="services">Services</a></li>
+                    <li><a href="index.html#portfolio" data-lang-key="portfolio">Portfolio</a></li>
+                    <li><a href="index.html#order" data-lang-key="order">Order</a></li>
+                    <li class="dropdown"><a href="javascript:void(0);"><span data-lang-key="more_links">More Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="ads.html">Ad Packs</a></li>
+                            <li><a href="plan.html">Design Plans</a></li>
+                            <li><a href="gifts.html">Gift Section</a></li>
+                            <li><a href="update.html">Edu Hub</a></li>
+                            <li><a href="index.html#clients">Testimonials</a></li>
+                            <li><a href="index.html#faq">FAQs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contact" data-lang-key="contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            
+            <div class="lang-switcher">
+                <button id="lang-en" class="active">EN</button>
+                <button id="lang-si">SI</button>
+            </div>
+            
+            <div id="dark-mode-toggle" class="dark-mode-toggle" style="position: static; margin-left: 15px;">
+                <i class="bi bi-moon-stars"></i>
+                <i class="bi bi-sun"></i>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="max-w-4xl mx-auto py-12 px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-2" data-lang-key="builder_title">CV Builder</h1>
+            <p class="text-center text-slate-600 mb-8" data-lang-key="builder_subtitle">Easily create your professional resume.</p>
 
-        <!-- Form Container -->
-        <div id="form-wrapper" class="form-container">
-            <!-- Progress Bar -->
-            <div class="mb-8">
-                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 12.5%"></div>
+            <!-- Form Wrapper -->
+            <div id="form-wrapper" class="form-container">
+                <div class="mb-8">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full progress-bar-fill" style="width: 14.2%"></div>
+                    </div>
+                    <p id="step-indicator" class="text-center text-sm text-gray-600 mt-2"><span data-lang-key="step">Step</span> 1 / 7</p>
                 </div>
-                <p id="step-indicator" class="text-center text-sm text-gray-600 mt-2">පියවර 1 / 8</p>
+
+                <form id="cvForm" action="https://formspree.io/f/xwpolbba" method="POST">
+                    <!-- Step 1: Personal Details -->
+                    <div class="form-step active" data-step="1">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="pd_title">1. Personal Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block mb-2 label-style" for="photo" data-lang-key="pd_photo">Professional Photo</label>
+                                <input type="file" id="photo" name="photo" class="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="fullName" data-lang-key="pd_fullname">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="nic" data-lang-key="pd_nic">NIC</label>
+                                <input type="text" id="nic" name="nic" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="email" data-lang-key="pd_email">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="phone" data-lang-key="pd_phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="links" data-lang-key="pd_links">Linkedin / Portfolio Link</label>
+                                <input type="url" id="links" name="links" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block mb-2 label-style" for="address" data-lang-key="pd_address">Address & Postal Code</label>
+                                <input type="text" id="address" name="address" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                             <div>
+                                <label class="block mb-2 label-style" for="dob" data-lang-key="pd_dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="gender" data-lang-key="pd_gender">Gender</label>
+                                <select id="gender" name="gender" class="w-full p-2 border rounded-md input-style">
+                                    <option value="" data-lang-key="select_option">Select</option>
+                                    <option value="Male" data-lang-key="gender_male">Male</option>
+                                    <option value="Female" data-lang-key="gender_female">Female</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="maritalStatus" data-lang-key="pd_marital">Marital Status</label>
+                                <select id="maritalStatus" name="maritalStatus" class="w-full p-2 border rounded-md input-style">
+                                    <option value="" data-lang-key="select_option">Select</option>
+                                    <option value="Single" data-lang-key="marital_single">Single</option>
+                                    <option value="Married" data-lang-key="marital_married">Married</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="nationality" data-lang-key="pd_nationality">Nationality</label>
+                                <input type="text" id="nationality" name="nationality" value="Sri Lankan" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block mb-2 label-style" for="about" data-lang-key="pd_about">About You (Short Summary)</label>
+                                <textarea id="about" name="about" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education -->
+                    <div class="form-step" data-step="2">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="edu_title">2. Educational Qualifications</h2>
+                        <div class="mb-6 p-4 border rounded-lg">
+                            <h3 class="font-semibold text-lg mb-4" data-lang-key="edu_degree_title">Degree/Post-Graduate</h3>
+                            <div id="degree-container"></div>
+                            <button type="button" onclick="addSection('degree')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_more">Add More</button>
+                        </div>
+                        <div class="mb-6 p-4 border rounded-lg">
+                            <h3 class="font-semibold text-lg mb-4" data-lang-key="edu_other_title">Other Qualifications</h3>
+                            <div id="other-qual-container"></div>
+                            <button type="button" onclick="addSection('other-qual')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_more">Add More</button>
+                        </div>
+                        <div class="mb-6 p-4 border rounded-lg">
+                            <h3 class="font-semibold text-lg mb-4" data-lang-key="edu_al_title">A/L (Advanced Level)</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-2 label-style" for="alSchool" data-lang-key="edu_school">School</label>
+                                    <input type="text" id="alSchool" name="alSchool" class="w-full p-2 border rounded-md input-style">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 label-style" for="alIndex" data-lang-key="edu_index">Index Number</label>
+                                    <input type="text" id="alIndex" name="alIndex" class="w-full p-2 border rounded-md input-style">
+                                </div>
+                            </div>
+                            <div id="al-subjects-container" class="mt-4"></div>
+                            <button type="button" onclick="addSubject('al')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_subject">Add Subject</button>
+                        </div>
+                        <div class="p-4 border rounded-lg">
+                            <h3 class="font-semibold text-lg mb-4" data-lang-key="edu_ol_title">O/L (Ordinary Level)</h3>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-2 label-style" for="olSchool" data-lang-key="edu_school">School</label>
+                                    <input type="text" id="olSchool" name="olSchool" class="w-full p-2 border rounded-md input-style">
+                                </div>
+                                <div>
+                                    <label class="block mb-2 label-style" for="olIndex" data-lang-key="edu_index">Index Number</label>
+                                    <input type="text" id="olIndex" name="olIndex" class="w-full p-2 border rounded-md input-style">
+                                </div>
+                            </div>
+                            <div id="ol-subjects-container" class="mt-4"></div>
+                            <button type="button" onclick="addSubject('ol')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_subject">Add Subject</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Work Experience -->
+                    <div class="form-step" data-step="3">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="work_title">3. Work Experience</h2>
+                        <div id="work-exp-container"></div>
+                        <button type="button" onclick="addSection('work-exp')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_more">Add More</button>
+                    </div>
+
+                    <!-- Step 4: Skills -->
+                    <div class="form-step" data-step="4">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="skills_title">4. Skills</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2" data-lang-key="skills_lang_title">Language Skills</h3>
+                                <div id="language-skills-container" class="space-y-2"></div>
+                                 <button type="button" onclick="addLanguageSkill()" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_language">Add Language</button>
+                            </div>
+                             <div>
+                                <h3 class="font-semibold text-lg mb-2" data-lang-key="skills_comp_title">Computer Skills</h3>
+                                <textarea id="computerSkills" name="computerSkills" data-lang-key="skills_comp_placeholder" placeholder="Microsoft Office, Photoshop, Programming Languages..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2" data-lang-key="skills_other_title">Other Skills</h3>
+                                <textarea id="otherSkills" name="otherSkills" data-lang-key="skills_other_placeholder" placeholder="Driving License, Communication Skills, Teamwork..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Awards -->
+                    <div class="form-step" data-step="5">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="awards_title">5. Awards and Achievements</h2>
+                        <div id="awards-container"></div>
+                        <button type="button" onclick="addSection('awards')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_more">Add More</button>
+                    </div>
+
+                    <!-- Step 6: Additional Info -->
+                    <div class="form-step" data-step="6">
+                         <h2 class="text-2xl font-bold mb-6" data-lang-key="addinfo_title">6. Additional Information</h2>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                    </div>
+
+                    <!-- Step 7: References -->
+                    <div class="form-step" data-step="7">
+                        <h2 class="text-2xl font-bold mb-6" data-lang-key="ref_title">7. References</h2>
+                        <div class="flex items-center mb-4">
+                            <input id="refRequest" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <label for="refRequest" class="ml-2 block text-sm" data-lang-key="ref_request">References available upon request</label>
+                        </div>
+                        <div id="references-container"></div>
+                        <button type="button" onclick="addSection('references')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md" data-lang-key="add_more">Add More</button>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="mt-8 flex justify-between">
+                        <button type="button" id="prevBtn" class="py-2 px-4 rounded-md font-semibold btn-secondary" data-lang-key="btn_prev">Previous</button>
+                        <button type="button" id="skipBtn" class="py-2 px-4 rounded-md font-semibold btn-tertiary" data-lang-key="btn_skip">Skip</button>
+                        <button type="button" id="nextBtn" class="py-2 px-4 rounded-md font-semibold btn-primary" data-lang-key="btn_next">Next</button>
+                        <button type="submit" id="submitBtn" class="hidden py-2 px-6 rounded-md font-semibold btn-primary" data-lang-key="btn_submit">Check & Submit</button>
+                    </div>
+                </form>
             </div>
 
-            <form id="cvForm">
-                <!-- Step 1: Personal Details -->
-                <div class="form-step active" data-step="1">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">1. පුද්ගලික තොරතුරු (Personal Details)</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block mb-2 label-style" for="photo">වෘත්තීය ඡායාරූපයක් (Professional Photo)</label>
-                            <input type="file" id="photo" name="photo" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="fullName">සම්පූර්ණ නම (Full Name)</label>
-                            <input type="text" id="fullName" name="fullName" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC)</label>
-                            <input type="text" id="nic" name="nic" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="email">විද්‍යුත් තැපෑල (Email)</label>
-                            <input type="email" id="email" name="email" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="phone">දුරකථන අංකය (Phone Number)</label>
-                            <input type="tel" id="phone" name="phone" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="links">Linkedin / Portfolio Link</label>
-                            <input type="url" id="links" name="links" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block mb-2 label-style" for="address">ලිපිනය සහ තැපැල් කේතය (Address & Postal Code)</label>
-                            <input type="text" id="address" name="address" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                         <div>
-                            <label class="block mb-2 label-style" for="dob">උපන් දිනය (Date of Birth)</label>
-                            <input type="date" id="dob" name="dob" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="gender">ස්ත්‍රී/පුරුෂ භාවය (Gender)</label>
-                            <select id="gender" name="gender" class="w-full p-2 border rounded-md input-style">
-                                <option>තෝරන්න</option>
-                                <option value="පුරුෂ">පුරුෂ (Male)</option>
-                                <option value="ස්ත්‍රී">ස්ත්‍රී (Female)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="maritalStatus">විවාහක අවිවාහක බව (Marital Status)</label>
-                            <input type="text" id="maritalStatus" name="maritalStatus" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div>
-                            <label class="block mb-2 label-style" for="nationality">ජාතිකත්වය (Nationality)</label>
-                            <input type="text" id="nationality" name="nationality" value="ශ්‍රී ලාංකික" class="w-full p-2 border rounded-md input-style">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block mb-2 label-style" for="about">ඔබ ගැන කෙටි හැදින්වීමක් (About You)</label>
-                            <textarea id="about" name="about" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
-                        </div>
+            <!-- Submission Status -->
+            <div id="submissionStatus" class="hidden text-center p-8 form-container">
+                <div id="submissionSpinner" class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+                <h2 id="submissionMessage" class="text-2xl font-bold mt-4">Submitting...</h2>
+            </div>
+            
+            <!-- Design Chooser -->
+            <div id="designChooserWrapper" class="hidden mt-10">
+                 <h2 class="text-3xl font-bold text-center mb-2" data-lang-key="design_title">Submission Successful!</h2>
+                 <p class="text-center text-slate-600 mb-8" data-lang-key="design_subtitle">Now, choose a design for your CV.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="design-choice selected" data-design="classic">
+                        <img src="https://placehold.co/400x565/E2E8F0/475569?text=Classic" alt="Classic CV Design" class="rounded-lg shadow-md w-full">
+                        <p class="text-center font-semibold mt-2" data-lang-key="design_classic">Classic</p>
                     </div>
-                </div>
-
-                <!-- Step 2: Education -->
-                <div class="form-step" data-step="2">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">2. අධ්‍යාපන සුදුසුකම් (Educational Qualifications)</h2>
-                    
-                    <!-- Degree -->
-                    <div class="mb-6 p-4 border rounded-lg">
-                        <h3 class="font-semibold text-lg mb-4 text-slate-600">උපාධි/පශ්චාත් උපාධි (Degree/Post-Graduate)</h3>
-                        <div id="degree-container"></div>
-                        <button type="button" onclick="addSection('degree')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                     <div class="design-choice" data-design="modern">
+                        <img src="https://placehold.co/400x565/1E293B/FFFFFF?text=Modern" alt="Modern CV Design" class="rounded-lg shadow-md w-full">
+                        <p class="text-center font-semibold mt-2" data-lang-key="design_modern">Modern</p>
                     </div>
-                    
-                    <!-- Other Qualifications -->
-                    <div class="mb-6 p-4 border rounded-lg">
-                        <h3 class="font-semibold text-lg mb-4 text-slate-600">වෙනත් වෘත්තීය සුදුසුකම්/ඩිප්ලෝමා (Other Qualifications)</h3>
-                        <div id="other-qual-container"></div>
-                        <button type="button" onclick="addSection('other-qual')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                     <div class="design-choice" data-design="creative">
+                        <img src="https://placehold.co/400x565/3B82F6/FFFFFF?text=Creative" alt="Creative CV Design" class="rounded-lg shadow-md w-full">
+                        <p class="text-center font-semibold mt-2" data-lang-key="design_creative">Creative</p>
                     </div>
-                    
-                    <!-- A/L -->
-                    <div class="mb-6 p-4 border rounded-lg">
-                        <h3 class="font-semibold text-lg mb-4 text-slate-600">උසස් පෙළ (A/L)</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block mb-2 label-style" for="alSchool">පාසල (School)</label>
-                                <input type="text" id="alSchool" name="alSchool" class="w-full p-2 border rounded-md input-style">
-                            </div>
-                            <div>
-                                <label class="block mb-2 label-style" for="alIndex">විභාග අංකය (Index Number)</label>
-                                <input type="text" id="alIndex" name="alIndex" class="w-full p-2 border rounded-md input-style">
-                            </div>
-                        </div>
-                        <div id="al-subjects-container" class="mt-4"></div>
-                        <button type="button" onclick="addSubject('al')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">විෂයයක් එක් කරන්න (Add Subject)</button>
-                    </div>
+                 </div>
+                 <div class="text-center mt-8">
+                     <button id="generatePdfBtn" class="py-3 px-6 rounded-lg font-bold text-white bg-green-600 hover:bg-green-700 transition-colors" data-lang-key="btn_generate_pdf">Generate Final CV</button>
+                 </div>
+            </div>
 
-                    <!-- O/L -->
-                    <div class="p-4 border rounded-lg">
-                        <h3 class="font-semibold text-lg mb-4 text-slate-600">සාමාන්‍ය පෙළ (O/L)</h3>
-                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block mb-2 label-style" for="olSchool">පාසල (School)</label>
-                                <input type="text" id="olSchool" name="olSchool" class="w-full p-2 border rounded-md input-style">
-                            </div>
-                            <div>
-                                <label class="block mb-2 label-style" for="olIndex">විභාග අංකය (Index Number)</label>
-                                <input type="text" id="olIndex" name="olIndex" class="w-full p-2 border rounded-md input-style">
-                            </div>
-                        </div>
-                        <div id="ol-subjects-container" class="mt-4"></div>
-                        <button type="button" onclick="addSubject('ol')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">විෂයයක් එක් කරන්න (Add Subject)</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Work Experience -->
-                <div class="form-step" data-step="3">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">3. රැකියා පළපුරුද්ද (Work Experience)</h2>
-                    <div id="work-exp-container"></div>
-                    <button type="button" onclick="addSection('work-exp')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
-                </div>
-
-                <!-- Step 4: Skills -->
-                <div class="form-step" data-step="4">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">4. කුසලතා (Skills)</h2>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2 text-slate-600">භාෂා කුසලතා (Language Skills)</h3>
-                            <div id="language-skills-container" class="space-y-2"></div>
-                             <button type="button" onclick="addLanguageSkill()" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">භාෂාවක් එක් කරන්න (Add Language)</button>
-                        </div>
-                         <div>
-                            <h3 class="font-semibold text-lg mb-2 text-slate-600">පරිගණක කුසලතා (Computer Skills)</h3>
-                            <textarea id="computerSkills" name="computerSkills" placeholder="Microsoft Office, Photoshop, Programming Languages..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2 text-slate-600">වෙනත් කුසලතා (Other Skills)</h3>
-                            <textarea id="otherSkills" name="otherSkills" placeholder="Driving License, Communication Skills, Teamwork..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 5: Awards -->
-                <div class="form-step" data-step="5">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">5. සම්මාන සහ ජයග්‍රහණ (Awards and Achievements)</h2>
-                    <div id="awards-container"></div>
-                    <button type="button" onclick="addSection('awards')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
-                </div>
-
-                <!-- Step 6: Hobbies -->
-                <div class="form-step" data-step="6">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">6. විනෝදාංශ සහ රුචිකත්වයන් (Hobbies and Interests)</h2>
-                    <textarea id="hobbies" name="hobbies" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
-                </div>
-
-                <!-- Step 7: Additional Info -->
-                <div class="form-step" data-step="7">
-                     <h2 class="text-2xl font-bold mb-6 text-slate-700">7. අමතර තොරතුරු (Additional Information)</h2>
-                    <textarea id="additionalInfo" name="additionalInfo" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
-                </div>
-
-                <!-- Step 8: References -->
-                <div class="form-step" data-step="8">
-                    <h2 class="text-2xl font-bold mb-6 text-slate-700">8. විමර්ශන (References)</h2>
-                    <div class="flex items-center mb-4">
-                        <input id="refRequest" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                        <label for="refRequest" class="ml-2 block text-sm text-gray-900">අවශ්‍ය නම් පමණක් ලබා දීමට (References available upon request)</label>
-                    </div>
-                    <div id="references-container"></div>
-                    <button type="button" onclick="addSection('references')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <div class="mt-8 flex justify-between">
-                    <button type="button" id="prevBtn" class="py-2 px-4 rounded-md font-semibold btn-secondary">පෙර (Previous)</button>
-                    <button type="button" id="skipBtn" class="py-2 px-4 rounded-md font-semibold btn-tertiary">මඟ හරින්න (Skip)</button>
-                    <button type="button" id="nextBtn" class="py-2 px-4 rounded-md font-semibold btn-primary">ඊළඟ (Next)</button>
-                    <button type="button" id="submitBtn" class="hidden py-2 px-6 rounded-md font-semibold btn-primary">CV එක සාදන්න (Generate CV)</button>
-                </div>
-            </form>
+            <!-- CV Preview Container -->
+            <div id="cvPreviewWrapper" class="hidden mt-10">
+                 <h2 class="text-3xl font-bold text-center mb-6" data-lang-key="preview_title">Your CV Preview</h2>
+                 <div id="cvPreviewContainer">
+                    <!-- CV content will be injected here -->
+                 </div>
+                 <div class="text-center mt-8">
+                    <button id="downloadBtn" class="py-3 px-6 rounded-lg font-bold text-white bg-green-600 hover:bg-green-700 transition-colors" data-lang-key="btn_download_pdf">Download as PDF</button>
+                    <button id="editBtn" class="ml-4 py-3 px-6 rounded-lg font-bold btn-secondary" data-lang-key="btn_edit">Edit Again</button>
+                 </div>
+            </div>
         </div>
+    </main>
+    
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer light-background">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Propix Lk</span>
+            </a>
+            <p>Offering expert Graphic Design Services to elevate your brand. Visually stunning solutions are crafted Us to make you stand out.</p>
+            <div class="social-links d-flex mt-4">
+              <a href="https://wa.me/message/JGOBR5KKO5UAF1"><i class="bi bi-whatsapp"></i></a>
+              <a href="https://t.me/propixlk"><i class="bi bi-telegram"></i></a>
+              <a href="https://www.tiktok.com/@propix_lk?_t=ZS-8w1kGAKPsbC&_r=1"><i class="bi bi-tiktok"></i></a>
+              <a href="https://www.facebook.com/share/1Bj9wAdLRN/"><i class="bi bi-facebook"></i></a>
+              <a href="https://youtube.com/@propixlk?si=ef645iRbOCQ4nPaR"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
 
-        <!-- CV Preview Container -->
-        <div id="cvPreviewWrapper" class="hidden mt-10">
-             <h2 class="text-3xl font-bold text-center text-slate-800 mb-6">ඔබේ CV එකේ පෙරදසුන</h2>
-             <div id="cvPreview" class="p-8 md:p-12 bg-white shadow-lg rounded-lg">
-                <!-- CV content will be injected here -->
-             </div>
-             <div class="text-center mt-8">
-                <button id="downloadBtn" class="py-3 px-6 rounded-lg font-bold text-white bg-green-600 hover:bg-green-700 transition-colors">PDF ලෙස බාගත කරන්න (Download as PDF)</button>
-                <button id="editBtn" class="ml-4 py-3 px-6 rounded-lg font-bold btn-secondary"> නැවත සකසන්න (Edit Again)</button>
-             </div>
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about-us.html">About us</a></li>
+              <li><a href="service-details.html">Services</a></li>
+              <li><a href="terms-and-conditions.html">Terms of service</a></li>
+              <li><a href="privacy-policy.html">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Other Links</h4>
+            <ul>
+              <li><a href="buy.html">Order</a></li>
+              <li><a href="ads.html">Ad Packs</a></li>
+              <li><a href="update.html">Edu Hub</a></li>
+              <li><a href="portfolio.html">portfolio</a></li>
+              <li><a href="index.html#testimonials">Testimonials</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>Monaragala</p>
+            <p>Sri Lanka</p>
+            <p></p>
+            <p class="mt-4"><strong>Phone:</strong> <span><a href="https://wa.me/message/JGOBR5KKO5UAF1">+94 76 829 44 96</a></span></p>
+            <p><strong>Email:</strong> <span><a href="mailto:propixlk@gmail.com">propixlk@gmail.com</a></span></p>
+          </div>
+
         </div>
+      </div>
 
+      <div class="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">propix lk</strong> <span>All Rights Reserved</span></p>
+        <div class="credits">
+          2024 - 2025
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader">
+      <div class="loader"></div>
     </div>
 
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <script>
+        // --- Language Data ---
+        const langData = {
+            'en': {
+                'home': 'Home', 'about': 'About', 'services': 'Services', 'portfolio': 'Portfolio', 'order': 'Order', 'more_links': 'More Links', 'contact': 'Contact',
+                'builder_title': 'CV Builder', 'builder_subtitle': 'Easily create your professional resume.',
+                'step': 'Step', 'pd_title': '1. Personal Details', 'pd_photo': 'Professional Photo',
+                'pd_fullname': 'Full Name', 'pd_nic': 'NIC', 'pd_email': 'Email', 'pd_phone': 'Phone Number',
+                'pd_links': 'Linkedin / Portfolio Link', 'pd_address': 'Address & Postal Code',
+                'pd_dob': 'Date of Birth', 'pd_gender': 'Gender', 'select_option': 'Select',
+                'gender_male': 'Male', 'gender_female': 'Female', 'pd_marital': 'Marital Status',
+                'marital_single': 'Single', 'marital_married': 'Married', 'pd_nationality': 'Nationality',
+                'pd_about': 'About You (Short Summary)', 'edu_title': '2. Educational Qualifications',
+                'edu_degree_title': 'Degree/Post-Graduate', 'edu_other_title': 'Other Qualifications',
+                'edu_al_title': 'A/L (Advanced Level)', 'edu_school': 'School', 'edu_index': 'Index Number',
+                'add_subject': 'Add Subject', 'edu_ol_title': 'O/L (Ordinary Level)',
+                'work_title': '3. Work Experience', 'skills_title': '4. Skills',
+                'skills_lang_title': 'Language Skills', 'add_language': 'Add Language',
+                'skills_comp_title': 'Computer Skills', 'skills_comp_placeholder': 'Microsoft Office, Photoshop, Programming Languages...',
+                'skills_other_title': 'Other Skills', 'skills_other_placeholder': 'Driving License, Communication Skills, Teamwork...',
+                'awards_title': '5. Awards and Achievements', 'addinfo_title': '6. Additional Information',
+                'ref_title': '7. References', 'ref_request': 'References available upon request',
+                'add_more': 'Add More', 'btn_prev': 'Previous', 'btn_skip': 'Skip', 'btn_next': 'Next',
+                'btn_submit': 'Check & Submit', 'btn_remove': 'Remove', 'subject_placeholder': 'Subject',
+                'grade_placeholder': 'Grade', 'degree_inst_ph': 'Name of Institution', 'degree_course_ph': 'Name of Course',
+                'degree_name_ph': 'Degree/Diploma Obtained', 'degree_spec_ph': 'Specialization',
+                'degree_start_ph': 'Start Date (e.g., Jan 2020)', 'degree_end_ph': 'End Date (e.g., Dec 2023)',
+                'qual_inst_ph': 'Name of Institution', 'qual_course_ph': 'Name of Course', 'qual_cert_ph': 'Certificate Obtained',
+                'qual_period_ph': 'Period (e.g., 2022-2023)', 'work_company_ph': 'Company Name', 'work_title_ph': 'Job Title',
+                'work_period_ph': 'Period (e.g., Jan 2022 - Present)', 'work_desc_ph': 'Responsibilities and Duties',
+                'award_ph': 'Award or Achievement', 'ref_name_ph': 'Name', 'ref_title_ph': 'Job Title',
+                'ref_org_ph': 'Organization', 'ref_contact_ph': 'Phone / Email', 'lang_ph': 'Language (e.g., English)',
+                'lang_prof_ph': 'Proficiency', 'design_title': 'Submission Successful!',
+                'design_subtitle': 'Now, choose a design for your CV.', 'design_classic': 'Classic',
+                'design_modern': 'Modern', 'design_creative': 'Creative', 'btn_generate_pdf': 'Generate Final CV',
+                'preview_title': 'Your CV Preview', 'btn_download_pdf': 'Download as PDF', 'btn_edit': 'Edit Again'
+            },
+            'si': {
+                'home': 'මුල් පිටුව', 'about': 'අපි ගැන', 'services': 'සේවාවන්', 'portfolio': 'නිර්මාණ', 'order': 'ඇණවුම් කරන්න', 'more_links': 'තවත්', 'contact': 'සම්බන්ධ වන්න',
+                'builder_title': 'CV සාදන්නා', 'builder_subtitle': 'ඔබේ වෘත්තීය ජීව දත්ත පත්‍රිකාව පහසුවෙන් නිර්මාණය කරගන්න.',
+                'step': 'පියවර', 'pd_title': '1. පුද්ගලික තොරතුරු', 'pd_photo': 'වෘත්තීය ඡායාරූපයක්',
+                'pd_fullname': 'සම්පූර්ණ නම', 'pd_nic': 'ජාතික හැඳුනුම්පත් අංකය', 'pd_email': 'විද්‍යුත් තැපෑල',
+                'pd_phone': 'දුරකථන අංකය', 'pd_links': 'Linkedin / Portfolio සබැඳිය', 'pd_address': 'ලිපිනය සහ තැපැල් කේතය',
+                'pd_dob': 'උපන් දිනය', 'pd_gender': 'ස්ත්‍රී/පුරුෂ භාවය', 'select_option': 'තෝරන්න',
+                'gender_male': 'පුරුෂ', 'gender_female': 'ස්ත්‍රී', 'pd_marital': 'විවාහක අවිවාහක බව',
+                'marital_single': 'අවිවාහක', 'marital_married': 'විවාහක', 'pd_nationality': 'ජාතිකත්වය',
+                'pd_about': 'ඔබ ගැන කෙටි හැදින්වීමක්', 'edu_title': '2. අධ්‍යාපන සුදුසුකම්',
+                'edu_degree_title': 'උපාධි/පශ්චාත් උපාධි', 'edu_other_title': 'වෙනත් වෘත්තීය සුදුසුකම්',
+                'edu_al_title': 'උසස් පෙළ', 'edu_school': 'පාසල', 'edu_index': 'විභාග අංකය',
+                'add_subject': 'විෂයයක් එක් කරන්න', 'edu_ol_title': 'සාමාන්‍ය පෙළ',
+                'work_title': '3. රැකියා පළපුරුද්ද', 'skills_title': '4. කුසලතා',
+                'skills_lang_title': 'භාෂා කුසලතා', 'add_language': 'භාෂාවක් එක් කරන්න',
+                'skills_comp_title': 'පරිගණක කුසලතා', 'skills_comp_placeholder': 'Microsoft Office, Photoshop, ක්‍රමලේඛන භාෂා...',
+                'skills_other_title': 'වෙනත් කුසලතා', 'skills_other_placeholder': 'රියදුරු බලපත්‍රය, සන්නිවේදන කුසලතා...',
+                'awards_title': '5. සම්මාන සහ ජයග්‍රහණ', 'addinfo_title': '6. අමතර තොරතුරු',
+                'ref_title': '7. විමර්ශන', 'ref_request': 'අවශ්‍ය නම් පමණක් ලබා දීමට',
+                'add_more': 'තව එක් කරන්න', 'btn_prev': 'පෙර', 'btn_skip': 'මඟ හරින්න', 'btn_next': 'ඊළඟ',
+                'btn_submit': 'පරීක්ෂා කර ඉදිරිපත් කරන්න', 'btn_remove': 'ඉවත් කරන්න', 'subject_placeholder': 'විෂය',
+                'grade_placeholder': 'ප්‍රතිඵලය', 'degree_inst_ph': 'ආයතනයේ නම', 'degree_course_ph': 'පාඨමාලාවේ නම',
+                'degree_name_ph': 'ලබාගත් උපාධිය/ඩිප්ලෝමාව', 'degree_spec_ph': 'විශේෂීකරණය',
+                'degree_start_ph': 'ආරම්භ කළ දිනය (උදා: ජන 2020)', 'degree_end_ph': 'අවසන් කළ දිනය (උදා: දෙසැ 2023)',
+                'qual_inst_ph': 'ආයතනයේ නම', 'qual_course_ph': 'පාඨමාලාවේ නම', 'qual_cert_ph': 'ලබාගත් සහතිකය',
+                'qual_period_ph': 'කාලය (උදා: 2022-2023)', 'work_company_ph': 'ආයතනයේ නම', 'work_title_ph': 'තනතුර',
+                'work_period_ph': 'සේවා කාලය (උදා: ජන 2022 - වර්තමානය)', 'work_desc_ph': 'වගකීම් සහ රාජකාරි',
+                'award_ph': 'සම්මානය හෝ ජයග්‍රහණය', 'ref_name_ph': 'නම', 'ref_title_ph': 'තනතුර',
+                'ref_org_ph': 'ආයතනය', 'ref_contact_ph': 'දුරකථන / විද්‍යුත් තැපෑල', 'lang_ph': 'භාෂාව (උදා: ඉංග්‍රීසි)',
+                'lang_prof_ph': 'ප්‍රවීණතාව', 'design_title': 'ඉදිරිපත් කිරීම සාර්ථකයි!',
+                'design_subtitle': 'දැන්, ඔබේ CV පත්‍රිකාව සඳහා මෝස්තරයක් තෝරන්න.', 'design_classic': 'සම්භාව්‍ය',
+                'design_modern': 'නවීන', 'design_creative': 'නිර්මාණශීලී', 'btn_generate_pdf': 'අවසාන CV එක සාදන්න',
+                'preview_title': 'ඔබේ CV එකේ පෙරදසුන', 'btn_download_pdf': 'PDF ලෙස බාගත කරන්න', 'btn_edit': 'නැවත සකසන්න'
+            }
+        };
+
         // --- State Management ---
         let currentStep = 1;
-        const totalSteps = 8;
+        const totalSteps = 7;
+        let currentLang = 'en';
+        let cvDataStore = {};
+        
         const formSteps = document.querySelectorAll('.form-step');
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -304,12 +594,18 @@
         const cvPreviewWrapper = document.getElementById('cvPreviewWrapper');
         const downloadBtn = document.getElementById('downloadBtn');
         const editBtn = document.getElementById('editBtn');
+        const langEnBtn = document.getElementById('lang-en');
+        const langSiBtn = document.getElementById('lang-si');
+        const submissionStatus = document.getElementById('submissionStatus');
+        const designChooserWrapper = document.getElementById('designChooserWrapper');
+        const generatePdfBtn = document.getElementById('generatePdfBtn');
+        const cvForm = document.getElementById('cvForm');
 
         // --- Utility Functions ---
         const updateButtons = () => {
             prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
-            skipBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
-            nextBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+            skipBtn.style.display = currentStep >= totalSteps ? 'none' : 'inline-block';
+            nextBtn.style.display = currentStep >= totalSteps ? 'none' : 'inline-block';
             submitBtn.style.display = currentStep === totalSteps ? 'inline-block' : 'none';
         };
 
@@ -317,8 +613,27 @@
             formSteps.forEach(s => s.classList.remove('active'));
             document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
             progressBar.style.width = `${(step / totalSteps) * 100}%`;
-            stepIndicator.textContent = `පියවර ${step} / ${totalSteps}`;
+            document.querySelector('#step-indicator span').textContent = langData[currentLang]['step'];
+            stepIndicator.childNodes[2].nodeValue = ` ${step} / ${totalSteps}`;
             updateButtons();
+        };
+        
+        const switchLanguage = (lang) => {
+            currentLang = lang;
+            langEnBtn.classList.toggle('active', lang === 'en');
+            langSiBtn.classList.toggle('active', lang === 'si');
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.getAttribute('data-lang-key');
+                if (langData[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = langData[lang][key];
+                    } else {
+                        el.textContent = langData[lang][key];
+                    }
+                }
+            });
+            // Update step indicator language
+            document.querySelector('#step-indicator span').textContent = langData[currentLang]['step'];
         };
 
         // --- Navigation ---
@@ -345,39 +660,18 @@
 
         editBtn.addEventListener('click', () => {
             cvPreviewWrapper.classList.add('hidden');
-            formWrapper.classList.remove('hidden');
+            designChooserWrapper.classList.remove('hidden');
         });
 
-        // --- Dynamic Section Addition ---
-        const createInput = (type, name, placeholder, className = 'w-full p-2 border rounded-md input-style mt-1') => {
-            const input = document.createElement('input');
-            input.type = type;
-            input.name = name;
-            input.placeholder = placeholder;
-            input.className = className;
-            return input;
-        };
-        
-        const createTextarea = (name, placeholder, rows = 3, className = 'w-full p-2 border rounded-md input-style mt-1') => {
-            const textarea = document.createElement('textarea');
-            textarea.name = name;
-            textarea.placeholder = placeholder;
-            textarea.rows = rows;
-            textarea.className = className;
-            return textarea;
-        };
-        
-        const createLabel = (text, className = 'label-style text-sm') => {
-            const label = document.createElement('label');
-            label.textContent = text;
-            label.className = className;
-            return label;
-        };
+        langEnBtn.addEventListener('click', () => switchLanguage('en'));
+        langSiBtn.addEventListener('click', () => switchLanguage('si'));
 
+        // --- Dynamic Section Addition ---
         const createRemoveButton = (elementToRemove) => {
             const button = document.createElement('button');
             button.type = 'button';
-            button.textContent = 'ඉවත් කරන්න (Remove)';
+            button.textContent = langData[currentLang]['btn_remove'];
+            button.setAttribute('data-lang-key', 'btn_remove');
             button.className = 'mt-2 text-xs text-red-600 hover:text-red-800';
             button.onclick = () => elementToRemove.remove();
             return button;
@@ -389,48 +683,41 @@
             wrapper.className = 'p-3 border rounded-md mb-4 relative';
 
             if (type === 'degree') {
-                wrapper.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="degreeInst" placeholder="Name of Institution" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">පාඨමාලාවේ නම</label><input type="text" name="degreeCourse" placeholder="Name of Course" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">ලබාගත් උපාධිය/ඩිප්ලෝමාව</label><input type="text" name="degreeName" placeholder="Degree/Diploma Obtained" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">විශේෂීකරණය</label><input type="text" name="degreeSpec" placeholder="Specialization" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">ආරම්භ කළ දිනය</label><input type="text" name="degreeStart" placeholder="Start Date (e.g., Jan 2020)" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">අවසන් කළ දිනය</label><input type="text" name="degreeEnd" placeholder="End Date (e.g., Dec 2023)" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                    </div>
-                `;
+                wrapper.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="label-style text-sm" data-lang-key="degree_inst_ph">Name of Institution</label><input type="text" name="degreeInst" placeholder="${langData[currentLang]['degree_inst_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="degree_course_ph">Name of Course</label><input type="text" name="degreeCourse" placeholder="${langData[currentLang]['degree_course_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="degree_name_ph">Degree/Diploma Obtained</label><input type="text" name="degreeName" placeholder="${langData[currentLang]['degree_name_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="degree_spec_ph">Specialization</label><input type="text" name="degreeSpec" placeholder="${langData[currentLang]['degree_spec_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="degree_start_ph">Start Date</label><input type="text" name="degreeStart" placeholder="${langData[currentLang]['degree_start_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="degree_end_ph">End Date</label><input type="text" name="degreeEnd" placeholder="${langData[currentLang]['degree_end_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                </div>`;
             } else if (type === 'other-qual') {
-                 wrapper.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="qualInst" placeholder="Name of Institution" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">පාඨමාලාවේ නම</label><input type="text" name="qualCourse" placeholder="Name of Course" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">ලබාගත් සහතිකය</label><input type="text" name="qualCert" placeholder="Certificate Obtained" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">කාලය</label><input type="text" name="qualPeriod" placeholder="Period (e.g., 2022-2023)" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                    </div>
-                `;
+                 wrapper.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="label-style text-sm" data-lang-key="qual_inst_ph">Name of Institution</label><input type="text" name="qualInst" placeholder="${langData[currentLang]['qual_inst_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="qual_course_ph">Name of Course</label><input type="text" name="qualCourse" placeholder="${langData[currentLang]['qual_course_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="qual_cert_ph">Certificate Obtained</label><input type="text" name="qualCert" placeholder="${langData[currentLang]['qual_cert_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="qual_period_ph">Period</label><input type="text" name="qualPeriod" placeholder="${langData[currentLang]['qual_period_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                </div>`;
             } else if (type === 'work-exp') {
-                 wrapper.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="workCompany" placeholder="Company Name" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">තනතුර</label><input type="text" name="workTitle" placeholder="Job Title" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div class="md:col-span-2"><label class="label-style text-sm">සේවා කාලය</label><input type="text" name="workPeriod" placeholder="Period (e.g., Jan 2022 - Present)" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div class="md:col-span-2"><label class="label-style text-sm">වගකීම් සහ රාජකාරි</label><textarea name="workDesc" placeholder="Responsibilities and Duties" rows="3" class="w-full p-2 border rounded-md input-style mt-1"></textarea></div>
-                    </div>
-                `;
+                 wrapper.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="label-style text-sm" data-lang-key="work_company_ph">Company Name</label><input type="text" name="workCompany" placeholder="${langData[currentLang]['work_company_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="work_title_ph">Job Title</label><input type="text" name="workTitle" placeholder="${langData[currentLang]['work_title_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div class="md:col-span-2"><label class="label-style text-sm" data-lang-key="work_period_ph">Period</label><input type="text" name="workPeriod" placeholder="${langData[currentLang]['work_period_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div class="md:col-span-2"><label class="label-style text-sm" data-lang-key="work_desc_ph">Responsibilities</label><textarea name="workDesc" placeholder="${langData[currentLang]['work_desc_ph']}" rows="3" class="w-full p-2 border rounded-md input-style mt-1"></textarea></div>
+                </div>`;
             } else if (type === 'awards') {
-                wrapper.appendChild(createInput('text', 'award', 'සම්මානය හෝ ජයග්‍රහණය (Award or Achievement)'));
+                wrapper.innerHTML = `<input type="text" name="award" placeholder="${langData[currentLang]['award_ph']}" class="w-full p-2 border rounded-md input-style">`;
             } else if (type === 'references') {
-                 wrapper.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="label-style text-sm">නම</label><input type="text" name="refName" placeholder="Name" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">තනතුර</label><input type="text" name="refTitle" placeholder="Job Title" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">ආයතනය</label><input type="text" name="refOrg" placeholder="Organization" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                        <div><label class="label-style text-sm">සම්බන්ධතා</label><input type="text" name="refContact" placeholder="Phone / Email" class="w-full p-2 border rounded-md input-style mt-1"></div>
-                    </div>
-                `;
+                 wrapper.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="label-style text-sm" data-lang-key="ref_name_ph">Name</label><input type="text" name="refName" placeholder="${langData[currentLang]['ref_name_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="ref_title_ph">Job Title</label><input type="text" name="refTitle" placeholder="${langData[currentLang]['ref_title_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="ref_org_ph">Organization</label><input type="text" name="refOrg" placeholder="${langData[currentLang]['ref_org_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    <div><label class="label-style text-sm" data-lang-key="ref_contact_ph">Contact</label><input type="text" name="refContact" placeholder="${langData[currentLang]['ref_contact_ph']}" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                </div>`;
             }
             wrapper.appendChild(createRemoveButton(wrapper));
             container.appendChild(wrapper);
+            switchLanguage(currentLang); // Re-apply language to new elements
         };
 
         const addSubject = (type) => {
@@ -438,12 +725,11 @@
             const wrapper = document.createElement('div');
             wrapper.className = 'grid grid-cols-2 gap-4 mb-2';
             wrapper.innerHTML = `
-                <input type="text" name="${type}Subject" placeholder="විෂය (Subject)" class="w-full p-2 border rounded-md input-style">
+                <input type="text" name="${type}Subject" placeholder="${langData[currentLang]['subject_placeholder']}" class="w-full p-2 border rounded-md input-style">
                 <div class="flex items-center">
-                    <input type="text" name="${type}Grade" placeholder="ප්‍රතිඵලය (Grade)" class="w-full p-2 border rounded-md input-style">
+                    <input type="text" name="${type}Grade" placeholder="${langData[currentLang]['grade_placeholder']}" class="w-full p-2 border rounded-md input-style">
                     <button type="button" onclick="this.parentElement.parentElement.remove()" class="ml-2 text-red-500 hover:text-red-700">✖</button>
-                </div>
-            `;
+                </div>`;
             container.appendChild(wrapper);
         };
         
@@ -452,184 +738,228 @@
             const wrapper = document.createElement('div');
             wrapper.className = 'p-3 border rounded-md mb-2';
             wrapper.innerHTML = `
-                <div class="flex items-center justify-between">
-                    <input type="text" name="language" placeholder="භාෂාව (e.g., English)" class="w-1/3 p-2 border rounded-md input-style">
-                    <input type="text" name="langProficiency" placeholder="ප්‍රවීණතාව (e.g., Fluent)" class="w-1/2 p-2 border rounded-md input-style">
-                    <button type="button" onclick="this.parentElement.parentElement.remove()" class="ml-2 text-red-500 hover:text-red-700">✖</button>
-                </div>
-            `;
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <input type="text" name="language" placeholder="${langData[currentLang]['lang_ph']}" class="w-full sm:w-1/3 p-2 border rounded-md input-style">
+                    <div class="flex items-center w-full sm:w-1/2">
+                        <input type="range" name="langProficiency" min="0" max="100" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" oninput="this.nextElementSibling.textContent = this.value + '%'">
+                        <span class="ml-4 w-12 text-center">50%</span>
+                    </div>
+                    <button type="button" onclick="this.parentElement.parentElement.remove()" class="text-red-500 hover:text-red-700">✖</button>
+                </div>`;
             container.appendChild(wrapper);
         };
 
         // --- Initial Dynamic Sections ---
         window.onload = () => {
+            // Add one of each section type to start with
             addSection('degree');
             addSection('other-qual');
             addSection('work-exp');
             addSubject('al');
             addSubject('ol');
             addLanguageSkill();
+            
+            // Set initial state
             showStep(currentStep);
+            switchLanguage('en'); // Default to English
         };
 
-        // --- CV Generation ---
-        submitBtn.addEventListener('click', () => {
-            const formData = new FormData(document.getElementById('cvForm'));
+        // --- Form Submission & CV Generation ---
+        cvForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formWrapper.classList.add('hidden');
+            submissionStatus.classList.remove('hidden');
+            // Clear previous error messages if any
+            const existingErrorBtn = submissionStatus.querySelector('button');
+            if(existingErrorBtn) existingErrorBtn.remove();
+            document.getElementById('submissionSpinner').style.display = 'block';
+            document.getElementById('submissionMessage').textContent = 'Submitting...';
+
+
+            const formData = new FormData(cvForm);
+            
+            // Store data for later use
             const data = {};
-            // Simple key-value pairs
             for (let [key, value] of formData.entries()) {
                 if (!data[key]) {
                     data[key] = value;
                 }
             }
-            
-            // Handle multiple values
             const getMultipleValues = (name) => formData.getAll(name).filter(v => v.trim() !== '');
-            
             data.alSubjects = getMultipleValues('alSubject').map((subj, i) => ({ subject: subj, grade: getMultipleValues('alGrade')[i] || '' }));
             data.olSubjects = getMultipleValues('olSubject').map((subj, i) => ({ subject: subj, grade: getMultipleValues('olGrade')[i] || '' }));
-            data.languages = getMultipleValues('language').map((lang, i) => ({ language: lang, proficiency: getMultipleValues('langProficiency')[i] || '' }));
+            data.languages = getMultipleValues('language').map((lang, i) => ({ language: lang, proficiency: getMultipleValues('langProficiency')[i] || '0' }));
             data.awards = getMultipleValues('award');
-            
-            const getGroupedValues = (fields, groupName) => {
+            const getGroupedValues = (fields) => {
                 const items = [];
                 const firstFieldValues = getMultipleValues(fields[0]);
                 for (let i = 0; i < firstFieldValues.length; i++) {
                     const item = {};
-                    fields.forEach(field => {
-                        item[field] = getMultipleValues(field)[i] || '';
-                    });
+                    fields.forEach(field => { item[field] = getMultipleValues(field)[i] || ''; });
                     items.push(item);
                 }
                 return items;
             };
-
-            data.degrees = getGroupedValues(['degreeInst', 'degreeCourse', 'degreeName', 'degreeSpec', 'degreeStart', 'degreeEnd'], 'degrees');
-            data.otherQuals = getGroupedValues(['qualInst', 'qualCourse', 'qualCert', 'qualPeriod'], 'otherQuals');
-            data.workExperiences = getGroupedValues(['workCompany', 'workTitle', 'workPeriod', 'workDesc'], 'workExperiences');
-            data.references = getGroupedValues(['refName', 'refTitle', 'refOrg', 'refContact'], 'references');
+            data.degrees = getGroupedValues(['degreeInst', 'degreeCourse', 'degreeName', 'degreeSpec', 'degreeStart', 'degreeEnd']);
+            data.otherQuals = getGroupedValues(['qualInst', 'qualCourse', 'qualCert', 'qualPeriod']);
+            data.workExperiences = getGroupedValues(['workCompany', 'workTitle', 'workPeriod', 'workDesc']);
+            data.references = getGroupedValues(['refName', 'refTitle', 'refOrg', 'refContact']);
+            data.refRequest = document.getElementById('refRequest').checked;
             
-            // Photo
-            const photoFile = document.getElementById('photo').files[0];
-            if (photoFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    data.photoUrl = e.target.result;
-                    generateAndShowCV(data);
-                };
-                reader.readAsDataURL(photoFile);
-            } else {
-                generateAndShowCV(data);
-            }
+            const processPhotoAndSubmit = async (photoFile) => {
+                if (photoFile) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        data.photoUrl = e.target.result;
+                        cvDataStore = data; // Save data with photo
+                    };
+                    reader.readAsDataURL(photoFile);
+                } else {
+                     cvDataStore = data; // Save data without photo
+                }
+
+                try {
+                    const response = await fetch(cvForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        document.getElementById('submissionMessage').textContent = 'Submission Successful!';
+                        document.getElementById('submissionSpinner').style.display = 'none';
+                        setTimeout(() => {
+                            submissionStatus.classList.add('hidden');
+                            designChooserWrapper.classList.remove('hidden');
+                        }, 1500);
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    console.error('Form Submission Error:', error);
+                    document.getElementById('submissionMessage').textContent = 'Submission Failed. Please check your internet connection and try again.';
+                    document.getElementById('submissionSpinner').style.display = 'none';
+                    const backBtn = document.createElement('button');
+                    backBtn.textContent = 'Go Back';
+                    backBtn.className = 'mt-4 py-2 px-4 rounded-md font-semibold btn-secondary';
+                    backBtn.onclick = () => {
+                        submissionStatus.classList.add('hidden');
+                        formWrapper.classList.remove('hidden');
+                        backBtn.remove();
+                    };
+                    submissionStatus.appendChild(backBtn);
+                }
+            };
+            
+            await processPhotoAndSubmit(document.getElementById('photo').files[0]);
+        });
+        
+        // --- Design Selection ---
+        document.querySelectorAll('.design-choice').forEach(choice => {
+            choice.addEventListener('click', () => {
+                document.querySelectorAll('.design-choice').forEach(c => c.classList.remove('selected'));
+                choice.classList.add('selected');
+            });
         });
 
-        const generateAndShowCV = (data) => {
-            const preview = document.getElementById('cvPreview');
-            
-            const renderList = (items, renderFn) => items && items.length > 0 ? items.map(renderFn).join('') : '<p class="text-gray-500 text-sm">තොරතුරු ඇතුළත් කර නොමැත.</p>';
-            
-            preview.innerHTML = `
-                <div class="flex flex-col md:flex-row items-start gap-8">
-                    <!-- Left Column -->
-                    <div class="w-full md:w-1/3 text-center md:text-left">
-                        ${data.photoUrl ? `<img src="${data.photoUrl}" alt="Profile Photo" class="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 object-cover">` : ''}
-                        <h1 class="text-3xl font-bold text-slate-800">${data.fullName || ''}</h1>
-                        <div class="mt-6 text-sm space-y-2 text-slate-600">
-                            <p><strong>විද්‍යුත් තැපෑල:</strong><br>${data.email || ''}</p>
-                            <p><strong>දුරකථන අංකය:</strong><br>${data.phone || ''}</p>
-                            <p><strong>ලිපිනය:</strong><br>${data.address || ''}</p>
-                            ${data.links ? `<p><strong>සබැඳි:</strong><br><a href="${data.links}" class="text-blue-600">${data.links}</a></p>` : ''}
-                        </div>
-                         <div class="mt-6 text-sm space-y-2 text-slate-600">
-                             ${data.dob ? `<p><strong>උපන් දිනය:</strong> ${data.dob}</p>` : ''}
-                             ${data.gender ? `<p><strong>ස්ත්‍රී/පුරුෂ භාවය:</strong> ${data.gender}</p>` : ''}
-                             ${data.maritalStatus ? `<p><strong>විවාහක බව:</strong> ${data.maritalStatus}</p>` : ''}
-                             ${data.nic ? `<p><strong>ජා.හැ.අංකය:</strong> ${data.nic}</p>` : ''}
-                             ${data.nationality ? `<p><strong>ජාතිකත්වය:</strong> ${data.nationality}</p>` : ''}
-                         </div>
-                    </div>
-                    <!-- Right Column -->
-                    <div class="w-full md:w-2/3">
-                        ${data.about ? `<div><h2>SUMMARY</h2><p class="mt-2 text-sm">${data.about}</p></div>` : ''}
-                        
-                        ${data.workExperiences && data.workExperiences.length > 0 ? `
-                        <div>
-                            <h2>WORK EXPERIENCE</h2>
-                            ${renderList(data.workExperiences, item => `
-                                <div class="mt-3 mb-4">
-                                    <h3>${item.workTitle}</h3>
-                                    <p class="font-semibold text-sm text-slate-700">${item.workCompany} | ${item.workPeriod}</p>
-                                    <p class="text-sm mt-1">${item.workDesc}</p>
-                                </div>
-                            `)}
-                        </div>` : ''}
-                        
-                        <div>
-                            <h2>EDUCATION</h2>
-                            ${renderList(data.degrees, item => `
-                                <div class="mt-3 mb-4">
-                                    <h3>${item.degreeName}</h3>
-                                    <p class="font-semibold text-sm text-slate-700">${item.degreeInst} | ${item.degreeStart} - ${item.degreeEnd}</p>
-                                    <p class="text-sm mt-1">${item.degreeCourse} ${item.degreeSpec ? `(${item.degreeSpec})` : ''}</p>
-                                </div>
-                            `)}
-                        </div>
+        generatePdfBtn.addEventListener('click', () => {
+            const selectedDesign = document.querySelector('.design-choice.selected').dataset.design;
+            generateAndShowCV(cvDataStore, selectedDesign);
+        });
 
-                        ${data.otherQuals && data.otherQuals.length > 0 ? `
-                        <div>
-                            <h2>PROFESSIONAL QUALIFICATIONS</h2>
-                            ${renderList(data.otherQuals, item => `
-                                <div class="mt-3 mb-4">
-                                    <h3>${item.qualCert}</h3>
-                                    <p class="font-semibold text-sm text-slate-700">${item.qualInst} | ${item.qualPeriod}</p>
-                                    <p class="text-sm mt-1">${item.qualCourse}</p>
-                                </div>
-                            `)}
-                        </div>` : ''}
-                        
-                        <div>
-                             <h2>SKILLS</h2>
-                             <div class="mt-2 text-sm space-y-2">
-                                ${data.languages && data.languages.length > 0 ? `<div><strong>Languages:</strong> ${renderList(data.languages, item => `${item.language} (${item.proficiency})`).replace(/<p.*?>/g, '').replace(/<\/p>/g, ', ')}</div>` : ''}
-                                ${data.computerSkills ? `<div><strong>Computer:</strong> ${data.computerSkills}</div>` : ''}
-                                ${data.otherSkills ? `<div><strong>Other:</strong> ${data.otherSkills}</div>` : ''}
-                             </div>
-                        </div>
-
-                        ${data.alSubjects && data.alSubjects.length > 0 ? `
-                        <div>
-                            <h2>A/L QUALIFICATIONS (${data.alSchool || ''})</h2>
-                            <ul class="list-disc list-inside text-sm mt-2">
-                                ${renderList(data.alSubjects, item => `<li>${item.subject}: ${item.grade}</li>`)}
-                            </ul>
-                        </div>` : ''}
-                        
-                        ${data.awards && data.awards.length > 0 ? `
-                        <div>
-                            <h2>AWARDS & ACHIEVEMENTS</h2>
-                            <ul class="list-disc list-inside text-sm mt-2">
-                                ${renderList(data.awards, item => `<li>${item}</li>`)}
-                            </ul>
-                        </div>` : ''}
-                        
-                        ${data.hobbies ? `<div><h2>HOBBIES & INTERESTS</h2><p class="mt-2 text-sm">${data.hobbies}</p></div>` : ''}
-                        
-                        <div>
-                            <h2>REFERENCES</h2>
-                            ${document.getElementById('refRequest').checked ? 
-                                '<p class="mt-2 text-sm">Available upon request.</p>' : 
-                                renderList(data.references, item => `
-                                    <div class="mt-2 text-sm">
-                                        <p><strong>${item.refName}</strong>, ${item.refTitle}<br>${item.refOrg}<br>${item.refContact}</p>
-                                    </div>
-                                `)
-                            }
+        const generateAndShowCV = (data, design) => {
+            const previewContainer = document.getElementById('cvPreviewContainer');
+            const renderList = (items, renderFn) => items && items.length > 0 ? items.map(renderFn).join('') : '';
+            
+            const classicTemplate = `
+                <style>
+                    .cv-classic { font-family: 'Georgia', serif; color: #333; background-color: white; }
+                    .cv-classic h1 { color: #2c3e50; font-size: 2.2rem; font-weight: bold; border-bottom: 2px solid #2c3e50; padding-bottom: 5px; text-align: center;}
+                    .cv-classic h2 { color: #34495e; font-size: 1.1rem; border-bottom: 1px solid #bdc3c7; margin-top: 1rem; padding-bottom: 3px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;}
+                    .cv-classic h3 { font-weight: bold; color: #2c3e50; font-size: 1rem; margin-bottom: 0;}
+                    .cv-classic .cv-header { text-align: center; margin-bottom: 1.5rem; }
+                    .cv-classic .cv-contact p { margin: 2px 0; font-size: 0.9rem; }
+                    .cv-classic .section-content { margin-top: 0.5rem; font-size: 0.95rem; }
+                    .cv-classic .section-content p, .cv-classic .section-content li { line-height: 1.6; }
+                </style>
+                <div class="p-8 bg-white shadow-lg cv-classic">
+                    <div class="cv-header">
+                        <h1>${data.fullName || ''}</h1>
+                        <div class="cv-contact mt-2">
+                            <p>${data.address || ''} | ${data.phone || ''} | ${data.email || ''}</p>
+                            ${data.links ? `<p><a href="${data.links}" class="text-blue-600">${data.links}</a></p>` : ''}
                         </div>
                     </div>
-                </div>
+                    <!-- CONTENT INJECTED HERE -->
+                </div>`;
+            
+            const modernTemplate = `
+                <style>
+                    .cv-modern { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #444; background-color: #f4f4f4;}
+                    .cv-modern .cv-main { display: flex; }
+                    .cv-modern .cv-left-col { width: 35%; background-color: #2c3e50; color: white; padding: 1.5rem; }
+                    .cv-modern .cv-right-col { width: 65%; background-color: white; padding: 1.5rem; }
+                    .cv-modern h1 { font-size: 2.5rem; font-weight: 300; margin-bottom: 0.5rem;}
+                    .cv-modern h2 { color: #3498db; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #f4f4f4; padding-bottom: 5px; margin-top: 1rem; margin-bottom: 0.75rem; font-weight: bold;}
+                    .cv-modern .cv-left-col h2 { color: white; border-bottom-color: #7f8c8d; }
+                    .cv-modern h3 { font-weight: bold; font-size: 1rem; margin-bottom: 0;}
+                    .cv-modern .section-content { font-size: 0.9rem; line-height: 1.5; }
+                </style>
+                <div class="shadow-lg cv-modern">
+                    <div class="cv-main">
+                        <div class="cv-left-col">
+                            ${data.photoUrl ? `<img src="${data.photoUrl}" alt="Profile Photo" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-gray-400">` : ''}
+                            <div class="text-center">
+                                <h1>${data.fullName || ''}</h1>
+                            </div>
+                            <div class="mt-6">
+                                <h2>Contact</h2>
+                                <div class="section-content space-y-2">
+                                    <p><strong>Phone:</strong><br>${data.phone || ''}</p>
+                                    <p><strong>Email:</strong><br>${data.email || ''}</p>
+                                    <p><strong>Address:</strong><br>${data.address || ''}</p>
+                                    ${data.links ? `<p><strong>Link:</strong><br><a href="${data.links}" class="text-blue-300">${data.links}</a></p>` : ''}
+                                </div>
+                            </div>
+                            <!-- LEFT COL CONTENT HERE -->
+                        </div>
+                        <div class="cv-right-col">
+                            <!-- RIGHT COL CONTENT HERE -->
+                        </div>
+                    </div>
+                </div>`;
+            
+            const creativeTemplate = modernTemplate.replace(/#2c3e50/g, '#3B82F6').replace(/#3498db/g, '#1E293B');
+
+            const baseContentClassic = `
+                ${data.about ? `<div><h2>Summary</h2><div class="section-content"><p>${data.about}</p></div></div>` : ''}
+                ${data.workExperiences && data.workExperiences.length > 0 ? `<div><h2>Work Experience</h2><div class="section-content">${renderList(data.workExperiences, item => `<div class="mb-4"><h3>${item.workTitle}</h3><p class="font-semibold text-sm">${item.workCompany} | ${item.workPeriod}</p><p class="text-sm mt-1">${item.workDesc}</p></div>`)}</div></div>` : ''}
+                ${data.degrees && data.degrees.length > 0 ? `<div><h2>Education</h2><div class="section-content">${renderList(data.degrees, item => `<div class="mb-3"><h3>${item.degreeName}</h3><p class="font-semibold text-sm">${item.degreeInst} | ${item.degreeStart} - ${item.degreeEnd}</p></div>`)}</div></div>` : ''}
+                ${data.skills.languages || data.skills.computerSkills || data.skills.otherSkills ? `<div><h2>Skills</h2><div class="section-content space-y-1">${data.languages && data.languages.length > 0 ? `<p><strong>Languages:</strong> ${data.languages.map(l => `${l.language} (${l.proficiency}%)`).join(', ')}</p>` : ''}${data.computerSkills ? `<p><strong>Computer:</strong> ${data.computerSkills}</p>` : ''}${data.otherSkills ? `<p><strong>Other:</strong> ${data.otherSkills}</p>` : ''}</div></div>` : ''}
             `;
             
-            formWrapper.classList.add('hidden');
+            const rightColContent = `
+                ${data.about ? `<div><h2>Summary</h2><div class="section-content"><p>${data.about}</p></div></div>` : ''}
+                ${data.workExperiences && data.workExperiences.length > 0 ? `<div><h2>Work Experience</h2><div class="section-content">${renderList(data.workExperiences, item => `<div class="mb-4"><h3>${item.workTitle}</h3><p class="font-semibold text-sm text-gray-600">${item.workCompany} | ${item.workPeriod}</p><p class="text-sm mt-1">${item.workDesc}</p></div>`)}</div></div>` : ''}
+            `;
+            const leftColContent = `
+                ${data.degrees && data.degrees.length > 0 ? `<div><h2>Education</h2><div class="section-content space-y-3">${renderList(data.degrees, item => `<div><h3>${item.degreeName}</h3><p class="text-sm">${item.degreeInst}</p><p class="text-xs text-gray-300">${item.degreeStart} - ${item.degreeEnd}</p></div>`)}</div></div>` : ''}
+                ${data.languages || data.computerSkills || data.otherSkills ? `<div><h2>Skills</h2><div class="section-content space-y-2">${data.languages && data.languages.length > 0 ? `<div><h3>Languages</h3>${data.languages.map(l => `<p class="text-sm">${l.language} - ${l.proficiency}%</p>`).join('')}</div>` : ''}${data.computerSkills ? `<div><h3>Computer</h3><p class="text-sm">${data.computerSkills}</p></div>` : ''}${data.otherSkills ? `<div><h3>Other</h3><p class="text-sm">${data.otherSkills}</p></div>` : ''}</div></div>` : ''}
+            `;
+
+            if (design === 'classic') {
+                previewContainer.innerHTML = classicTemplate.replace('<!-- CONTENT INJECTED HERE -->', baseContentClassic);
+            } else if (design === 'modern') {
+                previewContainer.innerHTML = modernTemplate
+                    .replace('<!-- RIGHT COL CONTENT HERE -->', rightColContent)
+                    .replace('<!-- LEFT COL CONTENT HERE -->', leftColContent);
+            } else { // Creative
+                previewContainer.innerHTML = creativeTemplate
+                    .replace('<!-- RIGHT COL CONTENT HERE -->', rightColContent)
+                    .replace('<!-- LEFT COL CONTENT HERE -->', leftColContent);
+            }
+            
+            designChooserWrapper.classList.add('hidden');
             cvPreviewWrapper.classList.remove('hidden');
             window.scrollTo(0, 0);
         };
@@ -637,37 +967,32 @@
         // --- PDF Download ---
         downloadBtn.addEventListener('click', () => {
             const { jsPDF } = window.jspdf;
-            const cvElement = document.getElementById('cvPreview');
-            const fullName = document.getElementById('fullName').value || 'CV';
+            const cvElement = document.getElementById('cvPreviewContainer').children[0];
+            const fullName = cvDataStore.fullName || 'CV';
 
-            html2canvas(cvElement, { 
-                scale: 2, // Higher scale for better quality
-                useCORS: true 
-            }).then(canvas => {
+            html2canvas(cvElement, { scale: 2.5, useCORS: true }).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
                 const canvasWidth = canvas.width;
                 const canvasHeight = canvas.height;
                 const ratio = canvasWidth / canvasHeight;
-                const imgWidth = pdfWidth;
-                const imgHeight = imgWidth / ratio;
+                const imgHeight = pdfWidth / ratio;
                 
                 let heightLeft = imgHeight;
                 let position = 0;
 
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pdfHeight;
+                pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+                heightLeft -= pdf.internal.pageSize.getHeight();
 
                 while (heightLeft > 0) {
                     position = heightLeft - imgHeight;
                     pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pdfHeight;
+                    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+                    heightLeft -= pdf.internal.pageSize.getHeight();
                 }
                 
-                pdf.save(`${fullName.replace(/\s+/g, '_')}.pdf`);
+                pdf.save(`${fullName.replace(/\s+/g, '_')}_CV.pdf`);
             });
         });
     </script>
