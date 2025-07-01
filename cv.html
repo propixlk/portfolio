@@ -8,23 +8,19 @@
   <meta name="description" content="Create your professional CV with our step-by-step builder.">
   <meta name="keywords" content="cv builder, resume builder, professional cv, propix lk">
 
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
@@ -136,6 +132,96 @@
         padding-bottom: 0.5rem;
         margin-bottom: 1rem;
     }
+
+    /* === DARK MODE FIXES FOR CV PAGE === */
+    body.dark-mode .cv-form-page,
+    body.dark-mode .section {
+        background-color: var(--background-color);
+        color: var(--default-color);
+    }
+    body.dark-mode .page-title.accent-background {
+        background-color: #1f73b1; /* Darker accent */
+    }
+    body.dark-mode .form-control,
+    body.dark-mode .form-select {
+        background-color: var(--surface-color);
+        color: var(--default-color);
+        border-color: #444;
+    }
+    body.dark-mode .form-control:focus,
+    body.dark-mode .form-select:focus {
+        border-color: var(--accent-color);
+        background-color: var(--surface-color);
+        color: var(--default-color);
+    }
+    body.dark-mode .form-control::placeholder {
+        color: #888;
+    }
+    body.dark-mode .step-indicator .step .step-icon {
+        background-color: #444;
+        color: #ccc;
+    }
+    body.dark-mode .step-indicator .step.active .step-icon {
+        color: #fff;
+        background-color: var(--accent-color);
+    }
+    body.dark-mode .step-indicator .step.completed .step-icon {
+        color: #fff;
+        background-color: #28a745;
+    }
+    body.dark-mode .step-indicator .step .step-label {
+        color: #aaa;
+    }
+    body.dark-mode .step-indicator .step.active .step-label {
+        color: var(--accent-color);
+    }
+    body.dark-mode .step:not(:last-child)::after {
+        background-color: #444;
+    }
+    body.dark-mode .step.completed:not(:last-child)::after {
+        background-color: #28a745;
+    }
+    body.dark-mode .dynamic-section {
+        background-color: #252525;
+        border-color: #444;
+    }
+    body.dark-mode #review-section .review-block {
+        border-color: transparent;
+        background-color: var(--surface-color);
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    body.dark-mode #review-section p {
+        color: var(--default-color);
+    }
+    body.dark-mode .btn-outline-primary {
+        color: var(--accent-color);
+        border-color: var(--accent-color);
+    }
+    body.dark-mode .btn-outline-primary:hover {
+        color: #fff;
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+    }
+    body.dark-mode .btn-secondary {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+    body.dark-mode .btn-secondary:hover {
+        background-color: #4a5056;
+        border-color: #444a4f;
+    }
+    body.dark-mode .design-template {
+        border-color: #444;
+    }
+    body.dark-mode .design-template.selected {
+        border-color: var(--accent-color);
+    }
+    body.dark-mode .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+    }
+
   </style>
 
 </head>
@@ -179,8 +265,8 @@
   <main class="main">
     <div class="page-title accent-background">
       <div class="container">
-        <h1>CV Builder</h1>
-        <p class="mb-0">Fill in your details step-by-step to create a professional CV.</p>
+        <h1 data-translate-key="formTitle">CV Builder</h1>
+        <p class="mb-0" data-translate-key="formSubtitle">Fill in your details step-by-step to create a professional CV.</p>
       </div>
     </div>
 
@@ -188,237 +274,222 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row justify-content-center">
           <div class="col-lg-10">
+            
+            <div class="d-flex justify-content-end">
+              <button type="button" id="translate-btn" class="btn btn-primary mb-4">සිංහලට පරිවර්තනය කරන්න</button>
+            </div>
 
-            <!-- Step Indicator -->
             <ul class="step-indicator">
-                <li class="step active" data-step="1"><div class="step-icon">1</div><div class="step-label">Personal</div></li>
-                <li class="step" data-step="2"><div class="step-icon">2</div><div class="step-label">Education</div></li>
-                <li class="step" data-step="3"><div class="step-icon">3</div><div class="step-label">Experience</div></li>
-                <li class="step" data-step="4"><div class="step-icon">4</div><div class="step-label">Skills</div></li>
-                <li class="step" data-step="5"><div class="step-icon">5</div><div class="step-label">Extra</div></li>
-                <li class="step" data-step="6"><div class="step-icon">6</div><div class="step-label">Design</div></li>
-                <li class="step" data-step="7"><div class="step-icon"><i class="bi bi-check-lg"></i></div><div class="step-label">Review</div></li>
+                <li class="step active" data-step="1"><div class="step-icon">1</div><div class="step-label" data-translate-key="stepPersonal">Personal</div></li>
+                <li class="step" data-step="2"><div class="step-icon">2</div><div class="step-label" data-translate-key="stepEducation">Education</div></li>
+                <li class="step" data-step="3"><div class="step-icon">3</div><div class="step-label" data-translate-key="stepExperience">Experience</div></li>
+                <li class="step" data-step="4"><div class="step-icon">4</div><div class="step-label" data-translate-key="stepSkills">Skills</div></li>
+                <li class="step" data-step="5"><div class="step-icon">5</div><div class="step-label" data-translate-key="stepExtra">Extra</div></li>
+                <li class="step" data-step="6"><div class="step-icon">6</div><div class="step-label" data-translate-key="stepDesign">Design</div></li>
+                <li class="step" data-step="7"><div class="step-icon"><i class="bi bi-check-lg"></i></div><div class="step-label" data-translate-key="stepReview">Review</div></li>
             </ul>
 
             <form action="https://formspree.io/f/xwpolbba" method="POST" id="cv-form" class="cv-form-wizard php-email-form">
               
-              <!-- Step 1: Personal Details -->
               <div class="form-step active" data-step="1">
-                <h4 class="mb-4 text-center">Step 1: Personal Details</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep1">Step 1: Personal Details</h4>
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <label for="fullName" class="form-label">Full Name</label>
+                    <label for="fullName" class="form-label" data-translate-key="labelFullName">Full Name</label>
                     <input type="text" class="form-control" id="fullName" name="fullName">
                   </div>
                   <div class="col-md-6">
-                    <label for="nic" class="form-label">National Identity Card (NIC) Number</label>
+                    <label for="nic" class="form-label" data-translate-key="labelNic">National Identity Card (NIC) Number</label>
                     <input type="text" class="form-control" id="nic" name="nic">
                   </div>
                   <div class="col-12">
-                     <label for="aboutYou" class="form-label">About You (Short Introduction)</label>
+                     <label for="aboutYou" class="form-label" data-translate-key="labelAbout">About You (Short Introduction)</label>
                      <textarea class="form-control" id="aboutYou" name="aboutYou" rows="3"></textarea>
                   </div>
                   <div class="col-md-6">
-                    <label for="email" class="form-label">Email Address</label>
+                    <label for="email" class="form-label" data-translate-key="labelEmail">Email Address</label>
                     <input type="email" class="form-control" id="email" name="email">
                   </div>
                   <div class="col-md-6">
-                    <label for="phone" class="form-label">Phone Number</label>
+                    <label for="phone" class="form-label" data-translate-key="labelPhone">Phone Number</label>
                     <input type="tel" class="form-control" id="phone" name="phone">
                   </div>
                    <div class="col-12">
-                    <label for="portfolioLink" class="form-label">LinkedIn / Portfolio Link</label>
+                    <label for="portfolioLink" class="form-label" data-translate-key="labelPortfolio">LinkedIn / Portfolio Link</label>
                     <input type="url" class="form-control" id="portfolioLink" name="portfolioLink">
                   </div>
                   <div class="col-12">
-                    <label for="address" class="form-label">Address & Postal Code</label>
+                    <label for="address" class="form-label" data-translate-key="labelAddress">Address & Postal Code</label>
                     <textarea class="form-control" id="address" name="address" rows="2"></textarea>
                   </div>
                   <div class="col-md-4">
-                    <label for="dob" class="form-label">Date of Birth</label>
+                    <label for="dob" class="form-label" data-translate-key="labelDob">Date of Birth</label>
                     <input type="date" class="form-control" id="dob" name="dob">
                   </div>
                   <div class="col-md-4">
-                    <label for="gender" class="form-label">Gender</label>
+                    <label for="gender" class="form-label" data-translate-key="labelGender">Gender</label>
                     <select id="gender" name="gender" class="form-select">
-                      <option selected disabled value="">Choose...</option>
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>Prefer not to say</option>
+                      <option selected disabled value="" data-translate-key="optionChoose">Choose...</option>
+                      <option value="Male" data-translate-key="optionMale">Male</option>
+                      <option value="Female" data-translate-key="optionFemale">Female</option>
+                      <option value="Prefer not to say" data-translate-key="optionNoSay">Prefer not to say</option>
                     </select>
                   </div>
                    <div class="col-md-4">
-                    <label for="maritalStatus" class="form-label">Marital Status</label>
+                    <label for="maritalStatus" class="form-label" data-translate-key="labelMarital">Marital Status</label>
                     <select id="maritalStatus" name="maritalStatus" class="form-select">
-                      <option selected disabled value="">Choose...</option>
-                      <option>Single</option>
-                      <option>Married</option>
-                      <option>Divorced</option>
-                      <option>Widowed</option>
+                      <option selected disabled value="" data-translate-key="optionChoose2">Choose...</option>
+                      <option value="Single" data-translate-key="optionSingle">Single</option>
+                      <option value="Married" data-translate-key="optionMarried">Married</option>
+                      <option value="Divorced" data-translate-key="optionDivorced">Divorced</option>
+                      <option value="Widowed" data-translate-key="optionWidowed">Widowed</option>
                     </select>
                   </div>
                    <div class="col-12">
-                    <label for="nationality" class="form-label">Nationality</label>
+                    <label for="nationality" class="form-label" data-translate-key="labelNationality">Nationality</label>
                     <input type="text" class="form-control" id="nationality" name="nationality" value="Sri Lankan">
                   </div>
                 </div>
               </div>
 
-              <!-- Step 2: Educational Qualifications -->
               <div class="form-step" data-step="2">
-                <h4 class="mb-4 text-center">Step 2: Educational Qualifications</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep2">Step 2: Educational Qualifications</h4>
                 <div id="education-container">
-                  <!-- Dynamic education sections will be added here -->
-                </div>
-                <button type="button" class="btn btn-outline-primary mt-3" id="add-education">
-                  <i class="bi bi-plus-circle"></i> Add Education
-                </button>
+                  </div>
+                <button type="button" class="btn btn-outline-primary mt-3" id="add-education" data-translate-key="btnAddEdu"><i class="bi bi-plus-circle"></i> Add Education</button>
               </div>
 
-              <!-- Step 3: Work Experience -->
               <div class="form-step" data-step="3">
-                <h4 class="mb-4 text-center">Step 3: Work Experience</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep3">Step 3: Work Experience</h4>
                 <div id="experience-container">
-                    <!-- Dynamic experience sections will be added here -->
-                </div>
-                <button type="button" class="btn btn-outline-primary mt-3" id="add-experience">
-                  <i class="bi bi-plus-circle"></i> Add Experience
-                </button>
+                    </div>
+                <button type="button" class="btn btn-outline-primary mt-3" id="add-experience" data-translate-key="btnAddExp"><i class="bi bi-plus-circle"></i> Add Experience</button>
               </div>
 
-              <!-- Step 4: Skills -->
               <div class="form-step" data-step="4">
-                <h4 class="mb-4 text-center">Step 4: Skills</h4>
-                <h5>Language Skills</h5>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep4">Step 4: Skills</h4>
+                <h5 data-translate-key="titleLangSkills">Language Skills</h5>
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <strong>Sinhala:</strong>
+                        <strong data-translate-key="langSinhala">Sinhala:</strong>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Sinhala - Reading" name="languageSkills[]" id="sinhalaRead">
-                            <label class="form-check-label" for="sinhalaRead">Reading</label>
+                            <label class="form-check-label" for="sinhalaRead" data-translate-key="skillRead">Reading</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Sinhala - Writing" name="languageSkills[]" id="sinhalaWrite">
-                            <label class="form-check-label" for="sinhalaWrite">Writing</label>
+                            <label class="form-check-label" for="sinhalaWrite" data-translate-key="skillWrite">Writing</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Sinhala - Speaking" name="languageSkills[]" id="sinhalaSpeak">
-                            <label class="form-check-label" for="sinhalaSpeak">Speaking</label>
+                            <label class="form-check-label" for="sinhalaSpeak" data-translate-key="skillSpeak">Speaking</label>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <strong>English:</strong>
+                        <strong data-translate-key="langEnglish">English:</strong>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="English - Reading" name="languageSkills[]" id="englishRead">
-                            <label class="form-check-label" for="englishRead">Reading</label>
+                            <label class="form-check-label" for="englishRead" data-translate-key="skillRead2">Reading</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="English - Writing" name="languageSkills[]" id="englishWrite">
-                            <label class="form-check-label" for="englishWrite">Writing</label>
+                            <label class="form-check-label" for="englishWrite" data-translate-key="skillWrite2">Writing</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="English - Speaking" name="languageSkills[]" id="englishSpeak">
-                            <label class="form-check-label" for="englishSpeak">Speaking</label>
+                            <label class="form-check-label" for="englishSpeak" data-translate-key="skillSpeak2">Speaking</label>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <strong>Tamil:</strong>
+                        <strong data-translate-key="langTamil">Tamil:</strong>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Tamil - Reading" name="languageSkills[]" id="tamilRead">
-                            <label class="form-check-label" for="tamilRead">Reading</label>
+                            <label class="form-check-label" for="tamilRead" data-translate-key="skillRead3">Reading</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Tamil - Writing" name="languageSkills[]" id="tamilWrite">
-                            <label class="form-check-label" for="tamilWrite">Writing</label>
+                            <label class="form-check-label" for="tamilWrite" data-translate-key="skillWrite3">Writing</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Tamil - Speaking" name="languageSkills[]" id="tamilSpeak">
-                            <label class="form-check-label" for="tamilSpeak">Speaking</label>
+                            <label class="form-check-label" for="tamilSpeak" data-translate-key="skillSpeak3">Speaking</label>
                         </div>
                     </div>
                 </div>
                  <div class="mb-3">
-                    <label for="otherLanguages" class="form-label">Other Languages</label>
+                    <label for="otherLanguages" class="form-label" data-translate-key="labelOtherLangs">Other Languages</label>
                     <input type="text" class="form-control" id="otherLanguages" name="otherLanguages" placeholder="e.g., French, Japanese">
                 </div>
 
-                <h5 class="mt-4">Other Skills</h5>
+                <h5 class="mt-4" data-translate-key="titleOtherSkills">Other Skills</h5>
                  <div class="mb-3">
-                    <label for="otherSkills" class="form-label">List your other professional or technical skills</label>
+                    <label for="otherSkills" class="form-label" data-translate-key="labelOtherSkills">List your other professional or technical skills</label>
                     <textarea class="form-control" id="otherSkills" name="otherSkills" rows="4" placeholder="e.g., Microsoft Office, Adobe Photoshop, Public Speaking..."></textarea>
                 </div>
               </div>
 
-              <!-- Step 5: Additional Info & References -->
               <div class="form-step" data-step="5">
-                <h4 class="mb-4 text-center">Step 5: Awards, Achievements & More</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep5">Step 5: Awards, Achievements & More</h4>
                  <div class="mb-3">
-                    <label for="awards" class="form-label">Awards and Achievements</label>
+                    <label for="awards" class="form-label" data-translate-key="labelAwards">Awards and Achievements</label>
                     <textarea class="form-control" id="awards" name="awards" rows="4" placeholder="List any special awards or achievements from school, university, or work."></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="additionalInfo" class="form-label">Additional Information</label>
+                    <label for="additionalInfo" class="form-label" data-translate-key="labelAddInfo">Additional Information</label>
                     <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any other information you want to include in the CV."></textarea>
                 </div>
                  <div class="mb-3">
-                    <label for="jobType" class="form-label">Job Type or Field You Are Looking For</label>
+                    <label for="jobType" class="form-label" data-translate-key="labelJobType">Job Type or Field You Are Looking For</label>
                     <input type="text" class="form-control" id="jobType" name="jobType" placeholder="e.g., Software Engineering, Marketing Manager">
                 </div>
                 
-                <h5 class="mt-4">References</h5>
-                <p class="text-muted">Provide only if necessary. Will be stated as "Available upon request" if left blank.</p>
+                <h5 class="mt-4" data-translate-key="titleRefs">References</h5>
+                <p class="text-muted" data-translate-key="noteRefs">Provide only if necessary. Will be stated as "Available upon request" if left blank.</p>
                  <div id="references-container">
-                    <!-- Dynamic references sections will be added here -->
-                </div>
-                <button type="button" class="btn btn-outline-primary mt-3" id="add-reference">
-                  <i class="bi bi-plus-circle"></i> Add Reference
-                </button>
+                    </div>
+                <button type="button" class="btn btn-outline-primary mt-3" id="add-reference" data-translate-key="btnAddRef"><i class="bi bi-plus-circle"></i> Add Reference</button>
               </div>
 
-              <!-- Step 6: Choose Design -->
               <div class="form-step" data-step="6">
-                <h4 class="mb-4 text-center">Step 6: Choose Your CV Design</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep6">Step 6: Choose Your CV Design</h4>
                 <input type="hidden" id="selectedDesign" name="selectedDesign" value="">
                 <div class="row text-center g-3">
                     <div class="col-md-4">
                         <img src="https://placehold.co/400x566/EBF5FF/124265?text=Template+1" alt="CV Template 1" class="img-fluid design-template" data-design-name="Template 1">
-                        <p class="mt-2">Modern</p>
+                        <p class="mt-2" data-translate-key="designModern">Modern</p>
                     </div>
                     <div class="col-md-4">
                         <img src="https://placehold.co/400x566/E9F5F1/1E8449?text=Template+2" alt="CV Template 2" class="img-fluid design-template" data-design-name="Template 2">
-                        <p class="mt-2">Classic</p>
+                        <p class="mt-2" data-translate-key="designClassic">Classic</p>
                     </div>
                     <div class="col-md-4">
-                        <img src="https://placehold.co/400x566/FEF9E7/D35400?text=Template+3" alt="CV Template 3" class="img-fluid design-template" data-design-name="Template 3">
-                        <p class="mt-2">Creative</p>
+                        <img src="assets/img/portfolio/smp/6.webp" alt="CV Template 3" class="img-fluid design-template" data-design-name="Template 3">
+                        <p class="mt-2" data-translate-key="designCreative">Creative</p>
                     </div>
                 </div>
               </div>
 
-              <!-- Step 7: Review & Submit -->
               <div class="form-step" data-step="7">
-                <h4 class="mb-4 text-center">Step 7: Review Your Information</h4>
+                <h4 class="mb-4 text-center" data-translate-key="titleStep7">Step 7: Review Your Information</h4>
                 <div id="review-section">
-                    <!-- Review content will be generated here by JS -->
-                </div>
+                    </div>
                 <div class="my-3">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Your CV details have been submitted. We will contact you shortly. Thank you!</div>
+                  <div class="sent-message" data-translate-key="msgSent">Your CV details have been submitted. We will contact you shortly. Thank you!</div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit CV Details</button>
+                    <button type="submit" class="btn btn-primary btn-lg" data-translate-key="btnSubmit">Submit CV Details</button>
                 </div>
               </div>
 
-              <!-- Navigation Buttons -->
               <div class="d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-secondary" id="prev-btn" style="display: none;">Previous</button>
-                <button type="button" class="btn btn-outline-secondary" id="skip-btn">Skip</button>
-                <button type="button" class="btn btn-primary" id="next-btn">Next</button>
+                <button type="button" class="btn btn-secondary" id="prev-btn" style="display: none;" data-translate-key="btnPrev">Previous</button>
+                <button type="button" class="btn btn-outline-secondary" id="skip-btn" data-translate-key="btnSkip">Skip</button>
+                <button type="button" class="btn btn-primary" id="next-btn" data-translate-key="btnNext">Next</button>
               </div>
 
-            </form>
+            </form><br><hr>
           </div>
         </div>
       </div>
@@ -482,13 +553,11 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"><div class="loader"></div></div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
   <script>
@@ -504,14 +573,21 @@
 
       function updateButtons() {
         prevBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
-        skipBtn.style.display = currentStep < totalSteps - 1 ? 'inline-block' : 'none';
+        skipBtn.style.display = (currentStep > 1 && currentStep < 6) ? 'inline-block' : 'none';
         
-        if (currentStep === totalSteps -1) {
-             nextBtn.textContent = 'Review & Finish';
-        } else if (currentStep === totalSteps) {
+        if (currentStep === totalSteps - 1) { // Step 6
+             nextBtn.textContent = document.getElementById('translate-btn').textContent.includes('English') ? 'නැවත කියවා අවසන් කරන්න' : 'Review & Finish';
+        } else if (currentStep === totalSteps) { // Step 7
             nextBtn.style.display = 'none';
+            skipBtn.style.display = 'none';
         } else {
-            nextBtn.textContent = 'Next';
+            const nextBtnText = document.getElementById('next-btn').getAttribute('data-translate-key');
+            if (nextBtnText) {
+              const lang = document.getElementById('translate-btn').textContent.includes('English') ? 'si' : 'en';
+              nextBtn.textContent = translations[nextBtnText][lang];
+            } else {
+              nextBtn.textContent = 'Next';
+            }
             nextBtn.style.display = 'inline-block';
         }
       }
@@ -553,7 +629,7 @@
       });
       
       skipBtn.addEventListener('click', () => {
-         if (currentStep < totalSteps - 1) {
+         if (currentStep < totalSteps -1) {
             goToStep(currentStep + 1);
         }
       });
@@ -565,27 +641,40 @@
         const container = document.getElementById('education-container');
         const newEdu = document.createElement('div');
         newEdu.classList.add('dynamic-section');
+        const lang = document.getElementById('translate-btn').textContent.includes('English') ? 'si' : 'en';
+        
+        const placeholders = {
+            institution: { en: 'Name of Institution / School', si: 'ආයතනයේ / පාසලේ නම' },
+            course: { en: 'Name of Course / Examination', si: 'පාඨමාලාවේ / විභාගයේ නම' },
+            degree: { en: 'Degree / Diploma Obtained', si: 'ලබාගත් උපාධිය / ඩිප්ලෝමාව' },
+            specialization: { en: 'Specialization (if any)', si: 'විශේෂීකරණය (ඇත්නම්)' },
+            startYear: { en: 'Start Year', si: 'ආරම්භක වර්ෂය' },
+            endYear: { en: 'End Year', si: 'අවසාන වර්ෂය' },
+            indexNumber: { en: 'Index Number (for A/L, O/L)', si: 'විභාග අංකය (උ/පෙළ, සා/පෙළ සඳහා)' },
+            results: { en: 'Subjects and Grades / Results', si: 'විෂයයන් සහ ශ්‍රේණි / ප්‍රතිඵල' }
+        };
+
         newEdu.innerHTML = `
             <button type="button" class="btn-close remove-btn" aria-label="Close"></button>
-            <h5>Education #${eduCount}</h5>
+            <h5 data-translate-key="titleEduDynamic">${lang === 'si' ? `අධ්‍යාපනය #${eduCount}` : `Education #${eduCount}`}</h5>
             <div class="row g-3">
                 <div class="col-12">
-                     <label class="form-label">Qualification Type</label>
+                     <label class="form-label" data-translate-key="labelQualiType">${lang === 'si' ? 'සුදුසුකම් වර්ගය' : 'Qualification Type'}</label>
                      <select name="education[${eduCount}][type]" class="form-select">
-                        <option>Degree / Post-Graduate</option>
-                        <option>A/L (Advanced Level)</option>
-                        <option>O/L (Ordinary Level)</option>
-                        <option>Professional Qualification / Diploma</option>
+                        <option data-translate-key="optDegree">${lang === 'si' ? 'උපාධිය / පශ්චාත් උපාධිය' : 'Degree / Post-Graduate'}</option>
+                        <option data-translate-key="optAL">${lang === 'si' ? 'උ/පෙළ (උසස් පෙළ)' : 'A/L (Advanced Level)'}</option>
+                        <option data-translate-key="optOL">${lang === 'si' ? 'සා/පෙළ (සාමාන්‍ය පෙළ)' : 'O/L (Ordinary Level)'}</option>
+                        <option data-translate-key="optProf">${lang === 'si' ? 'වෘත්තීය සුදුසුකම් / ඩිප්ලෝමා' : 'Professional Qualification / Diploma'}</option>
                      </select>
                 </div>
-                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][institution]" placeholder="Name of Institution / School"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][course]" placeholder="Name of Course / Examination"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][degree]" placeholder="Degree / Diploma Obtained"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][specialization]" placeholder="Specialization (if any)"></div>
-                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][startYear]" placeholder="Start Year"></div>
-                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][endYear]" placeholder="End Year"></div>
-                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][indexNumber]" placeholder="Index Number (for A/L, O/L)"></div>
-                <div class="col-12"><textarea class="form-control" name="education[${eduCount}][results]" rows="3" placeholder="Subjects and Grades / Results"></textarea></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][institution]" placeholder="${placeholders.institution[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][course]" placeholder="${placeholders.course[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][degree]" placeholder="${placeholders.degree[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="education[${eduCount}][specialization]" placeholder="${placeholders.specialization[lang]}"></div>
+                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][startYear]" placeholder="${placeholders.startYear[lang]}"></div>
+                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][endYear]" placeholder="${placeholders.endYear[lang]}"></div>
+                <div class="col-md-4"><input type="text" class="form-control" name="education[${eduCount}][indexNumber]" placeholder="${placeholders.indexNumber[lang]}"></div>
+                <div class="col-12"><textarea class="form-control" name="education[${eduCount}][results]" rows="3" placeholder="${placeholders.results[lang]}"></textarea></div>
             </div>
         `;
         container.appendChild(newEdu);
@@ -597,15 +686,25 @@
         const container = document.getElementById('experience-container');
         const newExp = document.createElement('div');
         newExp.classList.add('dynamic-section');
+        const lang = document.getElementById('translate-btn').textContent.includes('English') ? 'si' : 'en';
+
+        const placeholders = {
+            company: { en: 'Company Name', si: 'සමාගමේ නම' },
+            title: { en: 'Job Title', si: 'තනතුර' },
+            from: { en: 'From Date (e.g., Jan 2020)', si: 'සිට (උදා: ජන 2020)' },
+            to: { en: 'To Date (e.g., Present)', si: 'දක්වා (උදා: මේ දක්වා)' },
+            duties: { en: 'Responsibilities and Duties', si: 'වගකීම් සහ රාජකාරි' }
+        };
+
         newExp.innerHTML = `
             <button type="button" class="btn-close remove-btn" aria-label="Close"></button>
-            <h5>Experience #${expCount}</h5>
+            <h5 data-translate-key="titleExpDynamic">${lang === 'si' ? `සේවා පළපුරුද්ද #${expCount}` : `Experience #${expCount}`}</h5>
             <div class="row g-3">
-                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][company]" placeholder="Company Name"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][title]" placeholder="Job Title"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][from]" placeholder="From Date (e.g., Jan 2020)"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][to]" placeholder="To Date (e.g., Present)"></div>
-                <div class="col-12"><textarea class="form-control" name="experience[${expCount}][duties]" rows="3" placeholder="Responsibilities and Duties"></textarea></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][company]" placeholder="${placeholders.company[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][title]" placeholder="${placeholders.title[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][from]" placeholder="${placeholders.from[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="experience[${expCount}][to]" placeholder="${placeholders.to[lang]}"></div>
+                <div class="col-12"><textarea class="form-control" name="experience[${expCount}][duties]" rows="3" placeholder="${placeholders.duties[lang]}"></textarea></div>
             </div>
         `;
         container.appendChild(newExp);
@@ -617,14 +716,23 @@
         const container = document.getElementById('references-container');
         const newRef = document.createElement('div');
         newRef.classList.add('dynamic-section');
+        const lang = document.getElementById('translate-btn').textContent.includes('English') ? 'si' : 'en';
+
+        const placeholders = {
+            name: { en: 'Name', si: 'නම' },
+            title: { en: 'Job Title', si: 'තනතුර' },
+            org: { en: 'Organization', si: 'ආයතනය' },
+            phone: { en: 'Phone Number', si: 'දුරකථන අංකය' }
+        };
+
         newRef.innerHTML = `
             <button type="button" class="btn-close remove-btn" aria-label="Close"></button>
-            <h5>Reference #${refCount}</h5>
+            <h5 data-translate-key="titleRefDynamic">${lang === 'si' ? `නිර්දේශක #${refCount}` : `Reference #${refCount}`}</h5>
             <div class="row g-3">
-                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][name]" placeholder="Name"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][title]" placeholder="Job Title"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][org]" placeholder="Organization"></div>
-                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][phone]" placeholder="Phone Number"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][name]" placeholder="${placeholders.name[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][title]" placeholder="${placeholders.title[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][org]" placeholder="${placeholders.org[lang]}"></div>
+                <div class="col-md-6"><input type="text" class="form-control" name="reference[${refCount}][phone]" placeholder="${placeholders.phone[lang]}"></div>
             </div>
         `;
         container.appendChild(newRef);
@@ -651,18 +759,28 @@
           const reviewSection = document.getElementById('review-section');
           const formData = new FormData(cvForm);
           let reviewHTML = '';
+          
+          const lang = document.getElementById('translate-btn').textContent.includes('English') ? 'si' : 'en';
+          const reviewTitles = {
+            personal: { en: 'Personal Details', si: 'පුද්ගලික තොරතුරු' },
+            education: { en: 'Education', si: 'අධ්‍යාපනය' },
+            experience: { en: 'Work Experience', si: 'සේවා පළපුරුද්ද' },
+            skills: { en: 'Skills', si: 'නිපුණතා' },
+            additional: { en: 'Additional Sections', si: 'අමතර කොටස්' },
+            references: { en: 'References', si: 'නිර්දේශකයින්' },
+            design: { en: 'Selected Design', si: 'තෝරාගත් නිර්මාණය' }
+          };
 
           const entries = {};
           for (let [key, value] of formData.entries()) {
-              if (value) { // Only show fields that have a value
-                  // Handling nested objects like education[1][name]
+              if (value) { 
                   const match = key.match(/(\w+)\[(\d+)\]\[(\w+)\]/);
                   if (match) {
                       const [, section, index, field] = match;
                       if (!entries[section]) entries[section] = {};
                       if (!entries[section][index]) entries[section][index] = {};
                       entries[section][index][field] = value;
-                  } else if (key.endsWith('[]')) { // Handling arrays like languageSkills[]
+                  } else if (key.endsWith('[]')) {
                       const cleanKey = key.slice(0, -2);
                       if (!entries[cleanKey]) entries[cleanKey] = [];
                       entries[cleanKey].push(value);
@@ -673,92 +791,83 @@
               }
           }
           
-          // Helper to create a list item
           const createListItem = (label, value) => value ? `<p><strong>${label}:</strong> ${value}</p>` : '';
-
-          // Personal Details
-          reviewHTML += '<div class="review-block"><h5>Personal Details</h5>';
-          reviewHTML += createListItem('Full Name', entries.fullName);
-          reviewHTML += createListItem('About You', entries.aboutYou);
-          reviewHTML += createListItem('NIC', entries.nic);
-          reviewHTML += createListItem('Email', entries.email);
-          reviewHTML += createListItem('Phone', entries.phone);
-          reviewHTML += createListItem('Portfolio Link', entries.portfolioLink);
-          reviewHTML += createListItem('Address', entries.address);
-          reviewHTML += createListItem('Date of Birth', entries.dob);
-          reviewHTML += createListItem('Gender', entries.gender);
-          reviewHTML += createListItem('Marital Status', entries.maritalStatus);
-          reviewHTML += createListItem('Nationality', entries.nationality);
+          
+          reviewHTML += `<div class="review-block"><h5>${reviewTitles.personal[lang]}</h5>`;
+          reviewHTML += createListItem(lang==='si'?'සම්පූර්ණ නම':'Full Name', entries.fullName);
+          reviewHTML += createListItem(lang==='si'?'ඔබ ගැන':'About You', entries.aboutYou);
+          reviewHTML += createListItem(lang==='si'?'ජා.හැ.අංකය':'NIC', entries.nic);
+          reviewHTML += createListItem(lang==='si'?'විද්‍යුත් තැපෑල':'Email', entries.email);
+          reviewHTML += createListItem(lang==='si'?'දුරකථන අංකය':'Phone', entries.phone);
+          reviewHTML += createListItem(lang==='si'?'පෝට්ෆෝලියෝ සබැඳිය':'Portfolio Link', entries.portfolioLink);
+          reviewHTML += createListItem(lang==='si'?'ලිපිනය':'Address', entries.address);
+          reviewHTML += createListItem(lang==='si'?'උපන්දිනය':'Date of Birth', entries.dob);
+          reviewHTML += createListItem(lang==='si'?'ස්ත්‍රී/පුරුෂ භාවය':'Gender', entries.gender);
+          reviewHTML += createListItem(lang==='si'?'විවාහක/අවිවාහක බව':'Marital Status', entries.maritalStatus);
+          reviewHTML += createListItem(lang==='si'?'ජාතිය':'Nationality', entries.nationality);
           reviewHTML += '</div>';
           
-          // Education
           if(entries.education) {
-              reviewHTML += '<div class="review-block"><h5>Education</h5>';
+              reviewHTML += `<div class="review-block"><h5>${reviewTitles.education[lang]}</h5>`;
               Object.values(entries.education).forEach(edu => {
                   reviewHTML += '<div class="mb-3 p-2 border rounded">';
-                  reviewHTML += createListItem('Type', edu.type);
-                  reviewHTML += createListItem('Institution/School', edu.institution);
-                  reviewHTML += createListItem('Course/Exam', edu.course);
-                  reviewHTML += createListItem('Degree/Diploma', edu.degree);
-                  reviewHTML += createListItem('Specialization', edu.specialization);
-                  reviewHTML += createListItem('Years', `${edu.startYear || ''} - ${edu.endYear || ''}`);
-                  reviewHTML += createListItem('Index No.', edu.indexNumber);
-                  reviewHTML += createListItem('Results', edu.results);
+                  reviewHTML += createListItem(lang==='si'?'වර්ගය':'Type', edu.type);
+                  reviewHTML += createListItem(lang==='si'?'ආයතනය/පාසල':'Institution/School', edu.institution);
+                  reviewHTML += createListItem(lang==='si'?'පාඨමාලාව/විභාගය':'Course/Exam', edu.course);
+                  reviewHTML += createListItem(lang==='si'?'උපාධිය/ඩිප්ලෝමාව':'Degree/Diploma', edu.degree);
+                  reviewHTML += createListItem(lang==='si'?'විශේෂීකරණය':'Specialization', edu.specialization);
+                  reviewHTML += createListItem(lang==='si'?'වර්ෂ':'Years', `${edu.startYear || ''} - ${edu.endYear || ''}`);
+                  reviewHTML += createListItem(lang==='si'?'විභාග අංකය':'Index No.', edu.indexNumber);
+                  reviewHTML += createListItem(lang==='si'?'ප්‍රතිඵල':'Results', edu.results);
                   reviewHTML += '</div>';
               });
               reviewHTML += '</div>';
           }
 
-          // Work Experience
           if(entries.experience) {
-              reviewHTML += '<div class="review-block"><h5>Work Experience</h5>';
+              reviewHTML += `<div class="review-block"><h5>${reviewTitles.experience[lang]}</h5>`;
               Object.values(entries.experience).forEach(exp => {
                   reviewHTML += '<div class="mb-3 p-2 border rounded">';
-                  reviewHTML += createListItem('Company', exp.company);
-                  reviewHTML += createListItem('Title', exp.title);
-                  reviewHTML += createListItem('Period', `${exp.from || ''} - ${exp.to || ''}`);
-                  reviewHTML += createListItem('Duties', exp.duties);
+                  reviewHTML += createListItem(lang==='si'?'සමාගම':'Company', exp.company);
+                  reviewHTML += createListItem(lang==='si'?'තනතුර':'Title', exp.title);
+                  reviewHTML += createListItem(lang==='si'?'කාලය':'Period', `${exp.from || ''} - ${exp.to || ''}`);
+                  reviewHTML += createListItem(lang==='si'?'වගකීම්':'Duties', exp.duties);
                   reviewHTML += '</div>';
               });
               reviewHTML += '</div>';
           }
           
-          // Skills
-          reviewHTML += '<div class="review-block"><h5>Skills</h5>';
+          reviewHTML += `<div class="review-block"><h5>${reviewTitles.skills[lang]}</h5>`;
           if(entries.languageSkills) {
-             reviewHTML += createListItem('Language Skills', entries.languageSkills.join(', '));
+             reviewHTML += createListItem(lang==='si'?'භාෂා කුසලතා':'Language Skills', entries.languageSkills.join(', '));
           }
-          reviewHTML += createListItem('Other Languages', entries.otherLanguages);
-          reviewHTML += createListItem('Other Skills', entries.otherSkills);
+          reviewHTML += createListItem(lang==='si'?'වෙනත් භාෂා':'Other Languages', entries.otherLanguages);
+          reviewHTML += createListItem(lang==='si'?'වෙනත් කුසලතා':'Other Skills', entries.otherSkills);
           reviewHTML += '</div>';
           
-          // Additional Info
-          reviewHTML += '<div class="review-block"><h5>Additional Sections</h5>';
-          reviewHTML += createListItem('Awards & Achievements', entries.awards);
-          reviewHTML += createListItem('Additional Info', entries.additionalInfo);
-          reviewHTML += createListItem('Target Job/Field', entries.jobType);
+          reviewHTML += `<div class="review-block"><h5>${reviewTitles.additional[lang]}</h5>`;
+          reviewHTML += createListItem(lang==='si'?'සම්මාන සහ ජයග්‍රහණ':'Awards & Achievements', entries.awards);
+          reviewHTML += createListItem(lang==='si'?'අමතර තොරතුරු':'Additional Info', entries.additionalInfo);
+          reviewHTML += createListItem(lang==='si'?'ඉලක්කගත රැකියාව/ක්ෂේත්‍රය':'Target Job/Field', entries.jobType);
           reviewHTML += '</div>';
           
-          // References
           if(entries.reference) {
-              reviewHTML += '<div class="review-block"><h5>References</h5>';
+              reviewHTML += `<div class="review-block"><h5>${reviewTitles.references[lang]}</h5>`;
               Object.values(entries.reference).forEach(ref => {
                   reviewHTML += `<p>${ref.name}, ${ref.title} at ${ref.org} (${ref.phone})</p>`;
               });
               reviewHTML += '</div>';
           } else {
-               reviewHTML += '<div class="review-block"><h5>References</h5><p>Available upon request.</p></div>';
+               reviewHTML += `<div class="review-block"><h5>${reviewTitles.references[lang]}</h5><p>${lang === 'si' ? 'ඉල්ලීම මත ලබා ගත හැක.' : 'Available upon request.'}</p></div>`;
           }
 
-          // Design
-          reviewHTML += '<div class="review-block"><h5>Selected Design</h5>';
-          reviewHTML += createListItem('Template', entries.selectedDesign);
+          reviewHTML += `<div class="review-block"><h5>${reviewTitles.design[lang]}</h5>`;
+          reviewHTML += createListItem(lang==='si'?'සැකිල්ල':'Template', entries.selectedDesign);
           reviewHTML += '</div>';
 
           reviewSection.innerHTML = reviewHTML;
       }
       
-      // Formspree submission handling
       cvForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const form = e.target;
@@ -783,7 +892,7 @@
           if (response.ok) {
             sentMessage.style.display = 'block';
             form.reset();
-            goToStep(1); // Go back to the first step after successful submission
+            goToStep(1); 
           } else {
             response.json().then(data => {
               if (Object.hasOwn(data, 'errors')) {
@@ -806,6 +915,123 @@
       // Add one of each dynamic section to start with
       document.getElementById('add-education').click();
       document.getElementById('add-experience').click();
+      
+      
+      // ===============================================
+      // === TRANSLATION SCRIPT FOR CV FORM          ===
+      // ===============================================
+      const translateBtn = document.getElementById('translate-btn');
+      let currentLang = 'si'; // Start with Sinhala
+
+      const translations = {
+        'formTitle': { en: 'CV Builder', si: 'CV නිර්මාපකය' },
+        'formSubtitle': { en: 'Fill in your details step-by-step to create a professional CV.', si: 'වෘත්තීය CV පත්‍රිකාවක් සෑදීමට ඔබගේ තොරතුරු පියවරෙන් පියවර පුරවන්න.'},
+        'stepPersonal': { en: 'Personal', si: 'පුද්ගලික' },
+        'stepEducation': { en: 'Education', si: 'අධ්‍යාපනය' },
+        'stepExperience': { en: 'Experience', si: 'පළපුරුද්ද' },
+        'stepSkills': { en: 'Skills', si: 'නිපුණතා' },
+        'stepExtra': { en: 'Extra', si: 'අමතර' },
+        'stepDesign': { en: 'Design', si: 'නිර්මාණය' },
+        'stepReview': { en: 'Review', si: 'නැවත කියවීම' },
+        'titleStep1': { en: 'Step 1: Personal Details', si: 'පියවර 1: පුද්ගලික තොරතුරු' },
+        'titleStep2': { en: 'Step 2: Educational Qualifications', si: 'පියවර 2: අධ්‍යාපන සුදුසුකම්' },
+        'titleStep3': { en: 'Step 3: Work Experience', si: 'පියවර 3: සේවා පළපුරුද්ද' },
+        'titleStep4': { en: 'Step 4: Skills', si: 'පියවර 4: නිපුණතා' },
+        'titleStep5': { en: 'Step 5: Awards, Achievements & More', si: 'පියවර 5: සම්මාන, ජයග්‍රහණ සහ තවත් දේ' },
+        'titleStep6': { en: 'Step 6: Choose Your CV Design', si: 'පියවර 6: ඔබේ CV පිරිසැලසුම තෝරන්න' },
+        'titleStep7': { en: 'Step 7: Review Your Information', si: 'පියවර 7: ඔබේ තොරතුරු නැවත පරීක්ෂා කරන්න' },
+        'labelFullName': { en: 'Full Name', si: 'සම්පූර්ණ නම' },
+        'labelNic': { en: 'National Identity Card (NIC) Number', si: 'ජාතික හැඳුනුම්පත් අංකය' },
+        'labelAbout': { en: 'About You (Short Introduction)', si: 'ඔබ ගැන (කෙටි හැඳින්වීමක්)' },
+        'labelEmail': { en: 'Email Address', si: 'විද්‍යුත් තැපැල් ලිපිනය' },
+        'labelPhone': { en: 'Phone Number', si: 'දුරකථන අංකය' },
+        'labelPortfolio': { en: 'LinkedIn / Portfolio Link', si: 'LinkedIn / පෝට්ෆෝලියෝ සබැඳිය' },
+        'labelAddress': { en: 'Address & Postal Code', si: 'ලිපිනය සහ තැපැල් කේතය' },
+        'labelDob': { en: 'Date of Birth', si: 'උපන්දිනය' },
+        'labelGender': { en: 'Gender', si: 'ස්ත්‍රී/පුරුෂ භාවය' },
+        'optionChoose': { en: 'Choose...', si: 'තෝරන්න...' },
+        'optionMale': { en: 'Male', si: 'පිරිමි' },
+        'optionFemale': { en: 'Female', si: 'ගැහැණු' },
+        'optionNoSay': { en: 'Prefer not to say', si: 'නොකියා සිටීමට කැමතියි' },
+        'labelMarital': { en: 'Marital Status', si: 'විවාහක අවිවාහක බව' },
+        'optionChoose2': { en: 'Choose...', si: 'තෝරන්න...' },
+        'optionSingle': { en: 'Single', si: 'අවිවාහක' },
+        'optionMarried': { en: 'Married', si: 'විවාහක' },
+        'optionDivorced': { en: 'Divorced', si: 'දික්කසාද වූ' },
+        'optionWidowed': { en: 'Widowed', si: 'වැන්දඹු' },
+        'labelNationality': { en: 'Nationality', si: 'ජාතිය' },
+        'btnAddEdu': { en: ' Add Education', si: ' අධ්‍යාපන සුදුසුකම් එක් කරන්න' },
+        'btnAddExp': { en: ' Add Experience', si: ' සේවා පළපුරුද්ද එක් කරන්න' },
+        'titleLangSkills': { en: 'Language Skills', si: 'භාෂා කුසලතා' },
+        'langSinhala': { en: 'Sinhala:', si: 'සිංහල:' },
+        'langEnglish': { en: 'English:', si: 'ඉංග්‍රීසි:' },
+        'langTamil': { en: 'Tamil:', si: 'දෙමළ:' },
+        'skillRead': { en: 'Reading', si: 'කියවීම' },
+        'skillWrite': { en: 'Writing', si: 'ලිවීම' },
+        'skillSpeak': { en: 'Speaking', si: 'කතාකිරීම' },
+        'skillRead2': { en: 'Reading', si: 'කියවීම' },
+        'skillWrite2': { en: 'Writing', si: 'ලිවීම' },
+        'skillSpeak2': { en: 'Speaking', si: 'කතාකිරීම' },
+        'skillRead3': { en: 'Reading', si: 'කියවීම' },
+        'skillWrite3': { en: 'Writing', si: 'ලිවීම' },
+        'skillSpeak3': { en: 'Speaking', si: 'කතාකිරීම' },
+        'labelOtherLangs': { en: 'Other Languages', si: 'වෙනත් භාෂා' },
+        'titleOtherSkills': { en: 'Other Skills', si: 'වෙනත් කුසලතා' },
+        'labelOtherSkills': { en: 'List your other professional or technical skills', si: 'ඔබගේ අනෙකුත් වෘත්තීය හෝ තාක්ෂණික කුසලතා ලැයිස්තුගත කරන්න' },
+        'labelAwards': { en: 'Awards and Achievements', si: 'සම්මාන සහ ජයග්‍රහණ' },
+        'labelAddInfo': { en: 'Additional Information', si: 'අමතර තොරතුරු' },
+        'labelJobType': { en: 'Job Type or Field You Are Looking For', si: 'ඔබ සොයන රැකියා වර්ගය හෝ ක්ෂේත්‍රය' },
+        'titleRefs': { en: 'References', si: 'නිර්දේශකයින්' },
+        'noteRefs': { en: 'Provide only if necessary. Will be stated as "Available upon request" if left blank.', si: 'අවශ්‍ය නම් පමණක් සපයන්න. හිස්ව තැබුවහොත් "ඉල්ලීම මත ලබා ගත හැක" ලෙස සඳහන් කෙරේ.' },
+        'btnAddRef': { en: ' Add Reference', si: ' නිර්දේශකයෙකු එක් කරන්න' },
+        'designModern': { en: 'Modern', si: 'නවීන' },
+        'designClassic': { en: 'Classic', si: 'සම්භාව්‍ය' },
+        'designCreative': { en: 'Creative', si: 'නිර්මාණාත්මක' },
+        'msgSent': { en: 'Your CV details have been submitted. We will contact you shortly. Thank you!', si: 'ඔබගේ CV තොරතුරු ඉදිරිපත් කර ඇත. අපි ඔබව ඉක්මනින් සම්බන්ධ කර ගන්නෙමු. ඔබට ස්තුතියි!' },
+        'btnSubmit': { en: 'Submit CV Details', si: 'CV තොරතුරු ඉදිරිපත් කරන්න' },
+        'btnPrev': { en: 'Previous', si: 'පෙර' },
+        'btnSkip': { en: 'Skip', si: 'මඟ හරින්න' },
+        'btnNext': { en: 'Next', si: 'ඊළඟ' },
+      };
+
+      const applyTranslations = (lang) => {
+        document.querySelectorAll('[data-translate-key]').forEach(el => {
+            const key = el.dataset.translateKey;
+            if (translations[key] && translations[key][lang]) {
+                if (el.tagName === 'BUTTON' && el.innerHTML.includes('<i')) {
+                     const iconHTML = el.querySelector('i').outerHTML;
+                     el.innerHTML = `${iconHTML} ${translations[key][lang]}`;
+                } else {
+                     el.innerHTML = translations[key][lang];
+                }
+            }
+        });
+
+        // Placeholders
+        const placeholders = {
+          'otherLanguages': { en: 'e.g., French, Japanese', si: 'උදා: ප්‍රංශ, ජපන්' },
+          'otherSkills': { en: 'e.g., Microsoft Office, Adobe Photoshop, Public Speaking...', si: 'උදා: Microsoft Office, Adobe Photoshop, Public Speaking...' },
+          'awards': { en: 'List any special awards or achievements from school, university, or work.', si: 'පාසලෙන්, විශ්ව විද්‍යාලයෙන් හෝ රැකියාවෙන් ලැබුණු විශේෂ සම්මාන හෝ ජයග්‍රහණ ලැයිස්තුගත කරන්න.' },
+          'additionalInfo': { en: 'Any other information you want to include in the CV.', si: 'ඔබට CV පත්‍රිකාවට ඇතුළත් කිරීමට අවශ්‍ය වෙනත් ඕනෑම තොරතුරක්.' },
+          'jobType': { en: 'e.g., Software Engineering, Marketing Manager', si: 'උදා: මෘදුකාංග ඉංජිනේරු, අලෙවිකරණ කළමනාකරු' }
+        };
+        for (const id in placeholders) {
+          const element = document.getElementById(id);
+          if (element) {
+            element.placeholder = placeholders[id][lang];
+          }
+        }
+        updateButtons();
+      };
+      
+      translateBtn.addEventListener('click', () => {
+          currentLang = (currentLang === 'en') ? 'si' : 'en';
+          translateBtn.textContent = (currentLang === 'en') ? 'සිංහලට පරිවර්තනය කරන්න' : 'Translate to English';
+          applyTranslations(currentLang);
+      });
+
+      // Initial translation on load
+      applyTranslations(currentLang);
 
     });
   </script>
