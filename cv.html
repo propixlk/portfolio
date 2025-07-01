@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV සාදන්නා (CV Builder)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .progress-bar-fill {
+            transition: width 0.3s ease-in-out;
+        }
+        .cv-preview {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .cv-preview h2 {
+            border-bottom: 2px solid #334155;
+            color: #1e293b;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-bottom: 0.25rem;
+        }
+         .cv-preview h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .label-style {
+            font-weight: 500;
+            color: #374151;
+        }
+        .input-style {
+            border-color: #d1d5db;
+        }
+        .input-style:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            outline: none;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+        .btn-tertiary {
+            background-color: transparent;
+            color: #6b7280;
+        }
+         .btn-tertiary:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-2">CV සාදන්නා</h1>
+        <p class="text-center text-slate-600 mb-8">ඔබේ වෘත්තීය ජීව දත්ත පත්‍රිකාව පහසුවෙන් නිර්මාණය කරගන්න.</p>
+
+        <!-- Form Container -->
+        <div id="form-wrapper" class="form-container">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 12.5%"></div>
+                </div>
+                <p id="step-indicator" class="text-center text-sm text-gray-600 mt-2">පියවර 1 / 8</p>
+            </div>
+
+            <form id="cvForm">
+                <!-- Step 1: Personal Details -->
+                <div class="form-step active" data-step="1">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">1. පුද්ගලික තොරතුරු (Personal Details)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block mb-2 label-style" for="photo">වෘත්තීය ඡායාරූපයක් (Professional Photo)</label>
+                            <input type="file" id="photo" name="photo" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="fullName">සම්පූර්ණ නම (Full Name)</label>
+                            <input type="text" id="fullName" name="fullName" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="nic">ජාතික හැඳුනුම්පත් අංකය (NIC)</label>
+                            <input type="text" id="nic" name="nic" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="email">විද්‍යුත් තැපෑල (Email)</label>
+                            <input type="email" id="email" name="email" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="phone">දුරකථන අංකය (Phone Number)</label>
+                            <input type="tel" id="phone" name="phone" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="links">Linkedin / Portfolio Link</label>
+                            <input type="url" id="links" name="links" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block mb-2 label-style" for="address">ලිපිනය සහ තැපැල් කේතය (Address & Postal Code)</label>
+                            <input type="text" id="address" name="address" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                         <div>
+                            <label class="block mb-2 label-style" for="dob">උපන් දිනය (Date of Birth)</label>
+                            <input type="date" id="dob" name="dob" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="gender">ස්ත්‍රී/පුරුෂ භාවය (Gender)</label>
+                            <select id="gender" name="gender" class="w-full p-2 border rounded-md input-style">
+                                <option>තෝරන්න</option>
+                                <option value="පුරුෂ">පුරුෂ (Male)</option>
+                                <option value="ස්ත්‍රී">ස්ත්‍රී (Female)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="maritalStatus">විවාහක අවිවාහක බව (Marital Status)</label>
+                            <input type="text" id="maritalStatus" name="maritalStatus" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div>
+                            <label class="block mb-2 label-style" for="nationality">ජාතිකත්වය (Nationality)</label>
+                            <input type="text" id="nationality" name="nationality" value="ශ්‍රී ලාංකික" class="w-full p-2 border rounded-md input-style">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block mb-2 label-style" for="about">ඔබ ගැන කෙටි හැදින්වීමක් (About You)</label>
+                            <textarea id="about" name="about" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Education -->
+                <div class="form-step" data-step="2">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">2. අධ්‍යාපන සුදුසුකම් (Educational Qualifications)</h2>
+                    
+                    <!-- Degree -->
+                    <div class="mb-6 p-4 border rounded-lg">
+                        <h3 class="font-semibold text-lg mb-4 text-slate-600">උපාධි/පශ්චාත් උපාධි (Degree/Post-Graduate)</h3>
+                        <div id="degree-container"></div>
+                        <button type="button" onclick="addSection('degree')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                    </div>
+                    
+                    <!-- Other Qualifications -->
+                    <div class="mb-6 p-4 border rounded-lg">
+                        <h3 class="font-semibold text-lg mb-4 text-slate-600">වෙනත් වෘත්තීය සුදුසුකම්/ඩිප්ලෝමා (Other Qualifications)</h3>
+                        <div id="other-qual-container"></div>
+                        <button type="button" onclick="addSection('other-qual')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                    </div>
+                    
+                    <!-- A/L -->
+                    <div class="mb-6 p-4 border rounded-lg">
+                        <h3 class="font-semibold text-lg mb-4 text-slate-600">උසස් පෙළ (A/L)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block mb-2 label-style" for="alSchool">පාසල (School)</label>
+                                <input type="text" id="alSchool" name="alSchool" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="alIndex">විභාග අංකය (Index Number)</label>
+                                <input type="text" id="alIndex" name="alIndex" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                        </div>
+                        <div id="al-subjects-container" class="mt-4"></div>
+                        <button type="button" onclick="addSubject('al')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">විෂයයක් එක් කරන්න (Add Subject)</button>
+                    </div>
+
+                    <!-- O/L -->
+                    <div class="p-4 border rounded-lg">
+                        <h3 class="font-semibold text-lg mb-4 text-slate-600">සාමාන්‍ය පෙළ (O/L)</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block mb-2 label-style" for="olSchool">පාසල (School)</label>
+                                <input type="text" id="olSchool" name="olSchool" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                            <div>
+                                <label class="block mb-2 label-style" for="olIndex">විභාග අංකය (Index Number)</label>
+                                <input type="text" id="olIndex" name="olIndex" class="w-full p-2 border rounded-md input-style">
+                            </div>
+                        </div>
+                        <div id="ol-subjects-container" class="mt-4"></div>
+                        <button type="button" onclick="addSubject('ol')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">විෂයයක් එක් කරන්න (Add Subject)</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Work Experience -->
+                <div class="form-step" data-step="3">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">3. රැකියා පළපුරුද්ද (Work Experience)</h2>
+                    <div id="work-exp-container"></div>
+                    <button type="button" onclick="addSection('work-exp')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                </div>
+
+                <!-- Step 4: Skills -->
+                <div class="form-step" data-step="4">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">4. කුසලතා (Skills)</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-600">භාෂා කුසලතා (Language Skills)</h3>
+                            <div id="language-skills-container" class="space-y-2"></div>
+                             <button type="button" onclick="addLanguageSkill()" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">භාෂාවක් එක් කරන්න (Add Language)</button>
+                        </div>
+                         <div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-600">පරිගණක කුසලතා (Computer Skills)</h3>
+                            <textarea id="computerSkills" name="computerSkills" placeholder="Microsoft Office, Photoshop, Programming Languages..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-600">වෙනත් කුසලතා (Other Skills)</h3>
+                            <textarea id="otherSkills" name="otherSkills" placeholder="Driving License, Communication Skills, Teamwork..." rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Awards -->
+                <div class="form-step" data-step="5">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">5. සම්මාන සහ ජයග්‍රහණ (Awards and Achievements)</h2>
+                    <div id="awards-container"></div>
+                    <button type="button" onclick="addSection('awards')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                </div>
+
+                <!-- Step 6: Hobbies -->
+                <div class="form-step" data-step="6">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">6. විනෝදාංශ සහ රුචිකත්වයන් (Hobbies and Interests)</h2>
+                    <textarea id="hobbies" name="hobbies" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                </div>
+
+                <!-- Step 7: Additional Info -->
+                <div class="form-step" data-step="7">
+                     <h2 class="text-2xl font-bold mb-6 text-slate-700">7. අමතර තොරතුරු (Additional Information)</h2>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="4" class="w-full p-2 border rounded-md input-style"></textarea>
+                </div>
+
+                <!-- Step 8: References -->
+                <div class="form-step" data-step="8">
+                    <h2 class="text-2xl font-bold mb-6 text-slate-700">8. විමර්ශන (References)</h2>
+                    <div class="flex items-center mb-4">
+                        <input id="refRequest" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                        <label for="refRequest" class="ml-2 block text-sm text-gray-900">අවශ්‍ය නම් පමණක් ලබා දීමට (References available upon request)</label>
+                    </div>
+                    <div id="references-container"></div>
+                    <button type="button" onclick="addSection('references')" class="mt-2 text-sm btn-secondary py-1 px-3 rounded-md">තව එක් කරන්න (Add More)</button>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-8 flex justify-between">
+                    <button type="button" id="prevBtn" class="py-2 px-4 rounded-md font-semibold btn-secondary">පෙර (Previous)</button>
+                    <button type="button" id="skipBtn" class="py-2 px-4 rounded-md font-semibold btn-tertiary">මඟ හරින්න (Skip)</button>
+                    <button type="button" id="nextBtn" class="py-2 px-4 rounded-md font-semibold btn-primary">ඊළඟ (Next)</button>
+                    <button type="button" id="submitBtn" class="hidden py-2 px-6 rounded-md font-semibold btn-primary">CV එක සාදන්න (Generate CV)</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- CV Preview Container -->
+        <div id="cvPreviewWrapper" class="hidden mt-10">
+             <h2 class="text-3xl font-bold text-center text-slate-800 mb-6">ඔබේ CV එකේ පෙරදසුන</h2>
+             <div id="cvPreview" class="p-8 md:p-12 bg-white shadow-lg rounded-lg">
+                <!-- CV content will be injected here -->
+             </div>
+             <div class="text-center mt-8">
+                <button id="downloadBtn" class="py-3 px-6 rounded-lg font-bold text-white bg-green-600 hover:bg-green-700 transition-colors">PDF ලෙස බාගත කරන්න (Download as PDF)</button>
+                <button id="editBtn" class="ml-4 py-3 px-6 rounded-lg font-bold btn-secondary"> නැවත සකසන්න (Edit Again)</button>
+             </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- State Management ---
+        let currentStep = 1;
+        const totalSteps = 8;
+        const formSteps = document.querySelectorAll('.form-step');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const skipBtn = document.getElementById('skipBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressBar = document.getElementById('progressBar');
+        const stepIndicator = document.getElementById('step-indicator');
+        const formWrapper = document.getElementById('form-wrapper');
+        const cvPreviewWrapper = document.getElementById('cvPreviewWrapper');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const editBtn = document.getElementById('editBtn');
+
+        // --- Utility Functions ---
+        const updateButtons = () => {
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+            skipBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+            nextBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+            submitBtn.style.display = currentStep === totalSteps ? 'inline-block' : 'none';
+        };
+
+        const showStep = (step) => {
+            formSteps.forEach(s => s.classList.remove('active'));
+            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+            progressBar.style.width = `${(step / totalSteps) * 100}%`;
+            stepIndicator.textContent = `පියවර ${step} / ${totalSteps}`;
+            updateButtons();
+        };
+
+        // --- Navigation ---
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+        
+        skipBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        editBtn.addEventListener('click', () => {
+            cvPreviewWrapper.classList.add('hidden');
+            formWrapper.classList.remove('hidden');
+        });
+
+        // --- Dynamic Section Addition ---
+        const createInput = (type, name, placeholder, className = 'w-full p-2 border rounded-md input-style mt-1') => {
+            const input = document.createElement('input');
+            input.type = type;
+            input.name = name;
+            input.placeholder = placeholder;
+            input.className = className;
+            return input;
+        };
+        
+        const createTextarea = (name, placeholder, rows = 3, className = 'w-full p-2 border rounded-md input-style mt-1') => {
+            const textarea = document.createElement('textarea');
+            textarea.name = name;
+            textarea.placeholder = placeholder;
+            textarea.rows = rows;
+            textarea.className = className;
+            return textarea;
+        };
+        
+        const createLabel = (text, className = 'label-style text-sm') => {
+            const label = document.createElement('label');
+            label.textContent = text;
+            label.className = className;
+            return label;
+        };
+
+        const createRemoveButton = (elementToRemove) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = 'ඉවත් කරන්න (Remove)';
+            button.className = 'mt-2 text-xs text-red-600 hover:text-red-800';
+            button.onclick = () => elementToRemove.remove();
+            return button;
+        };
+
+        const addSection = (type) => {
+            const container = document.getElementById(`${type}-container`);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'p-3 border rounded-md mb-4 relative';
+
+            if (type === 'degree') {
+                wrapper.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="degreeInst" placeholder="Name of Institution" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">පාඨමාලාවේ නම</label><input type="text" name="degreeCourse" placeholder="Name of Course" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">ලබාගත් උපාධිය/ඩිප්ලෝමාව</label><input type="text" name="degreeName" placeholder="Degree/Diploma Obtained" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">විශේෂීකරණය</label><input type="text" name="degreeSpec" placeholder="Specialization" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">ආරම්භ කළ දිනය</label><input type="text" name="degreeStart" placeholder="Start Date (e.g., Jan 2020)" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">අවසන් කළ දිනය</label><input type="text" name="degreeEnd" placeholder="End Date (e.g., Dec 2023)" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    </div>
+                `;
+            } else if (type === 'other-qual') {
+                 wrapper.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="qualInst" placeholder="Name of Institution" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">පාඨමාලාවේ නම</label><input type="text" name="qualCourse" placeholder="Name of Course" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">ලබාගත් සහතිකය</label><input type="text" name="qualCert" placeholder="Certificate Obtained" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">කාලය</label><input type="text" name="qualPeriod" placeholder="Period (e.g., 2022-2023)" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    </div>
+                `;
+            } else if (type === 'work-exp') {
+                 wrapper.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="label-style text-sm">ආයතනයේ නම</label><input type="text" name="workCompany" placeholder="Company Name" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">තනතුර</label><input type="text" name="workTitle" placeholder="Job Title" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div class="md:col-span-2"><label class="label-style text-sm">සේවා කාලය</label><input type="text" name="workPeriod" placeholder="Period (e.g., Jan 2022 - Present)" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div class="md:col-span-2"><label class="label-style text-sm">වගකීම් සහ රාජකාරි</label><textarea name="workDesc" placeholder="Responsibilities and Duties" rows="3" class="w-full p-2 border rounded-md input-style mt-1"></textarea></div>
+                    </div>
+                `;
+            } else if (type === 'awards') {
+                wrapper.appendChild(createInput('text', 'award', 'සම්මානය හෝ ජයග්‍රහණය (Award or Achievement)'));
+            } else if (type === 'references') {
+                 wrapper.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="label-style text-sm">නම</label><input type="text" name="refName" placeholder="Name" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">තනතුර</label><input type="text" name="refTitle" placeholder="Job Title" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">ආයතනය</label><input type="text" name="refOrg" placeholder="Organization" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                        <div><label class="label-style text-sm">සම්බන්ධතා</label><input type="text" name="refContact" placeholder="Phone / Email" class="w-full p-2 border rounded-md input-style mt-1"></div>
+                    </div>
+                `;
+            }
+            wrapper.appendChild(createRemoveButton(wrapper));
+            container.appendChild(wrapper);
+        };
+
+        const addSubject = (type) => {
+            const container = document.getElementById(`${type}-subjects-container`);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'grid grid-cols-2 gap-4 mb-2';
+            wrapper.innerHTML = `
+                <input type="text" name="${type}Subject" placeholder="විෂය (Subject)" class="w-full p-2 border rounded-md input-style">
+                <div class="flex items-center">
+                    <input type="text" name="${type}Grade" placeholder="ප්‍රතිඵලය (Grade)" class="w-full p-2 border rounded-md input-style">
+                    <button type="button" onclick="this.parentElement.parentElement.remove()" class="ml-2 text-red-500 hover:text-red-700">✖</button>
+                </div>
+            `;
+            container.appendChild(wrapper);
+        };
+        
+        const addLanguageSkill = () => {
+            const container = document.getElementById('language-skills-container');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'p-3 border rounded-md mb-2';
+            wrapper.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <input type="text" name="language" placeholder="භාෂාව (e.g., English)" class="w-1/3 p-2 border rounded-md input-style">
+                    <input type="text" name="langProficiency" placeholder="ප්‍රවීණතාව (e.g., Fluent)" class="w-1/2 p-2 border rounded-md input-style">
+                    <button type="button" onclick="this.parentElement.parentElement.remove()" class="ml-2 text-red-500 hover:text-red-700">✖</button>
+                </div>
+            `;
+            container.appendChild(wrapper);
+        };
+
+        // --- Initial Dynamic Sections ---
+        window.onload = () => {
+            addSection('degree');
+            addSection('other-qual');
+            addSection('work-exp');
+            addSubject('al');
+            addSubject('ol');
+            addLanguageSkill();
+            showStep(currentStep);
+        };
+
+        // --- CV Generation ---
+        submitBtn.addEventListener('click', () => {
+            const formData = new FormData(document.getElementById('cvForm'));
+            const data = {};
+            // Simple key-value pairs
+            for (let [key, value] of formData.entries()) {
+                if (!data[key]) {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle multiple values
+            const getMultipleValues = (name) => formData.getAll(name).filter(v => v.trim() !== '');
+            
+            data.alSubjects = getMultipleValues('alSubject').map((subj, i) => ({ subject: subj, grade: getMultipleValues('alGrade')[i] || '' }));
+            data.olSubjects = getMultipleValues('olSubject').map((subj, i) => ({ subject: subj, grade: getMultipleValues('olGrade')[i] || '' }));
+            data.languages = getMultipleValues('language').map((lang, i) => ({ language: lang, proficiency: getMultipleValues('langProficiency')[i] || '' }));
+            data.awards = getMultipleValues('award');
+            
+            const getGroupedValues = (fields, groupName) => {
+                const items = [];
+                const firstFieldValues = getMultipleValues(fields[0]);
+                for (let i = 0; i < firstFieldValues.length; i++) {
+                    const item = {};
+                    fields.forEach(field => {
+                        item[field] = getMultipleValues(field)[i] || '';
+                    });
+                    items.push(item);
+                }
+                return items;
+            };
+
+            data.degrees = getGroupedValues(['degreeInst', 'degreeCourse', 'degreeName', 'degreeSpec', 'degreeStart', 'degreeEnd'], 'degrees');
+            data.otherQuals = getGroupedValues(['qualInst', 'qualCourse', 'qualCert', 'qualPeriod'], 'otherQuals');
+            data.workExperiences = getGroupedValues(['workCompany', 'workTitle', 'workPeriod', 'workDesc'], 'workExperiences');
+            data.references = getGroupedValues(['refName', 'refTitle', 'refOrg', 'refContact'], 'references');
+            
+            // Photo
+            const photoFile = document.getElementById('photo').files[0];
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    data.photoUrl = e.target.result;
+                    generateAndShowCV(data);
+                };
+                reader.readAsDataURL(photoFile);
+            } else {
+                generateAndShowCV(data);
+            }
+        });
+
+        const generateAndShowCV = (data) => {
+            const preview = document.getElementById('cvPreview');
+            
+            const renderList = (items, renderFn) => items && items.length > 0 ? items.map(renderFn).join('') : '<p class="text-gray-500 text-sm">තොරතුරු ඇතුළත් කර නොමැත.</p>';
+            
+            preview.innerHTML = `
+                <div class="flex flex-col md:flex-row items-start gap-8">
+                    <!-- Left Column -->
+                    <div class="w-full md:w-1/3 text-center md:text-left">
+                        ${data.photoUrl ? `<img src="${data.photoUrl}" alt="Profile Photo" class="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 object-cover">` : ''}
+                        <h1 class="text-3xl font-bold text-slate-800">${data.fullName || ''}</h1>
+                        <div class="mt-6 text-sm space-y-2 text-slate-600">
+                            <p><strong>විද්‍යුත් තැපෑල:</strong><br>${data.email || ''}</p>
+                            <p><strong>දුරකථන අංකය:</strong><br>${data.phone || ''}</p>
+                            <p><strong>ලිපිනය:</strong><br>${data.address || ''}</p>
+                            ${data.links ? `<p><strong>සබැඳි:</strong><br><a href="${data.links}" class="text-blue-600">${data.links}</a></p>` : ''}
+                        </div>
+                         <div class="mt-6 text-sm space-y-2 text-slate-600">
+                             ${data.dob ? `<p><strong>උපන් දිනය:</strong> ${data.dob}</p>` : ''}
+                             ${data.gender ? `<p><strong>ස්ත්‍රී/පුරුෂ භාවය:</strong> ${data.gender}</p>` : ''}
+                             ${data.maritalStatus ? `<p><strong>විවාහක බව:</strong> ${data.maritalStatus}</p>` : ''}
+                             ${data.nic ? `<p><strong>ජා.හැ.අංකය:</strong> ${data.nic}</p>` : ''}
+                             ${data.nationality ? `<p><strong>ජාතිකත්වය:</strong> ${data.nationality}</p>` : ''}
+                         </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="w-full md:w-2/3">
+                        ${data.about ? `<div><h2>SUMMARY</h2><p class="mt-2 text-sm">${data.about}</p></div>` : ''}
+                        
+                        ${data.workExperiences && data.workExperiences.length > 0 ? `
+                        <div>
+                            <h2>WORK EXPERIENCE</h2>
+                            ${renderList(data.workExperiences, item => `
+                                <div class="mt-3 mb-4">
+                                    <h3>${item.workTitle}</h3>
+                                    <p class="font-semibold text-sm text-slate-700">${item.workCompany} | ${item.workPeriod}</p>
+                                    <p class="text-sm mt-1">${item.workDesc}</p>
+                                </div>
+                            `)}
+                        </div>` : ''}
+                        
+                        <div>
+                            <h2>EDUCATION</h2>
+                            ${renderList(data.degrees, item => `
+                                <div class="mt-3 mb-4">
+                                    <h3>${item.degreeName}</h3>
+                                    <p class="font-semibold text-sm text-slate-700">${item.degreeInst} | ${item.degreeStart} - ${item.degreeEnd}</p>
+                                    <p class="text-sm mt-1">${item.degreeCourse} ${item.degreeSpec ? `(${item.degreeSpec})` : ''}</p>
+                                </div>
+                            `)}
+                        </div>
+
+                        ${data.otherQuals && data.otherQuals.length > 0 ? `
+                        <div>
+                            <h2>PROFESSIONAL QUALIFICATIONS</h2>
+                            ${renderList(data.otherQuals, item => `
+                                <div class="mt-3 mb-4">
+                                    <h3>${item.qualCert}</h3>
+                                    <p class="font-semibold text-sm text-slate-700">${item.qualInst} | ${item.qualPeriod}</p>
+                                    <p class="text-sm mt-1">${item.qualCourse}</p>
+                                </div>
+                            `)}
+                        </div>` : ''}
+                        
+                        <div>
+                             <h2>SKILLS</h2>
+                             <div class="mt-2 text-sm space-y-2">
+                                ${data.languages && data.languages.length > 0 ? `<div><strong>Languages:</strong> ${renderList(data.languages, item => `${item.language} (${item.proficiency})`).replace(/<p.*?>/g, '').replace(/<\/p>/g, ', ')}</div>` : ''}
+                                ${data.computerSkills ? `<div><strong>Computer:</strong> ${data.computerSkills}</div>` : ''}
+                                ${data.otherSkills ? `<div><strong>Other:</strong> ${data.otherSkills}</div>` : ''}
+                             </div>
+                        </div>
+
+                        ${data.alSubjects && data.alSubjects.length > 0 ? `
+                        <div>
+                            <h2>A/L QUALIFICATIONS (${data.alSchool || ''})</h2>
+                            <ul class="list-disc list-inside text-sm mt-2">
+                                ${renderList(data.alSubjects, item => `<li>${item.subject}: ${item.grade}</li>`)}
+                            </ul>
+                        </div>` : ''}
+                        
+                        ${data.awards && data.awards.length > 0 ? `
+                        <div>
+                            <h2>AWARDS & ACHIEVEMENTS</h2>
+                            <ul class="list-disc list-inside text-sm mt-2">
+                                ${renderList(data.awards, item => `<li>${item}</li>`)}
+                            </ul>
+                        </div>` : ''}
+                        
+                        ${data.hobbies ? `<div><h2>HOBBIES & INTERESTS</h2><p class="mt-2 text-sm">${data.hobbies}</p></div>` : ''}
+                        
+                        <div>
+                            <h2>REFERENCES</h2>
+                            ${document.getElementById('refRequest').checked ? 
+                                '<p class="mt-2 text-sm">Available upon request.</p>' : 
+                                renderList(data.references, item => `
+                                    <div class="mt-2 text-sm">
+                                        <p><strong>${item.refName}</strong>, ${item.refTitle}<br>${item.refOrg}<br>${item.refContact}</p>
+                                    </div>
+                                `)
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            formWrapper.classList.add('hidden');
+            cvPreviewWrapper.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        };
+
+        // --- PDF Download ---
+        downloadBtn.addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const cvElement = document.getElementById('cvPreview');
+            const fullName = document.getElementById('fullName').value || 'CV';
+
+            html2canvas(cvElement, { 
+                scale: 2, // Higher scale for better quality
+                useCORS: true 
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                const ratio = canvasWidth / canvasHeight;
+                const imgWidth = pdfWidth;
+                const imgHeight = imgWidth / ratio;
+                
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pdfHeight;
+
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+                
+                pdf.save(`${fullName.replace(/\s+/g, '_')}.pdf`);
+            });
+        });
+    </script>
+</body>
+</html>
