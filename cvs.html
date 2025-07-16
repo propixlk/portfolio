@@ -8,27 +8,23 @@
   <meta name="description" content="Select your preferred CV design template.">
   <meta name="keywords" content="cv design, resume template, professional cv, propix lk">
 
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
     /* General Page Styles */
     :root {
-        --accent-color: #0d6efd;
+        --accent-color: #2f9af1;
         --heading-color: #333;
     }
     body {
@@ -42,8 +38,9 @@
     body.dark-mode .design-template + p {
         color: #fff;
     }
-    .accent-background {
-        background-color: var(--accent-color);
+    /* UPDATED RULE to be more specific */
+    .page-title.accent-background {
+        background-color: #2f9af1; /* FIXED: Use specific color to avoid override */
         color: white;
     }
 
@@ -183,7 +180,6 @@
 
 <body class="cv-design-page">
 
-  <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <a href="index.html" class="logo d-flex align-items-center me-auto">
@@ -217,8 +213,6 @@
       </div>
     </div>
   </header>
-  <!-- End Header -->
-
   <main class="main">
     <div class="page-title accent-background">
         <div class="container">
@@ -237,12 +231,8 @@
         
         <form id="design-form" action="https://formspree.io/f/xwpolbba" method="POST">
             
-            <!-- Hidden input to store the selected design name -->
             <input type="hidden" id="selectedDesign" name="selectedDesign" value="Template 1">
-            <input type="text" name="_gotcha" style="display:none" /> <!-- Honeypot for spam protection -->
-            
-            <div class="row text-center g-4">
-                <!-- CV Templates -->
+            <input type="text" name="_gotcha" style="display:none" /> <div class="row text-center g-4">
                 <div class="col-6 col-md-4 col-lg-3"><img src="assets/img/cv/1.jpg" alt="CV Template 1" class="img-fluid design-template selected" data-design-name="Template 1"><p class="mt-2" data-en="Template 1" data-si="නිර්මාණය 1">Template 1</p></div>
                 <div class="col-6 col-md-4 col-lg-3"><img src="assets/img/cv/2.jpg" alt="CV Template 2" class="img-fluid design-template" data-design-name="Template 2"><p class="mt-2" data-en="Template 2" data-si="නිර්මාණය 2">Template 2</p></div>
                 <div class="col-6 col-md-4 col-lg-3"><img src="assets/img/cv/3.jpg" alt="CV Template 3" class="img-fluid design-template" data-design-name="Template 3"><p class="mt-2" data-en="Template 3" data-si="නිර්මාණය 3">Template 3</p></div>
@@ -271,7 +261,6 @@
     </section>
   </main>
 
-  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer light-background">
     <div class="container footer-top">
       <div class="row gy-4">
@@ -325,15 +314,10 @@
       </div>
     </div>
   </footer>
-  <!-- End Footer -->
-
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
   <div id="preloader"><div class="loader"></div></div>
 
-  <!-- Thank You Popup Modal HTML -->
   <div id="thank-you-popup" class="popup-overlay">
     <div class="popup-content">
       <div class="popup-icon">
@@ -348,11 +332,9 @@
     </div>
   </div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
 
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
   <script>
