@@ -488,7 +488,7 @@
                   </div>
                    <div class="col-12">
                     <label for="portfolioLink" class="form-label" data-en="LinkedIn / Portfolio Link" data-si="LinkedIn / Portfolio සබැඳිය">LinkedIn / Portfolio Link</label>
-                    <input type="text" class="form-control" id="portfolioLink" name="portfolioLink">
+                    <input type="url" class="form-control" id="portfolioLink" name="portfolioLink">
                   </div>
                   <div class="col-12">
                     <label for="address" class="form-label" data-en="Address & Postal Code" data-si="ලිපිනය සහ තැපැල් කේතය">Address & Postal Code</label>
@@ -1061,7 +1061,7 @@
                           ${entries.phone ? `<div class="review-cv-contact-item"><i class="bi bi-telephone-fill"></i> ${entries.phone}</div>` : ''}
                           ${entries.email ? `<div class="review-cv-contact-item"><i class="bi bi-envelope-fill"></i> ${entries.email}</div>` : ''}
                           ${entries.address ? `<div class="review-cv-contact-item"><i class="bi bi-geo-alt-fill"></i> ${entries.address}</div>` : ''}
-                          ${entries.portfolioLink ? `<div class="review-cv-contact-item"><i class="bi bi-linkedin"></i> <a href="${entries.portfolioLink}" target="_blank">${t_review('Portfolio', 'Portfolio')}</a></div>` : ''}
+                          ${entries.portfolioLink ? `<div class="review-cv-contact-item"><i class="bi bi-linkedin"></i> ${entries.portfolioLink}</div>` : ''}
                       </section>
 
                       ${(entries.otherSkills) ? `<section class="review-cv-section">
