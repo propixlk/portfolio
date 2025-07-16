@@ -276,6 +276,123 @@
     body.dark-mode .review-cv-header p,
     body.dark-mode .review-cv-item .meta { color: #ccc; }
     body.dark-mode .review-cv-contact-item a { color: #82c4ff; }
+
+    /* ==== POPUP STYLES START ==== */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none; /* Initially hidden */
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .popup-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    }
+
+    .popup-overlay.show .popup-content {
+      transform: scale(1);
+    }
+
+    .popup-content h2 {
+      font-family: 'Raleway', sans-serif;
+      color: var(--heading-color);
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+    }
+
+    .popup-content p {
+      margin-bottom: 2rem;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .popup-content .btn {
+      padding: 12px 35px;
+      font-size: 1.1rem;
+    }
+
+    /* Dark mode for popup */
+    body.dark-mode .popup-content {
+      background: #343a40;
+      color: #e0e0e0;
+    }
+    body.dark-mode .popup-content h2 {
+      color: #fff;
+    }
+    body.dark-mode .popup-content p {
+      color: #ccc;
+    }
+
+    /* Animated Checkmark Icon */
+    .popup-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 10px;
+    }
+
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+      stroke: #28a745;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 4;
+      stroke: #fff;
+      stroke-miterlimit: 10;
+      box-shadow: inset 0px 0px 0px #28a745;
+      animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    }
+
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+    @keyframes fill {
+      100% { box-shadow: inset 0px 0px 0px 40px #28a745; }
+    }
+    /* ==== POPUP STYLES END ==== */
   </style>
 
 </head>
@@ -344,7 +461,6 @@
                 <li class="step" data-step="7"><div class="step-icon"><i class="bi bi-check-lg"></i></div><div class="step-label" data-en="Review" data-si="සමාලෝචනය">Review</div></li>
             </ul>
 
-            <!-- The form no longer needs action or method attributes -->
             <form id="cv-form" class="cv-form-wizard php-email-form">
               
               <div class="form-step active" data-step="1">
@@ -556,7 +672,6 @@
               <div class="d-flex justify-content-between mt-4">
                 <button type="button" class="btn btn-secondary" id="prev-btn" style="display: none;" data-en="Previous" data-si="පෙර">Previous</button>
                 <button type="button" class="btn btn-outline-secondary" id="skip-btn" data-en="Skip" data-si="මඟහරින්න">Skip</button>
-                <!-- FIX: Moved translation attributes from button to the span inside -->
                 <button type="button" class="btn btn-primary" id="next-btn">
                   <span data-en="Next" data-si="ඊළඟ">Next</span>
                 </button>
@@ -626,6 +741,21 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"><div class="loader"></div></div>
 
+  <div id="thank-you-popup" class="popup-overlay">
+    <div class="popup-content">
+      <div class="popup-icon">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+      </div>
+      <h2 data-en="Thank You!" data-si="ස්තූතියි!">Thank You!</h2>
+      <p data-en="Your CV details have been submitted successfully. We will contact you shortly." data-si="ඔබගේ CV තොරතුරු සාර්ථකව ඉදිරිපත් කරන ලදී. අපි ඔබව ඉක්මනින් සම්බන්ධ කර ගන්නෙමු.">Your CV details have been submitted successfully. We will contact you shortly.</p>
+      <a href="https://propix.work.gd" class="btn btn-primary"><span data-en="Go to Home" data-si="මුල් පිටුවට යන්න">Go to Home</span></a>
+    </div>
+  </div>
+
+
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -685,7 +815,12 @@
           document.querySelectorAll('[data-en]').forEach(el => {
               const text = el.getAttribute(`data-${lang}`);
               if (text) {
-                 el.innerHTML = text;
+                 // Check if the element is a button with a span inside for translation
+                 if (el.tagName === 'BUTTON' && el.querySelector('span[data-en]')) {
+                   el.querySelector('span[data-en]').innerHTML = text;
+                 } else {
+                   el.innerHTML = text;
+                 }
               }
           });
           document.querySelectorAll('[data-en-placeholder]').forEach(el => {
@@ -964,7 +1099,6 @@
       }
       
       // --- NEW: Form Submission to Google Sheet ---
-      // IMPORTANT: Replace this URL with your own Google Apps Script Web App URL
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6wE-A4hbRsMAJG1eAZo_-K_ub4nQTfj_DvdJipw88qrLk6vqvMjKbxjihWlrQtQteJA/exec'; 
 
       cvForm.addEventListener('submit', function(e) {
@@ -973,7 +1107,10 @@
         const submitButton = form.querySelector('button[type="submit"]');
         const loading = form.querySelector('.loading');
         const errorMessage = form.querySelector('.error-message');
-        const sentMessage = form.querySelector('.sent-message');
+        const sentMessage = form.querySelector('.sent-message'); // This is the old success message element
+
+        // New popup element
+        const thankYouPopup = document.getElementById('thank-you-popup');
 
         submitButton.disabled = true;
         loading.style.display = 'block';
@@ -989,9 +1126,17 @@
         .then(res => res.json())
         .then(data => {
           if (data.result === "success") {
-            sentMessage.style.display = 'block';
-            form.reset();
-            goToStep(1); // Reset wizard to the first step
+            // ---- MODIFICATION START ----
+            // Instead of showing the old message and resetting the form view, show the new popup.
+            setLanguage(currentLang); // Ensure popup text is in the correct language
+            thankYouPopup.style.display = 'flex';
+            setTimeout(() => {
+                thankYouPopup.classList.add('show');
+            }, 10); // Small delay to allow CSS transition
+
+            form.reset(); 
+            // We don't call goToStep(1) anymore to keep the user on the current page with the popup overlay.
+            // ---- MODIFICATION END ----
           } else {
             // If the script returns an error, display it
             throw new Error(data.error || 'An unknown error occurred in the script.');
